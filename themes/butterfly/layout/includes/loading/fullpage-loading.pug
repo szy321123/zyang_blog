@@ -1,0 +1,100 @@
+#loading-box
+  .loading-left-bg
+  .loading-right-bg
+  .spinner-box
+    .preloader-scene
+      .view
+        .sky
+          .star.star-1
+          .star.star-2
+          .star.star-3
+          .star.star-4
+          .star.star-5
+          .star.star-6
+          .star.star-7
+          .star.star-8
+          .star.star-9
+        .ground
+        .lamp.lamp-left
+          .head
+            .light-source
+            .head-top
+            .head-body
+              .head-body-rod
+              .head-body-glass
+              .head-body-rod
+              .head-body-glass
+              .head-body-rod
+          .rod
+          .bottom
+            .bottom-top
+            .bottom-body
+            .bottom-bottom
+          .lamp-shadow
+        .lamp.lamp-right
+          .head
+            .light-source
+            .head-top
+            .head-body
+              .head-body-rod
+              .head-body-glass
+              .head-body-rod
+              .head-body-glass
+              .head-body-rod
+          .rod
+          .bottom
+            .bottom-top
+            .bottom-body
+            .bottom-bottom
+          .lamp-shadow
+        .masonry-perspective
+          .masonry-container
+            each i in [1,2,3,4,5,6,7,8,9,10]
+              .masonry
+                each j in [1,2,3,4,5,6]
+                  .masonry-item
+
+script.
+  (()=>{
+    const $loadingBox = document.getElementById('loading-box')
+    const $body = document.body
+    const minDuration = 1200
+    let startTime = Date.now()
+    const preloader = {
+      endLoading: () => {
+        if ($loadingBox.classList.contains('loaded')) return
+        const elapsed = Date.now() - startTime
+        const finish = () => {
+          if ($loadingBox.classList.contains('loaded')) return
+          $body.style.overflow = ''
+          $loadingBox.classList.add('loaded')
+        }
+        if (elapsed >= minDuration) {
+          finish()
+        } else {
+          setTimeout(finish, minDuration - elapsed)
+        }
+      },
+      initLoading: () => {
+        startTime = Date.now()
+        $body.style.overflow = 'hidden'
+        $loadingBox.classList.remove('loaded')
+      }
+    }
+
+    preloader.initLoading()
+
+    if (document.readyState === 'complete') {
+      preloader.endLoading()
+    } else {
+      window.addEventListener('load', preloader.endLoading)
+      document.addEventListener('DOMContentLoaded', preloader.endLoading)
+      // Add timeout protection: force end after 7 seconds
+      setTimeout(preloader.endLoading, 7000)
+    }
+
+    if (!{theme.pjax && theme.pjax.enable}) {
+      btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+      btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+    }
+  })()
