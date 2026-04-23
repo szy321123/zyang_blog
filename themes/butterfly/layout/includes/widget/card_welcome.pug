@@ -1,0 +1,19 @@
+if theme.aside.card_welcome && theme.aside.card_welcome.enable
+  - const welcomeTitle = theme.aside.card_welcome.title || '欢迎'
+  - const ownerName = theme.aside.card_welcome.owner_name || '博主'
+  - const ownerLng = theme.aside.card_welcome.owner_lng || 121.476
+  - const ownerLat = theme.aside.card_welcome.owner_lat || 31.224
+  - const apiKey = theme.aside.card_welcome.api_key || ''
+  .card-widget.card-welcome
+    .item-headline
+      i.fas.fa-map-location-dot
+      span= welcomeTitle
+    #welcome-info(
+      data-fallback=theme.aside.card_welcome.fallback || '欢迎光临，很高兴你来到这里。'
+      data-loading=theme.aside.card_welcome.loading || '正在获取你的访问信息...'
+      data-error=theme.aside.card_welcome.error || '欢迎光临，很高兴你来到这里。'
+      data-owner-name=ownerName
+      data-owner-lng=ownerLng
+      data-owner-lat=ownerLat
+      data-api-key=apiKey
+    )= theme.aside.card_welcome.fallback || '欢迎光临，很高兴你来到这里。'

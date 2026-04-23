@@ -18,7 +18,7 @@ nav:
   display_title: true
   display_post_title: true
   # 是否修复导航栏
-  fixed: true
+  fixed: false
 
 # 新手建议：在此配置导航栏菜单及其子菜单，格式为 '显示名称: /路径/ || 图标'
 # 核心配置：menu
@@ -335,6 +335,16 @@ aside:
   card_announcement:
     enable: true
     content: This is my Blog
+  card_welcome:
+    enable: true
+    title: 欢迎
+    owner_name: 博主
+    owner_lng: 121.476
+    owner_lat: 31.224
+    api_key: a4854b6f98565c33
+    loading: 正在获取你的访问信息...
+    fallback: 欢迎光临，很高兴你来到这里。
+    error: 欢迎光临，很高兴你来到这里。
   card_recent_post:
     enable: true
     # 如果设置0将显示全部
@@ -1182,8 +1192,7 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
-    - <script src="/js/home-parallax.js" defer></script>
-    - <script src="/js/nav-tools.js" defer></script>
+    - <script src="/js/aside-ip-info.js" defer></script>
 
 # CDN 设置
 # 除非您知道以下设置如何工作，否则请勿修改它们
