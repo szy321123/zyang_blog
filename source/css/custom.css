@@ -410,11 +410,58 @@ textarea {
     align-items: center;
     justify-content: center;
   }
+
+  #nav #nav-right {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 8;
+  }
+
+  #nav #nav-right .site-page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 8px;
+    color: var(--font-color);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: all 0.25s ease;
+  }
+
+  #nav #nav-right .site-page:hover {
+    color: var(--white);
+    background: var(--btn-hover-color);
+  }
+
+  #nav #nav-right #search-button .search {
+    gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #nav #nav-right {
+    display: none !important;
+  }
 }
 
 /* Lightweight homepage parallax + spotlight (wallpaper-like, restrained) */
 #page-header.hero-lite-enabled {
   overflow: hidden;
+}
+
+/* Sidebar author card background image */
+#aside-content .card-widget.card-info {
+  background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
+    url('/img/aside.png') center/cover no-repeat !important;
 }
 
 #page-header.hero-lite-enabled .hero-lite-scene {
@@ -637,4 +684,189 @@ textarea {
 
 #aside-content .card-welcome #welcome-info .ip-address:hover {
   filter: none;
+}
+
+/* Aside typography color tuning (Liushen-like soft contrast) */
+:root {
+  --zy-aside-text-main: #334155;
+  --zy-aside-text-title: #1f2d3d;
+  --zy-aside-text-muted: #64748b;
+  --zy-aside-text-link: #2f6faa;
+  --zy-aside-text-link-hover: #1d4f80;
+}
+
+[data-theme="dark"] {
+  --zy-aside-text-main: rgba(226, 232, 240, 0.9);
+  --zy-aside-text-title: rgba(248, 250, 252, 0.96);
+  --zy-aside-text-muted: rgba(186, 197, 214, 0.78);
+  --zy-aside-text-link: #7ab6ec;
+  --zy-aside-text-link-hover: #9bcaf5;
+}
+
+#aside-content .card-widget,
+#aside-content .card-widget p,
+#aside-content .card-widget li,
+#aside-content .card-widget span {
+  color: var(--zy-aside-text-main);
+}
+
+#aside-content .card-widget .item-headline,
+#aside-content .card-widget .item-headline span,
+#aside-content .card-info .author-info-name {
+  color: var(--zy-aside-text-title);
+}
+
+#aside-content .card-info .author-info-description,
+#aside-content .card-info .site-data .headline,
+#aside-content .card-info .site-data .length-num,
+#aside-content .announcement_content,
+#aside-content .aside-list > .aside-list-item > .content > time,
+#aside-content .aside-list > .aside-list-item > .content > .name,
+#aside-content .card-webinfo .webinfo .item-name {
+  color: var(--zy-aside-text-muted);
+}
+
+#aside-content .aside-list > .aside-list-item > .content > .title,
+#aside-content .aside-list > .aside-list-item > .content > .comment,
+#aside-content .card-categories .card-category-list a,
+#aside-content .card-archives .card-archive-list a,
+#aside-content .card-tags .card-tag-cloud a,
+#aside-content .announcement_content a {
+  color: var(--zy-aside-text-link);
+}
+
+#aside-content .aside-list > .aside-list-item > .content > .title:hover,
+#aside-content .aside-list > .aside-list-item > .content > .comment:hover,
+#aside-content .card-categories .card-category-list a:hover,
+#aside-content .card-archives .card-archive-list a:hover,
+#aside-content .card-tags .card-tag-cloud a:hover,
+#aside-content .announcement_content a:hover {
+  color: var(--zy-aside-text-link-hover) !important;
+}
+
+/* Hide aside categories and archives cards */
+#aside-content .card-categories,
+#aside-content .card-archives {
+  display: none !important;
+}
+
+/* Aside typography refinement */
+:root {
+  --zy-aside-font-main: "HarmonyOS Sans SC", "MiSans", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --zy-aside-font-title: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+}
+
+#aside-content .card-widget {
+  font-family: var(--zy-aside-font-main);
+  letter-spacing: 0.01em;
+  line-height: 1.82;
+}
+
+#aside-content .item-headline span,
+#aside-content .card-info .author-info-name,
+#aside-content .card-welcome .welcome-title {
+  font-family: var(--zy-aside-font-title);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+#aside-content .announcement_content,
+#aside-content .aside-list > .aside-list-item > .content > .title,
+#aside-content .aside-list > .aside-list-item > .content > .comment {
+  font-size: 0.95rem;
+}
+
+#aside-content .card-widget .item-headline span {
+  font-size: 1.04rem;
+  text-rendering: geometricPrecision;
+}
+
+#aside-content .announcement_content {
+  line-height: 1.95;
+  font-size: 0.96rem;
+  letter-spacing: 0.012em;
+}
+
+#aside-content .aside-list > .aside-list-item > .content > .title,
+#aside-content .aside-list > .aside-list-item > .content > .comment {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+#aside-content .card-info .site-data .headline {
+  font-weight: 600;
+}
+
+#aside-content .card-info .site-data .length-num {
+  font-weight: 700;
+  font-size: 1.12rem;
+}
+
+/* Footer tech stack logo carousel */
+#footer .footer-tech-carousel {
+  position: relative;
+  margin: 10px auto 14px;
+  max-width: 1120px;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+#footer .tech-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: tech-carousel-move 34s linear infinite;
+}
+
+#footer .tech-carousel-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+#footer .tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#footer .tech-chip i {
+  font-size: 14px;
+}
+
+#footer .footer-tech-carousel:hover .tech-carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes tech-carousel-move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  #footer .tech-carousel-track {
+    animation-duration: 46s;
+  }
+
+  #footer .tech-chip {
+    height: 32px;
+    padding: 0 11px;
+    font-size: 12px;
+  }
 }

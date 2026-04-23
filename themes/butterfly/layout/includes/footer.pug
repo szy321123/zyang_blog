@@ -1,4 +1,5 @@
 - const { nav, owner, copyright, custom_text } = theme.footer
+- const techStacks = [['fas fa-feather','Hexo'],['fas fa-icons','Butterfly'],['fab fa-markdown','Markdown'],['fab fa-node-js','Node.js'],['fab fa-npm','npm'],['fab fa-js','JavaScript'],['fab fa-html5','HTML5'],['fab fa-css3-alt','CSS3'],['fab fa-git-alt','Git'],['fab fa-github','GitHub'],['fab fa-cloudflare','Cloudflare'],['fab fa-digital-ocean','DigitalOcean'],['fab fa-linux','Linux'],['fas fa-server','Nginx'],['fas fa-code','VS Code'],['fas fa-microchip','OpenAI']]
 
 if nav
   .footer-flex
@@ -16,6 +17,14 @@ if nav
                 else if subitem.title
                   div!= subitem.title
 .footer-other
+  .footer-tech-carousel
+    .tech-carousel-track
+      each i in [1, 2]
+        .tech-carousel-list
+          each item in techStacks
+            .tech-chip
+              i(class=item[0])
+              span= item[1]
   .footer-copyright
     if owner.enable
       - const currentYear = new Date().getFullYear()

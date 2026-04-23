@@ -29,7 +29,7 @@ menu:
     分类: /categories/ || fas fa-folder-open
    资源||fas fa-box-open||hide:
     工具: /tools/ || fas fa-wrench
-    宝藏网站: /sites/ || fas fa-gem
+    分享: /sites/ || fas fa-gem
    关于: /about/ || fas fa-user
 
 code_blocks:
@@ -44,7 +44,7 @@ code_blocks:
   copy: true
   language: true
   # true：缩小代码块 | false：展开代码块 | none：展开代码块并隐藏按钮
-  shrink: true
+  shrink: false
   fullpage: true
 
 # 社交媒体链接
@@ -80,7 +80,7 @@ disable_top_img: false
 default_top_img:
 
 # 索引页的横幅图像
-index_img: /img/lunbo2.png
+index_img: /img/lunbo.png
 
 # 存档页面的横幅图像
 archive_img:
@@ -102,12 +102,12 @@ category_img:
 category_per_img:
 
 # 页脚的背景图片
-footer_img: /img/lunbo2.png
+footer_img: /img/lunbo.png
 
 # 网站背景
 # 可以将其设置为颜色、图像 URL 或包含颜色和/或图像 URL 的数组
 # 如果提供了数组，则每次加载时都会从数组中选择随机背景
-background: /img/lunbo2.png
+background: /img/lunbo.png
 cover:
   # 是否禁用盖子
   index_enable: true
@@ -184,7 +184,7 @@ subtitle:
   # 来源1：hitokoto.cn
   # 来源2：https://api.aa1.cn/doc/yiyan.html
   # 来源3：jinrishici.com
-  source: false
+  source: 1
   # 如果关闭打字机效果，字幕将只显示sub的第一行
   sub:
     - 记录技术，也记录成长。
@@ -319,7 +319,7 @@ aside:
   button: true
   mobile: true
   # 位置：左/右
-  position: right
+  position: left
   display:
     archive: true
     tag: true
@@ -331,10 +331,21 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/szy321123
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: |
+      你好，欢迎来到我的博客。<br>
+      这里记录了我的技术成长和日常折腾。<br>
+      希望你能在这里找到有用的东西。
+      <div class="site-note">
+        <div class="site-note-title">站点小记</div>
+        <div class="site-note-item">⚙️ 博客框架:Hexo</div>
+        <div class="site-note-item">🦋 页面主题:Butterfly</div>
+        <div class="site-note-item">☁️ 部署服务:DigitalOcean</div>
+        <div class="site-note-item">🛡️ 网络加速:Cloudflare</div>
+        <div class="site-note-item">📝 更新内容:技术记录与日常折腾</div>
+      </div>
   card_welcome:
     enable: true
     title: 欢迎
@@ -363,7 +374,7 @@ aside:
 # 新手建议：头像设置，img 项填写图片 URL
     avatar: true
   card_categories:
-    enable: true
+    enable: false
     # 如果设置0将显示全部
     limit: 8
     # 选择：无/真/假
@@ -381,7 +392,7 @@ aside:
     order: 1
     sort_order:
   card_archives:
-    enable: true
+    enable: false
     # 类型： 每月/每年
     type: monthly
     # Eg: YYYY年MM月
@@ -539,8 +550,8 @@ math:
 search:
   # 选择：algolia_search / local_search / docsearch
   # 如果不需要搜索，则将其留空
-  use:
-  placeholder:
+  use: local_search
+  placeholder: 搜索文章
 
   # 阿尔戈利亚搜索
   algolia_search:
@@ -1193,6 +1204,7 @@ inject:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
     - <script src="/js/aside-ip-info.js" defer></script>
+    - <script src="/js/random-post.js" defer></script>
 
 # CDN 设置
 # 除非您知道以下设置如何工作，否则请勿修改它们

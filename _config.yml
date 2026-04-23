@@ -104,3 +104,9 @@ deploy:
   type: git
   repo: https://github.com/szy321123/szy321123.github.io.git
   branch: main
+
+# Local search index (for Butterfly local_search)
+search:
+  path: search.xml
+  field: post
+  content: true
