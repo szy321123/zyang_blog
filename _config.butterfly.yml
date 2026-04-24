@@ -81,7 +81,7 @@ disable_top_img: false
 default_top_img: false
 
 # 索引页的横幅图像
-index_img: /img/lunbo3.png
+index_img: /img/hero-placeholder.svg
 
 # 存档页面的横幅图像
 archive_img: false
@@ -1205,7 +1205,7 @@ inject:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
     - <script src="/js/universe-particles.js" defer></script>
-    - <script src="/js/home-parallax.js" defer></script>
+    - <script src="/js/hero-lottie.js" defer></script>
     - <script src="/js/aside-ip-info.js" defer></script>
     - <script src="/js/random-post.js" defer></script>
 
