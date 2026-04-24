@@ -1,48 +1,106 @@
-- const { nav, owner, copyright, custom_text } = theme.footer
-- const techStacks = [['fas fa-feather','Hexo'],['fas fa-icons','Butterfly'],['fab fa-markdown','Markdown'],['fab fa-node-js','Node.js'],['fab fa-npm','npm'],['fab fa-js','JavaScript'],['fab fa-html5','HTML5'],['fab fa-css3-alt','CSS3'],['fab fa-git-alt','Git'],['fab fa-github','GitHub'],['fab fa-cloudflare','Cloudflare'],['fab fa-digital-ocean','DigitalOcean'],['fab fa-linux','Linux'],['fas fa-server','Nginx'],['fas fa-code','VS Code'],['fas fa-microchip','OpenAI']]
+-
+  var footerConfig = theme.footer || {}
+  var nav = footerConfig.nav || false
+  var owner = footerConfig.owner || {}
+  var copyright = footerConfig.copyright || {}
+  var custom_text = footerConfig.custom_text || ''
+  var icpNumber = '萌ICP备20260424号'
+  var icpUrl = 'https://beian.miit.gov.cn/'
+  var techStacks = [
+    ['HTML5', 'https://cdn.simpleicons.org/html5/E34F26', 'https://developer.mozilla.org/docs/Web/HTML'],
+    ['CSS3', 'https://cdn.simpleicons.org/css/1572B6', 'https://developer.mozilla.org/docs/Web/CSS'],
+    ['JavaScript', 'https://cdn.simpleicons.org/javascript/F7DF1E', 'https://developer.mozilla.org/docs/Web/JavaScript'],
+    ['Node.js', 'https://cdn.simpleicons.org/nodedotjs/5FA04E', 'https://nodejs.org/'],
+    ['npm', 'https://cdn.simpleicons.org/npm/CB3837', 'https://www.npmjs.com/'],
+    ['Docker', 'https://cdn.simpleicons.org/docker/2496ED', 'https://www.docker.com/'],
+    ['Linux', 'https://cdn.simpleicons.org/linux/FCC624', 'https://kernel.org/'],
+    ['Git', 'https://cdn.simpleicons.org/git/F05032', 'https://git-scm.com/'],
+    ['GitHub', 'https://cdn.simpleicons.org/github/181717', 'https://github.com/'],
+    ['Nginx', 'https://cdn.simpleicons.org/nginx/009639', 'https://nginx.org/'],
+    ['MySQL', 'https://cdn.simpleicons.org/mysql/4479A1', 'https://www.mysql.com/'],
+    ['Cloudflare', 'https://cdn.simpleicons.org/cloudflare/F38020', 'https://www.cloudflare.com/'],
+    ['DigitalOcean', 'https://cdn.simpleicons.org/digitalocean/0080FF', 'https://www.digitalocean.com/']
+  ]
+  var socialEntries = Object.entries(theme.social || {})
+  var footerGroups = [
+    { title: '服务', links: [{ text: '归档', url: '/archives/' }, { text: '随机文章', url: '/random.html' }, { text: '标签云', url: '/tags/' }] },
+    { title: '主题', links: [{ text: 'Butterfly', url: 'https://butterfly.js.org/' }, { text: 'Hexo 文档', url: 'https://hexo.io/docs/' }, { text: '源码仓库', url: 'https://github.com/szy321123' }] },
+    { title: '导航', links: [{ text: '首页', url: '/' }, { text: '分类', url: '/categories/' }, { text: '工具', url: '/tools/' }, { text: '分享', url: '/sites/' }, { text: '关于', url: '/about/' }] },
+    { title: '协议', links: [{ text: '隐私协议', url: '/privacy/' }, { text: '版权协议', url: '/copyright/' }, { text: 'CC BY-NC-SA 4.0', url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/' }] },
+    { title: '友链', links: [{ text: '资源分享', url: '/sites/' }, { text: '实用工具', url: '/tools/' }, { text: '随便逛逛', url: '/random.html' }] }
+  ]
 
 if nav
   .footer-flex
-    for block in nav
+    each block in nav
       .footer-flex-items(style=`${ block.width ? 'flex-grow:' + block.width : '' }`)
-        for blockItem in block.content
+        each blockItem in block.content
           .footer-flex-item
             .footer-flex-title= blockItem.title
             .footer-flex-content
-              for subitem in blockItem.item
+              each subitem in blockItem.item
                 if subitem.html
                   div!= subitem.html
                 else if subitem.url
-                  a(href=url_for(subitem.url), target='_blank' title=subitem.title)= subitem.title
+                  a(href=url_for(subitem.url), target='_blank', title=subitem.title)= subitem.title
                 else if subitem.title
                   div!= subitem.title
+
 .footer-other
-  .footer-tech-carousel
-    .tech-carousel-track
-      each i in [1, 2]
-        .tech-carousel-list
-          each item in techStacks
-            .tech-chip
-              i(class=item[0])
-              span= item[1]
+  .footer-enhance
+    if socialEntries.length
+      .footer-social-row
+        each item in socialEntries
+          - var rawValue = String(item[1] || '')
+          - var parts = rawValue.split('||')
+          - var socialUrl = (parts[0] || '').trim()
+          - var socialName = (parts[1] || '').trim()
+          - var socialColor = (parts[2] || '').trim().replace(/^['"]|['"]$/g, '')
+          - var socialExternal = /^(https?:|mailto:|\/\/)/.test(socialUrl)
+          if socialUrl
+            if socialExternal
+              a.footer-social-btn(href=socialUrl, target='_blank', rel='noopener', title=(socialName || item[0]))
+                i(class=item[0], style=(socialColor ? 'color:' + socialColor : ''))
+            else
+              a.footer-social-btn(href=url_for(socialUrl), title=(socialName || item[0]))
+                i(class=item[0], style=(socialColor ? 'color:' + socialColor : ''))
+
+    .footer-link-grid
+      each group in footerGroups
+        .footer-link-group
+          .footer-link-title= group.title
+          .footer-link-list
+            each sub in group.links
+              - var external = /^(https?:|mailto:|\/\/)/.test(sub.url)
+              if external
+                a.footer-link-item(href=sub.url, target='_blank', rel='noopener', title=sub.text)= sub.text
+              else
+                a.footer-link-item(href=url_for(sub.url), title=sub.text)= sub.text
+
+  .footer-brand-carousel.group(style='--t: 42s')
+    .footer-brand-track.animate-scroll
+      each item in techStacks
+        a.footer-brand-item(href=item[2], target='_blank', rel='noopener', title=item[0])
+          img.footer-brand-logo(src=item[1], alt=item[0], loading='lazy', decoding='async')
+    .footer-brand-track.animate-scroll2
+      each item in techStacks
+        a.footer-brand-item(href=item[2], target='_blank', rel='noopener', title=item[0])
+          img.footer-brand-logo(src=item[1], alt=item[0], loading='lazy', decoding='async')
+
   .footer-copyright
     if owner.enable
-      - const currentYear = new Date().getFullYear()
-      - const sinceYear = owner.since
+      - var currentYear = new Date().getFullYear()
+      - var sinceYear = owner.since
       span.copyright
         if sinceYear && sinceYear != currentYear
-          != `&copy;&nbsp;${sinceYear} - ${currentYear} By ${config.author}`
+          != '&copy;&nbsp;' + sinceYear + ' - ' + currentYear + ' By ' + config.author
         else
-          != `&copy;&nbsp;${currentYear} By ${config.author}`
-    if copyright.enable
-      - const v = copyright.version ? getVersion() : false
-      span.framework-info
-        if owner.enable && nav
-          span.footer-separator |
-        span= _p('footer.framework') + ' '
-        a(href='https://hexo.io')= `Hexo${ v ? ' ' + v.hexo : '' }`
+          != '&copy;&nbsp;' + currentYear + ' By ' + config.author
+
+    span.icp-info
+      if owner.enable
         span.footer-separator |
-        span= _p('footer.theme') + ' '
-        a(href='https://github.com/jerryc127/hexo-theme-butterfly')= `Butterfly${ v ? ' ' + v.theme : '' }`
-  if theme.footer.custom_text
-    .footer_custom_text!= theme.footer.custom_text
+      a(href=icpUrl, target='_blank', rel='noopener', title='备案查询')= icpNumber
+
+  if custom_text
+    .footer_custom_text!= custom_text

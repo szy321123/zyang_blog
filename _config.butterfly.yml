@@ -14,7 +14,7 @@
 # 新手建议：导航栏外观设置
 nav:
   # 导航栏标志图片
-  logo:
+  logo: /img/touxiang.jpg
   display_title: true
   display_post_title: true
   # 是否修复导航栏
@@ -56,6 +56,7 @@ code_blocks:
 social:
   fab fa-github: https://github.com/szy321123 || Github || '#24292e'
   fas fa-envelope: mailto:szy007700@qq.com || Email || '#4a7dbe'
+  fab fa-telegram-plane: https://t.me/boluo12334 || Telegram || '#229ED9'
 
 # --------------------------------------
 # 图像设置
@@ -77,16 +78,16 @@ avatar:
 disable_top_img: false
 
 # 如果页面的banner没有设置，则会显示default_top_img
-default_top_img:
+default_top_img: false
 
 # 索引页的横幅图像
-index_img: /img/lunbo.png
+index_img: /img/lunbo3.png
 
 # 存档页面的横幅图像
-archive_img:
+archive_img: false
 
 # 注意：标签页，不是标签页
-tag_img:
+tag_img: false
 
 # 标签页的banner图片，可以为每个标签设置banner图片
 # 格式：
@@ -94,7 +95,7 @@ tag_img:
 tag_per_img:
 
 # 注意：类别页面，不是类别页面
-category_img:
+category_img: false
 
 # 分类页面的banner图片，可以为每个分类设置banner图片
 # 格式：
@@ -102,17 +103,17 @@ category_img:
 category_per_img:
 
 # 页脚的背景图片
-footer_img: /img/lunbo.png
+footer_img: false
 
 # 网站背景
 # 可以将其设置为颜色、图像 URL 或包含颜色和/或图像 URL 的数组
 # 如果提供了数组，则每次加载时都会从数组中选择随机背景
-background: /img/lunbo.png
+background: false
 cover:
   # 是否禁用盖子
   index_enable: true
   aside_enable: true
-  archives_enable: true
+  archives_enable: false
   # 未设置封面时，显示默认封面
   default_cover:
     # - 示例图片：xxx.jpg
@@ -187,9 +188,9 @@ subtitle:
   source: 1
   # 如果关闭打字机效果，字幕将只显示sub的第一行
   sub:
-    - 记录技术，也记录成长。
-    - 把复杂问题，写成清晰答案。
-    - 你好，欢迎来到我的博客。
+    - 在代码与日常之间，慢慢发光。
+    - 记录每次折腾，也收藏每份热爱。
+    - 欢迎来到汤圆的数字小屋。
 
 # 主页上的文章布局
 # 1：左侧封面，右侧信息
@@ -984,7 +985,7 @@ canvas_fluttering_ribbon:
 # 画布_巢
 # 参考链接：https://github.com/hustcc/canvas-nest.js
 canvas_nest:
-   enable: true
+   enable: false
    color: '205,190,214'
    opacity: 0.32
    zIndex: -1
@@ -1203,6 +1204,8 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
+    - <script src="/js/universe-particles.js" defer></script>
+    - <script src="/js/home-parallax.js" defer></script>
     - <script src="/js/aside-ip-info.js" defer></script>
     - <script src="/js/random-post.js" defer></script>
 

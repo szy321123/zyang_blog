@@ -2,14 +2,17 @@
 title: Linux 系统常用命令完全指南
 date: 2026-04-23 11:20:00
 categories:
-  - 技术教程
+  - Linux运维
+  - 系统管理
 tags:
   - Linux
   - 命令行
-  - 服务器
-  - 运维
+  - Shell
+  - 进程管理
+  - 权限管理
+  - 网络排障
+  - 定时任务
 description: 覆盖文件管理、权限、软件包、进程、网络、磁盘等场景的 Linux 常用命令详解，并附各主流发行版的差异对比。
-top_img: /img/lunbo2.png
 ---
 
 # Linux 系统常用命令完全指南

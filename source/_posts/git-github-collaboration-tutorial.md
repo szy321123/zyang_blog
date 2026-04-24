@@ -2,15 +2,17 @@
 title: Git 与 GitHub 团队协作完全指南
 date: 2026-04-23 12:00:00
 categories:
-  - 技术教程
+  - 开发协作
+  - 版本控制
 tags:
   - Git
   - GitHub
-  - 团队协作
-  - 版本控制
+  - Pull Request
+  - Code Review
+  - Git 工作流
   - CI/CD
+  - 自动部署
 description: 从 Git 基础到 GitHub 团队协作全流程，涵盖分支管理、Pull Request、Code Review、冲突处理，以及配合 Hexo 博客的自动化部署实战。
-top_img: /img/lunbo2.png
 ---
 
 # Git 与 GitHub 团队协作完全指南

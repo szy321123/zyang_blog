@@ -9,10 +9,10 @@
     maxTranslateY: 7,
     easing: 0.125,
     returnSpeed: 0.07,
-    spotlightSize: 340,
-    spotlightSoftness: 90,
-    spotlightOpacity: 0.24,
-    darknessOpacity: 0.18,
+    spotlightSize: 250,
+    spotlightSoftness: 130,
+    spotlightOpacity: 0.62,
+    darknessOpacity: 0.78,
     desktopOnly: true,
     useFrontLayer: true // false => single-layer mode
   }

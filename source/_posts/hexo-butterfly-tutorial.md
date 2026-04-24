@@ -3,13 +3,16 @@ title: 从零搭建 Hexo + Butterfly 博客教程
 date: 2026-04-22 18:00:00
 categories:
   - 建站教程
+  - 静态博客
 tags:
   - Hexo
   - Butterfly
-  - 建站
-  - 博客
+  - 博客搭建
+  - Nginx
+  - SSL
+  - VPS
+  - 自动部署
 description: 从零开始，手把手教你搭建与我同款的 Hexo + Butterfly 博客，包含从购买域名、服务器配置到完整部署的全流程。
-top_img: /img/lunbo2.png
 ---
 
 # 从零搭建 Hexo + Butterfly 博客教程
