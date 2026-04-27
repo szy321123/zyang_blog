@@ -1,0 +1,25 @@
+-
+  var techStacks = [
+    ['HTML5', '/img/brands/html5.svg', 'https://developer.mozilla.org/docs/Web/HTML'],
+    ['CSS3', '/img/brands/css3.svg', 'https://developer.mozilla.org/docs/Web/CSS'],
+    ['JavaScript', '/img/brands/javascript.svg', 'https://developer.mozilla.org/docs/Web/JavaScript'],
+    ['Node.js', '/img/brands/nodejs.svg', 'https://nodejs.org/'],
+    ['npm', '/img/brands/npm.svg', 'https://www.npmjs.com/'],
+    ['Docker', '/img/brands/docker.svg', 'https://www.docker.com/'],
+    ['Git', '/img/brands/git.svg', 'https://git-scm.com/'],
+    ['GitHub', '/img/brands/github.svg', 'https://github.com/'],
+    ['Nginx', '/img/brands/nginx.svg', 'https://nginx.org/'],
+    ['MySQL', '/img/brands/mysql.svg', 'https://www.mysql.com/'],
+    ['Cloudflare', '/img/brands/cloudflare.svg', 'https://www.cloudflare.com/'],
+    ['DigitalOcean', '/img/brands/digitalocean.svg', 'https://www.digitalocean.com/']
+  ]
+
+.tech-brand-carousel.group(style='--t: 40s')
+  .tech-brand-track.animate-scroll
+    each item in techStacks
+      a.tech-brand-item(href=item[2], target='_blank', rel='noopener', title=item[0])
+        img.tech-brand-logo(src=item[1], alt=item[0], loading='lazy', decoding='async')
+  .tech-brand-track.animate-scroll2
+    each item in techStacks
+      a.tech-brand-item(href=item[2], target='_blank', rel='noopener', title=item[0])
+        img.tech-brand-logo(src=item[1], alt=item[0], loading='lazy', decoding='async')

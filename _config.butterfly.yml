@@ -353,7 +353,7 @@ aside:
     owner_name: 博主
     owner_lng: 121.476
     owner_lat: 31.224
-    api_key: a4854b6f98565c33
+    api_key:
     loading: 正在获取你的访问信息...
     fallback: 欢迎光临，很高兴你来到这里。
     error: 欢迎光临，很高兴你来到这里。
@@ -573,10 +573,6 @@ search:
       enable: false
       # 每页搜索结果数
       hitsPerPage: 8
-# 新手建议：CDN 静态资源加速
-# 核心配置：CDN
-# 新手建议：CDN 静态资源加速
-    CDN:
 
   # 文档搜索
   # 参考链接：https://docsearch.algolia.com/

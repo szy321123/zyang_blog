@@ -56,7 +56,8 @@
   }
 
   const fetchNsuuuIpip = async apiKey => {
-    const key = apiKey || 'a4854b6f98565c33'
+    const key = (apiKey || '').trim()
+    if (!key) throw new Error('nsuuu_key_missing')
     const response = await withTimeout(
       fetch(`https://v1.nsuuu.com/api/ipip?key=${encodeURIComponent(key)}`, { credentials: 'omit' })
     )

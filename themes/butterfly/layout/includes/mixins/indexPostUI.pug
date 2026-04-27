@@ -111,6 +111,10 @@ mixin indexPostUI()
             - const content = postDesc(article)
             if content
               .content!=content
+            .recent-post-actions
+              a.recent-post-more(href=url_for(link) title=title)
+                span 查看更多
+                i.fas.fa-angle-right
 
         if theme.ad && theme.ad.index
           if (index + 1) % 3 === 0

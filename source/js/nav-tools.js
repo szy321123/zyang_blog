@@ -3,6 +3,9 @@
 
   const NAV_TOOLS_ID = 'nav-action-tools'
   const DESKTOP_QUERY = '(min-width: 769px)'
+  const RESIZE_DEBOUNCE_MS = 150
+
+  let resizeTimer = 0
 
   const ensureNavToolsContainer = () => {
     const navEl = document.querySelector('#nav')
@@ -99,7 +102,11 @@
 
   const init = () => {
     mountNavTools()
-    window.setTimeout(mountNavTools, 60)
+  }
+
+  const onResize = () => {
+    window.clearTimeout(resizeTimer)
+    resizeTimer = window.setTimeout(() => init(), RESIZE_DEBOUNCE_MS)
   }
 
   if (document.readyState === 'loading') {
@@ -112,5 +119,5 @@
     window.btf.addGlobalFn('pjaxComplete', init, 'nav_tools_init')
   }
   document.addEventListener('pjax:complete', init, { passive: true })
-  window.addEventListener('resize', init, { passive: true })
+  window.addEventListener('resize', onResize, { passive: true })
 })()
