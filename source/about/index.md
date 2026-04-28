@@ -1,6 +1,6 @@
 ---
-title: 关于
-date: 2026-04-17 23:11:26
+title: 关于我
+date: 2026-04-17 23:11:46
 top_img: false
 type: page
 comments: false
@@ -10,7 +10,7 @@ comments: false
   <section class="about-hero">
     <div class="about-hero-main">
       <p class="about-kicker">HELLO, I AM ZYANG</p>
-      <h1>持续记录 Linux、建站与自动化实践</h1>
+      <h2>持续记录 Linux、建站与自动化实践</h2>
       <p class="about-lead">
         这里是我的技术实践归档，主要记录 Linux 运维、静态博客搭建、
         自动化部署与协作流程中的可复用经验。内容以实操、复盘和长期维护为核心，

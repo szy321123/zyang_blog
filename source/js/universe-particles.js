@@ -6,7 +6,7 @@
       giant: '180,184,240',
       star: '226,225,142',
       comet: '226,225,224',
-      density: 0.24,
+      density: 0.12,
       speed: 0.065,
       cometChance: 22,
       alphaBoost: 1.28,
@@ -16,7 +16,7 @@
       giant: '48,86,156',
       star: '28,66,128',
       comet: '28,82,154',
-      density: 0.22,
+      density: 0.1,
       speed: 0.058,
       cometChance: 20,
       alphaBoost: 1.42,
@@ -159,7 +159,7 @@
     }
 
     seed() {
-      const count = Math.max(48, Math.floor(this.width * this.themeConfig.density))
+      const count = Math.max(22, Math.floor(this.width * this.themeConfig.density))
       this.stars = []
       for (let i = 0; i < count; i++) this.stars.push(new Star(this))
     }

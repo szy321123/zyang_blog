@@ -6,7 +6,7 @@
 title: 汤圆是只乳白
 subtitle: '在代码与日常之间，记录热爱'
 description: '一个记录建站、技术和日常想法的个人博客'
-keywords:
+keywords: '建站教程,Linux运维,开发协作,前端资源'
 author: ZYang
 language: zh-CN
 timezone: 'Asia/Shanghai'
@@ -14,7 +14,7 @@ timezone: 'Asia/Shanghai'
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://zyang.me
-permalink: :year/:month/:day/:title/
+permalink: posts/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -108,5 +108,11 @@ deploy:
 # Local search index (for Butterfly local_search)
 search:
   path: search.xml
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
   field: post
   content: true

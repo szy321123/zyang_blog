@@ -17,8 +17,7 @@
   }
 
   function isToolsPage () {
-    const path = window.location.pathname.replace(/\/+$/, '')
-    return path === '/tools' || path.endsWith('/tools')
+    return Boolean(byId('qr-tool-page'))
   }
 
   function ensureLib () {

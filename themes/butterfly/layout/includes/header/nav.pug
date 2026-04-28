@@ -2,7 +2,10 @@ nav#nav
   span#blog-info
     a.nav-site-title(href=url_for('/'))
       if theme.nav.logo
-        img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
+        if theme.nav.logo.endsWith('.json')
+          div.site-icon-lottie(data-lottie=url_for(theme.nav.logo), style="width: 32px; height: 32px; display: inline-block; vertical-align: middle; margin-right: 8px;")
+        else
+          img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
       if theme.nav.display_title
         span.site-name=config.title
     if globalPageType === 'post' && theme.nav.display_post_title

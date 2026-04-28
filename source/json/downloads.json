@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "generatedAt": "2026-04-28T09:48:03.212Z",
+    "source": "https://zyang.app",
+    "rootPath": "/",
+    "totalItems": 15,
+    "categories": {
+      "root": 6,
+      "bandizip": 3,
+      "geek": 2,
+      "v2ray": 4
+    }
+  },
+  "items": [
+    {
+      "name": "ClashMetaForAndroid-v2.11.27.apk",
+      "path": "/ClashMetaForAndroid-v2.11.27.apk",
+      "size": 78893985,
+      "sizeText": "75 MB",
+      "modified": "2026-04-26T03:47:43.246432386Z",
+      "category": "root",
+      "platform": "Android",
+      "downloadUrl": "https://zyang.app/p/ClashMetaForAndroid-v2.11.27.apk"
+    },
+    {
+      "name": "TrollInstallerX.ipa",
+      "path": "/TrollInstallerX.ipa",
+      "size": 6889214,
+      "sizeText": "6.57 MB",
+      "modified": "2026-04-26T03:45:19.231019756Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/TrollInstallerX.ipa"
+    },
+    {
+      "name": "huorong_v6_x64.exe",
+      "path": "/huorong_v6_x64.exe",
+      "size": 51739464,
+      "sizeText": "49 MB",
+      "modified": "2026-04-25T13:01:04Z",
+      "category": "root",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/huorong_v6_x64.exe"
+    },
+    {
+      "name": "huorong_v6_x86.exe",
+      "path": "/huorong_v6_x86.exe",
+      "size": 51739464,
+      "sizeText": "49 MB",
+      "modified": "2026-04-25T13:01:04Z",
+      "category": "root",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/huorong_v6_x86.exe"
+    },
+    {
+      "name": "bandizip-portable.exe",
+      "path": "/bandizip/bandizip-portable.exe",
+      "size": 8526049,
+      "sizeText": "8.13 MB",
+      "modified": "2026-04-25T11:41:11.709215006Z",
+      "category": "bandizip",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/bandizip/bandizip-portable.exe"
+    },
+    {
+      "name": "bandizip-x86.exe",
+      "path": "/bandizip/bandizip-x86.exe",
+      "size": 11523104,
+      "sizeText": "11 MB",
+      "modified": "2026-04-25T11:41:11.597214093Z",
+      "category": "bandizip",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/bandizip/bandizip-x86.exe"
+    },
+    {
+      "name": "bandizip-x64.exe",
+      "path": "/bandizip/bandizip-x64.exe",
+      "size": 11523104,
+      "sizeText": "11 MB",
+      "modified": "2026-04-25T11:41:06.324167732Z",
+      "category": "bandizip",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/bandizip/bandizip-x64.exe"
+    },
+    {
+      "name": "geek.7z",
+      "path": "/geek/geek.7z",
+      "size": 2221874,
+      "sizeText": "2.12 MB",
+      "modified": "2026-04-25T11:39:49.499468418Z",
+      "category": "geek",
+      "platform": "Other",
+      "downloadUrl": "https://zyang.app/p/geek/geek.7z"
+    },
+    {
+      "name": "geek.zip",
+      "path": "/geek/geek.zip",
+      "size": 3191222,
+      "sizeText": "3.04 MB",
+      "modified": "2026-04-25T11:39:47.531450278Z",
+      "category": "geek",
+      "platform": "Other",
+      "downloadUrl": "https://zyang.app/p/geek/geek.zip"
+    },
+    {
+      "name": "v2ray-macos-arm64.zip",
+      "path": "/v2ray/v2ray-macos-arm64.zip",
+      "size": 18262554,
+      "sizeText": "17 MB",
+      "modified": "2026-04-25T11:35:01.097808456Z",
+      "category": "v2ray",
+      "platform": "Other",
+      "downloadUrl": "https://zyang.app/p/v2ray/v2ray-macos-arm64.zip"
+    },
+    {
+      "name": "v2ray-macos-64.zip",
+      "path": "/v2ray/v2ray-macos-64.zip",
+      "size": 19402516,
+      "sizeText": "19 MB",
+      "modified": "2026-04-25T11:34:59.689794903Z",
+      "category": "v2ray",
+      "platform": "Other",
+      "downloadUrl": "https://zyang.app/p/v2ray/v2ray-macos-64.zip"
+    },
+    {
+      "name": "v2ray-windows-64.zip",
+      "path": "/v2ray/v2ray-windows-64.zip",
+      "size": 19254449,
+      "sizeText": "18 MB",
+      "modified": "2026-04-25T11:34:58.230780796Z",
+      "category": "v2ray",
+      "platform": "Other",
+      "downloadUrl": "https://zyang.app/p/v2ray/v2ray-windows-64.zip"
+    },
+    {
+      "name": "v2ray-windows-32.zip",
+      "path": "/v2ray/v2ray-windows-32.zip",
+      "size": 18630286,
+      "sizeText": "18 MB",
+      "modified": "2026-04-25T11:34:57.044769328Z",
+      "category": "v2ray",
+      "platform": "Other",
+      "downloadUrl": "https://zyang.app/p/v2ray/v2ray-windows-32.zip"
+    },
+    {
+      "name": "Everything_v1.4.1.1032_x86_setup.exe",
+      "path": "/Everything_v1.4.1.1032_x86_setup.exe",
+      "size": 1901912,
+      "sizeText": "1.81 MB",
+      "modified": "2026-01-23T03:14:59Z",
+      "category": "root",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/Everything_v1.4.1.1032_x86_setup.exe"
+    },
+    {
+      "name": "Everything_v1.4.1.1032_x64_setup.exe",
+      "path": "/Everything_v1.4.1.1032_x64_setup.exe",
+      "size": 1998736,
+      "sizeText": "1.91 MB",
+      "modified": "2026-01-23T03:14:16Z",
+      "category": "root",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/Everything_v1.4.1.1032_x64_setup.exe"
+    }
+  ]
+}

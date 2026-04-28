@@ -13,8 +13,8 @@
 # 核心配置：nav
 # 新手建议：导航栏外观设置
 nav:
-  # 导航栏标志图片
-  logo: /img/touxiang.jpg
+  # 导航栏标志图片 (如果是 lottie json 请在路径包含 .json)
+  logo: /json/cat-sneaking.json
   display_title: true
   display_post_title: true
   # 是否修复导航栏
@@ -30,7 +30,11 @@ menu:
    资源||fas fa-box-open||hide:
     工具: /tools/ || fas fa-wrench
     分享: /sites/ || fas fa-gem
-   关于: /about/ || fas fa-user
+   下载: /downloads/ || fas fa-download
+   留言板: /guestbook/ || fas fa-comment-dots
+   关于||fas fa-user||hide:
+    我的设备: /equipment/ || fas fa-laptop
+    关于我: /about/ || fas fa-address-card
 
 code_blocks:
   # 代码块主题：深色/苍白之夜/浅色/海洋/假
@@ -293,17 +297,15 @@ noticeOutdate:
 # 页脚设置
 # --------------------------------------
 footer:
-# 新手建议：导航栏外观设置
-# 核心配置：nav
-# 新手建议：导航栏外观设置
-  nav:
+  nav: false
+
   owner:
     enable: true
     since: 2025
   # 主题和框架版权
   copyright:
-    enable: true
-    version: true
+    enable: false
+    version: false
   custom_text:
 
 # --------------------------------------
@@ -336,16 +338,15 @@ aside:
   card_announcement:
     enable: true
     content: |
-      你好，欢迎来到我的博客。<br>
-      这里记录了我的技术成长和日常折腾。<br>
-      希望你能在这里找到有用的东西。
+      欢迎访问我的技术博客。<br>
+      这里主要整理 Linux、建站与部署实践。<br>
+      希望这些内容能为你提供清晰、可用的参考。
       <div class="site-note">
         <div class="site-note-title">站点小记</div>
-        <div class="site-note-item">⚙️ 博客框架:Hexo</div>
-        <div class="site-note-item">🦋 页面主题:Butterfly</div>
+        <div class="site-note-item">🧭 站点定位:技术实践记录</div>
         <div class="site-note-item">☁️ 部署服务:DigitalOcean</div>
         <div class="site-note-item">🛡️ 网络加速:Cloudflare</div>
-        <div class="site-note-item">📝 更新内容:技术记录与日常折腾</div>
+        <div class="site-note-item">📝 更新重点:Linux / 建站 / 协作</div>
       </div>
   card_welcome:
     enable: true
@@ -525,7 +526,7 @@ busuanzi:
 math:
   # 选择：mathjax、katex
   # 如果不需要数学，请将其留空
-  use:
+  use: Artalk
   per_page: true
   hide_scrollbar: false
 
@@ -747,10 +748,10 @@ remark42:
 # 参考链接：https://artalk.js.org/guide/frontend/config.html
 artalk:
 # Artalk 评论系统配置
-  server:
-  site:
+  server: http://127.0.0.1:23366
+  site: zyang-local-dev
   # 使用 Artalk 访客计数作为页面浏览计数
-  visitor: false
+  visitor: true
   option:
 
 # --------------------------------------
@@ -1204,9 +1205,11 @@ inject:
   bottom:
     - <script src="/js/universe-particles.js" defer></script>
     - <script src="/js/hero-lottie.js" defer></script>
+    - <script src="/js/nav-lottie.js" defer></script>
     - <script src="/js/aside-ip-info.js" defer></script>
     - <script src="/js/random-post.js" defer></script>
     - <script src="/js/qr-tool.js" defer></script>
+    - <script src="/js/downloads-page.js" defer></script>
 
 # CDN 设置
 # 除非您知道以下设置如何工作，否则请勿修改它们
