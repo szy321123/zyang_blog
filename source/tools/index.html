@@ -1,0 +1,129 @@
+---
+title: 实用工具
+date: 2026-04-17 23:11:41
+top_img: false
+---
+
+<div class="qr-tool-page" id="qr-tool-page">
+  <div class="qr-tool-head">
+    <h2>二维码工具箱 <span class="qr-live-badge">实时预览</span></h2>
+    <p>任意文本转二维码，支持 URL、WiFi、邮箱、电话、短信等模式。</p>
+  </div>
+
+  <div class="qr-tool-grid">
+    <section class="qr-tool-panel">
+      <label class="qr-label" for="qr-mode">生成模式</label>
+      <select id="qr-mode" class="qr-input">
+        <option value="text">文本 / 链接</option>
+        <option value="wifi">WiFi</option>
+        <option value="email">邮箱</option>
+        <option value="phone">电话</option>
+        <option value="sms">短信</option>
+      </select>
+
+      <div id="qr-basic-group">
+        <label class="qr-label" for="qr-text">内容</label>
+        <textarea id="qr-text" class="qr-input qr-textarea" placeholder="输入任意文本、网址或命令..." rows="6"></textarea>
+      </div>
+
+      <div id="qr-wifi-group" class="qr-mode-group" hidden>
+        <label class="qr-label" for="qr-wifi-ssid">WiFi 名称 (SSID)</label>
+        <input id="qr-wifi-ssid" class="qr-input" type="text" placeholder="例如：MyHomeWiFi">
+        <label class="qr-label" for="qr-wifi-password">WiFi 密码</label>
+        <input id="qr-wifi-password" class="qr-input" type="text" placeholder="例如：12345678">
+        <label class="qr-label" for="qr-wifi-auth">加密方式</label>
+        <select id="qr-wifi-auth" class="qr-input">
+          <option value="WPA">WPA/WPA2</option>
+          <option value="WEP">WEP</option>
+          <option value="nopass">无密码</option>
+        </select>
+        <label class="qr-inline">
+          <input id="qr-wifi-hidden" type="checkbox">
+          <span>隐藏网络</span>
+        </label>
+      </div>
+
+      <div id="qr-email-group" class="qr-mode-group" hidden>
+        <label class="qr-label" for="qr-email-to">收件邮箱</label>
+        <input id="qr-email-to" class="qr-input" type="email" placeholder="name@example.com">
+        <label class="qr-label" for="qr-email-subject">邮件标题</label>
+        <input id="qr-email-subject" class="qr-input" type="text" placeholder="标题">
+        <label class="qr-label" for="qr-email-body">邮件正文</label>
+        <textarea id="qr-email-body" class="qr-input qr-textarea" rows="4" placeholder="正文内容"></textarea>
+      </div>
+
+      <div id="qr-phone-group" class="qr-mode-group" hidden>
+        <label class="qr-label" for="qr-phone-number">电话号码</label>
+        <input id="qr-phone-number" class="qr-input" type="text" placeholder="+86 13800000000">
+      </div>
+
+      <div id="qr-sms-group" class="qr-mode-group" hidden>
+        <label class="qr-label" for="qr-sms-number">短信号码</label>
+        <input id="qr-sms-number" class="qr-input" type="text" placeholder="+86 13800000000">
+        <label class="qr-label" for="qr-sms-body">短信内容</label>
+        <textarea id="qr-sms-body" class="qr-input qr-textarea" rows="4" placeholder="请输入短信内容"></textarea>
+      </div>
+
+      <div class="qr-advanced">
+        <div class="qr-row">
+          <div>
+            <label class="qr-label" for="qr-size">尺寸</label>
+            <input id="qr-size" class="qr-input" type="range" min="180" max="560" step="10" value="320">
+            <span id="qr-size-value" class="qr-hint">320px</span>
+          </div>
+          <div>
+            <label class="qr-label" for="qr-margin">边距</label>
+            <input id="qr-margin" class="qr-input" type="range" min="0" max="8" step="1" value="2">
+            <span id="qr-margin-value" class="qr-hint">2</span>
+          </div>
+        </div>
+
+        <div class="qr-row qr-row-3">
+          <div>
+            <label class="qr-label" for="qr-ecc">容错级别</label>
+            <select id="qr-ecc" class="qr-input">
+              <option value="L">L (7%)</option>
+              <option value="M" selected>M (15%)</option>
+              <option value="Q">Q (25%)</option>
+              <option value="H">H (30%)</option>
+            </select>
+          </div>
+          <div>
+            <label class="qr-label" for="qr-fg">前景色</label>
+            <input id="qr-fg" class="qr-input qr-color" type="color" value="#111827">
+          </div>
+          <div>
+            <label class="qr-label" for="qr-bg">背景色</label>
+            <input id="qr-bg" class="qr-input qr-color" type="color" value="#ffffff">
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-actions">
+        <button id="qr-generate" class="qr-btn qr-btn-primary" type="button">生成二维码</button>
+        <button id="qr-clear" class="qr-btn" type="button">清空内容</button>
+        <button id="qr-download" class="qr-btn" type="button">下载 PNG</button>
+      </div>
+      <div id="qr-message" class="qr-message" aria-live="polite"></div>
+    </section>
+
+    <section class="qr-preview-panel">
+      <div class="qr-preview-head">
+        <strong>预览</strong>
+        <span id="qr-char-count">0 字符</span>
+      </div>
+      <div class="qr-preview-meta">
+        <span id="qr-mode-label">模式：文本 / 链接</span>
+        <span id="qr-last-update">更新时间：--:--:--</span>
+      </div>
+      <div class="qr-canvas-wrap">
+        <canvas id="qr-canvas" width="320" height="320" aria-label="二维码预览"></canvas>
+      </div>
+      <div class="qr-payload-box">
+        <div class="qr-payload-title">当前编码内容</div>
+        <code id="qr-payload-preview">尚未输入内容</code>
+      </div>
+      <p class="qr-preview-note">提示：深浅主题都会自动保持可读性。你也可以手动调整前景/背景色。</p>
+    </section>
+  </div>
+</div>

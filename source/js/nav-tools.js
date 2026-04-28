@@ -2,10 +2,15 @@
   'use strict'
 
   const NAV_TOOLS_ID = 'nav-action-tools'
+  const NAV_MENU_ROOT_SELECTOR = '#nav #menus'
+  const NAV_MENU_ITEMS_SELECTOR = '#nav #menus .menus_items .menus_item'
+  const NAV_GROUP_TRIGGER_SELECTOR = '#nav #menus .menus_items .menus_item > .site-page.group'
+  const NAV_OPEN_CLASS = 'zy-open'
   const DESKTOP_QUERY = '(min-width: 769px)'
   const RESIZE_DEBOUNCE_MS = 150
 
   let resizeTimer = 0
+  let dropdownEventsBound = false
 
   const ensureNavToolsContainer = () => {
     const navEl = document.querySelector('#nav')
@@ -100,8 +105,47 @@
     }
   }
 
+  const closeAllDesktopDropdowns = (exceptItem = null) => {
+    document.querySelectorAll(`${NAV_MENU_ITEMS_SELECTOR}.${NAV_OPEN_CLASS}`).forEach(item => {
+      if (item !== exceptItem) item.classList.remove(NAV_OPEN_CLASS)
+    })
+  }
+
+  const bindDesktopDropdownLock = () => {
+    if (dropdownEventsBound) return
+    dropdownEventsBound = true
+
+    document.addEventListener('click', e => {
+      if (!window.matchMedia(DESKTOP_QUERY).matches) return
+
+      const trigger = e.target.closest(NAV_GROUP_TRIGGER_SELECTOR)
+      if (trigger) {
+        const menuItem = trigger.closest('.menus_item')
+        if (!menuItem) return
+        const willOpen = !menuItem.classList.contains(NAV_OPEN_CLASS)
+        closeAllDesktopDropdowns(menuItem)
+        menuItem.classList.toggle(NAV_OPEN_CLASS, willOpen)
+        e.preventDefault()
+        return
+      }
+
+      if (!e.target.closest(NAV_MENU_ROOT_SELECTOR)) {
+        closeAllDesktopDropdowns()
+      }
+    })
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeAllDesktopDropdowns()
+    })
+  }
+
   const init = () => {
     mountNavTools()
+    bindDesktopDropdownLock()
+
+    if (!window.matchMedia(DESKTOP_QUERY).matches) {
+      closeAllDesktopDropdowns()
+    }
   }
 
   const onResize = () => {

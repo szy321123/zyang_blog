@@ -5,7 +5,8 @@
   var copyright = footerConfig.copyright || {}
   var custom_text = footerConfig.custom_text || ''
   var currentYear = new Date().getFullYear()
-  var runtimeStart = footerConfig.runtime_start || ((owner.since || currentYear) + '-01-01T00:00:00+08:00')
+  var siteBuildDate = '2026-04-24'
+  var runtimeStart = footerConfig.runtime_start || (siteBuildDate + 'T00:00:00+08:00')
   var icpNumber = '萌ICP备20260424号'
   var icpUrl = 'https://beian.miit.gov.cn/'
   var socialEntries = Object.entries(theme.social || {})
@@ -66,6 +67,8 @@ if nav
 
   .footer-runtime-row
     .footer-runtime
+      span.runtime-build 建站时间：#{siteBuildDate}
+      span.runtime-divider |
       span.runtime-label 本站已稳定运行
       span#site-runtime.runtime-value(data-start=runtimeStart) 0天 00:00:00
 

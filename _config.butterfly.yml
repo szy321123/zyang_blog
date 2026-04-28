@@ -323,7 +323,7 @@ aside:
   position: left
   display:
     archive: true
-    tag: true
+    tag: false
     category: true
   card_author:
     enable: true
@@ -382,7 +382,7 @@ aside:
     expand: none
     sort_order:
   card_tags:
-    enable: true
+    enable: false
     # 如果设置0将显示全部
     limit: 40
     color: false
@@ -430,7 +430,7 @@ rightside_bottom:
 
 # 繁简体中文转换
 translate:
-  enable: true
+  enable: false
   # 按钮的文本
   default: 繁
   # 网站语言（1 - 繁体中文/ 2 - 简体中文）
@@ -934,14 +934,14 @@ beautify:
 # 除非您知道以下设置如何工作，否则请勿修改它们
 font:
   global_font_size:
-  code_font_size:
-  font_family:
-  code_font_family:
+  code_font_size: 15px
+  font_family: "'Yozai Medium', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+  code_font_family: "Consolas, 'Cascadia Code', 'SFMono-Regular', 'JetBrains Mono', Monaco, 'Courier New', monospace"
 
 # 网站标题和网站副标题的字体设置
 blog_title_font:
   font_link:
-  font_family:
+  font_family: "'Yozai Medium', 'PingFang SC', 'Microsoft YaHei', sans-serif"
 
 # 分隔线图标的设置
 hr_icon:
@@ -1198,12 +1198,15 @@ css_prefix: true
 # 将代码插入到头部（“</head>”标签之前）和底部（“</body>”标签之前）
 inject:
   head:
+    - <link rel="preconnect" href="https://jsd.liiiu.cn" crossorigin>
+    - <link rel="stylesheet" href="https://jsd.liiiu.cn/gh/willow-god/Sharding-fonts/Yozai-Medium/result.min.css">
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
     - <script src="/js/universe-particles.js" defer></script>
     - <script src="/js/hero-lottie.js" defer></script>
     - <script src="/js/aside-ip-info.js" defer></script>
     - <script src="/js/random-post.js" defer></script>
+    - <script src="/js/qr-tool.js" defer></script>
 
 # CDN 设置
 # 除非您知道以下设置如何工作，否则请勿修改它们

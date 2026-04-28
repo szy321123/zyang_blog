@@ -3,63 +3,48 @@
   .loading-right-bg
   .spinner-box
     .preloader-scene
-      .view
-        .sky
-          .star.star-1
-          .star.star-2
-          .star.star-3
-          .star.star-4
-          .star.star-5
-          .star.star-6
-          .star.star-7
-          .star.star-8
-          .star.star-9
-        .ground
-        .lamp.lamp-left
-          .head
-            .light-source
-            .head-top
-            .head-body
-              .head-body-rod
-              .head-body-glass
-              .head-body-rod
-              .head-body-glass
-              .head-body-rod
-          .rod
-          .bottom
-            .bottom-top
-            .bottom-body
-            .bottom-bottom
-          .lamp-shadow
-        .lamp.lamp-right
-          .head
-            .light-source
-            .head-top
-            .head-body
-              .head-body-rod
-              .head-body-glass
-              .head-body-rod
-              .head-body-glass
-              .head-body-rod
-          .rod
-          .bottom
-            .bottom-top
-            .bottom-body
-            .bottom-bottom
-          .lamp-shadow
-        .masonry-perspective
-          .masonry-container
-            each i in [1,2,3,4,5,6,7,8,9,10]
-              .masonry
-                each j in [1,2,3,4,5,6]
-                  .masonry-item
+      #preloader-lottie.preloader-lottie
 
 script.
   (()=>{
     const $loadingBox = document.getElementById('loading-box')
     const $body = document.body
+    const $lottieContainer = document.getElementById('preloader-lottie')
+    const pjaxEnabled = !{theme.pjax && theme.pjax.enable ? 'true' : 'false'}
     const minDuration = 1200
     let startTime = Date.now()
+    let lottieInstance = null
+    let lottieLoaderPromise = null
+
+    const ensureLottie = () => {
+      if (!$lottieContainer || lottieInstance) return
+      if (!lottieLoaderPromise) {
+        lottieLoaderPromise = new Promise(resolve => {
+          if (window.lottie && typeof window.lottie.loadAnimation === 'function') {
+            resolve(window.lottie)
+            return
+          }
+          const script = document.createElement('script')
+          script.src = 'https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js'
+          script.async = true
+          script.onload = () => resolve(window.lottie || null)
+          script.onerror = () => resolve(null)
+          document.head.appendChild(script)
+        })
+      }
+
+      lottieLoaderPromise.then(lottieLib => {
+        if (!lottieLib || lottieInstance || !$lottieContainer) return
+        lottieInstance = lottieLib.loadAnimation({
+          container: $lottieContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '/json/running-cat.json'
+        })
+      })
+    }
+
     const preloader = {
       endLoading: () => {
         if ($loadingBox.classList.contains('loaded')) return
@@ -79,9 +64,11 @@ script.
         startTime = Date.now()
         $body.style.overflow = 'hidden'
         $loadingBox.classList.remove('loaded')
+        ensureLottie()
       }
     }
 
+    ensureLottie()
     preloader.initLoading()
 
     if (document.readyState === 'complete') {
@@ -93,7 +80,7 @@ script.
       setTimeout(preloader.endLoading, 7000)
     }
 
-    if (!{theme.pjax && theme.pjax.enable}) {
+    if (pjaxEnabled && window.btf && typeof window.btf.addGlobalFn === 'function') {
       btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
       btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
     }
