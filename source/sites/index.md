@@ -10,10 +10,10 @@ comments: false
 <section class="fav-hero">
 <div>
 <p class="fav-kicker">分享板块</p>
-<h2>设计、效率与开发资源收藏</h2>
+<h2>设计、效率与开发常用站点</h2>
 <p class="fav-intro">
-收录我日常会反复使用的 14 个站点，覆盖品牌素材、交互灵感、图像处理、
-效率工具与开发运维等常见场景，方便集中访问与检索。
+整理了我日常高频使用的 14 个网站，按业务场景分组，便于快速定位品牌素材、
+交互参考、文档图片处理、开发运维与效率工具。
 </p>
 </div>
 <div class="fav-stats">
@@ -28,7 +28,31 @@ comments: false
 </div>
 </section>
 
-<section class="fav-section">
+<nav class="fav-quick-nav" aria-label="分享板块快速导航">
+<a href="#fav-design">设计资源</a>
+<a href="#fav-ui">UI 组件</a>
+<a href="#fav-process">文档与图片处理</a>
+<a href="#fav-study">效率与学习</a>
+<a href="#fav-devops">开发与运维</a>
+</nav>
+
+<section class="fav-toolbar" aria-label="站点筛选">
+<input id="favSearchInput" type="search" placeholder="搜索网站名称或域名..." autocomplete="off">
+<div class="fav-filter-chips" role="group" aria-label="分类筛选">
+<button class="is-active" type="button" data-filter="all">全部</button>
+<button type="button" data-filter="fav-design">设计资源</button>
+<button type="button" data-filter="fav-ui">UI 组件</button>
+<button type="button" data-filter="fav-process">文档与图片处理</button>
+<button type="button" data-filter="fav-study">效率与学习</button>
+<button type="button" data-filter="fav-devops">开发与运维</button>
+</div>
+</section>
+
+<section class="fav-section" id="fav-design">
+<div class="fav-section-head">
+<h3>设计资源</h3>
+<p>品牌素材、动效灵感与网页设计参考</p>
+</div>
 <div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
@@ -74,7 +98,15 @@ comments: false
 <a class="fav-btn" href="https://www.awwwards.com/" target="_blank" rel="noopener">访问网站</a>
 </div>
 </article>
+</div>
+</section>
 
+<section class="fav-section" id="fav-ui">
+<div class="fav-section-head">
+<h3>UI 组件</h3>
+<p>可直接落地的组件与视觉增强工具</p>
+</div>
+<div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
 <div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/uiverse.ico" alt="UIverse logo" loading="lazy"></div>
@@ -119,7 +151,15 @@ comments: false
 <a class="fav-btn" href="https://sweezy-cursors.com/" target="_blank" rel="noopener">访问网站</a>
 </div>
 </article>
+</div>
+</section>
 
+<section class="fav-section" id="fav-process">
+<div class="fav-section-head">
+<h3>文档与图片处理</h3>
+<p>PDF、图像压缩与格式转换高频场景</p>
+</div>
+<div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
 <div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/ilovepdf.ico" alt="iLovePDF logo" loading="lazy"></div>
@@ -164,7 +204,15 @@ comments: false
 <a class="fav-btn" href="https://yysuni.com/image-toolbox" target="_blank" rel="noopener">访问网站</a>
 </div>
 </article>
+</div>
+</section>
 
+<section class="fav-section" id="fav-study">
+<div class="fav-section-head">
+<h3>效率与学习</h3>
+<p>输入训练与考试资料检索</p>
+</div>
+<div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
 <div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/qwerty-learner.ico" alt="Qwerty Learner logo" loading="lazy"></div>
@@ -180,6 +228,29 @@ comments: false
 </div>
 </article>
 
+<article class="fav-card">
+<div class="fav-card-top">
+<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/saduck.ico" alt="SaDuck logo" loading="lazy"></div>
+<span class="fav-chip">学习考试</span>
+</div>
+<div class="fav-card-head">
+<h4>SaDuck</h4>
+<span class="fav-url">saduck.top</span>
+</div>
+<p>面向公考备考的知识资料站，适合检索行测、申论等学习内容。</p>
+<div class="fav-actions">
+<a class="fav-btn" href="https://www.saduck.top/" target="_blank" rel="noopener">访问网站</a>
+</div>
+</article>
+</div>
+</section>
+
+<section class="fav-section" id="fav-devops">
+<div class="fav-section-head">
+<h3>开发与运维</h3>
+<p>部署维护、云服务与系统工具入口</p>
+</div>
+<div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
 <div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/kejilion.ico" alt="Kejilion logo" loading="lazy"></div>
@@ -212,21 +283,6 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/saduck.ico" alt="SaDuck logo" loading="lazy"></div>
-<span class="fav-chip">学习考试</span>
-</div>
-<div class="fav-card-head">
-<h4>SaDuck</h4>
-<span class="fav-url">saduck.top</span>
-</div>
-<p>面向公考备考的知识资料站，适合检索行测、申论等学习内容。</p>
-<div class="fav-actions">
-<a class="fav-btn" href="https://www.saduck.top/" target="_blank" rel="noopener">访问网站</a>
-</div>
-</article>
-
-<article class="fav-card">
-<div class="fav-card-top">
 <div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/kms-cx.svg" alt="KMS.CX logo" loading="lazy"></div>
 <span class="fav-chip">系统维护</span>
 </div>
@@ -242,5 +298,43 @@ comments: false
 </div>
 </section>
 
-<p class="fav-footer-note">共收录 14 个与设计、效率、开发和日常处理相关的常用站点。</p>
+<p class="fav-footer-note">以上站点按用途持续更新，优先保留稳定、实用、可复用的工具与资源。</p>
 </div>
+
+<script>
+(() => {
+  const root = document.querySelector(".fav-page");
+  if (!root) return;
+  const searchInput = root.querySelector("#favSearchInput");
+  const chipButtons = Array.from(root.querySelectorAll(".fav-filter-chips button"));
+  const sections = Array.from(root.querySelectorAll(".fav-section"));
+  let activeFilter = "all";
+
+  const applyFilter = () => {
+    const keyword = (searchInput?.value || "").trim().toLowerCase();
+    sections.forEach(section => {
+      const matchesFilter = activeFilter === "all" || section.id === activeFilter;
+      const cards = Array.from(section.querySelectorAll(".fav-card"));
+      let hasVisibleCard = false;
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const visible = matchesFilter && (!keyword || text.includes(keyword));
+        card.style.display = visible ? "" : "none";
+        if (visible) hasVisibleCard = true;
+      });
+      section.style.display = hasVisibleCard ? "" : "none";
+    });
+  };
+
+  chipButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter || "all";
+      chipButtons.forEach(btn => btn.classList.toggle("is-active", btn === button));
+      applyFilter();
+    });
+  });
+
+  searchInput?.addEventListener("input", applyFilter);
+  applyFilter();
+})();
+</script>

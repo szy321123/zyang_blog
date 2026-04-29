@@ -102,8 +102,8 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/szy321123/szy321123.github.io.git
-  branch: main
+  repo: https://github.com/szy321123/zyang_blog.git
+  branch: gh-pages
 
 # Local search index (for Butterfly local_search)
 search:
