@@ -28,9 +28,9 @@ comments: false
 </div>
 <div class="equipv2-grid">
 
-<article class="equipv2-card equipv2-card-featured"><div class="equipv2-card-cover"><img src="/img/devices/魔霸新锐2022.png" alt="ROG 魔霸新锐 2022" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="ROG 魔霸新锐 2022">ROG 魔霸新锐 2022</h3><div class="equipv2-card-spec">游戏本 · 主力开发机</div><p>目前最核心的生产力设备，负责写代码、跑环境、处理多任务和偶尔的高性能需求。性能给得很足，适合长时间折腾项目。</p></div><div class="equipv2-card-foot"><a href="https://rog.asus.com.cn/laptops/rog-strix/rog-strix-g15-2022-series/" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-wide" src="/img/devices/魔霸新锐2022.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="ROG 魔霸新锐 2022">ROG 魔霸新锐 2022</div><div class="equipv2-card-spec">游戏本 · 主力开发机</div><p>目前最核心的生产力设备，负责写代码、跑环境、处理多任务和偶尔的高性能需求。性能给得很足，适合长时间折腾项目。</p></div><div class="equipv2-card-foot"><a href="https://rog.asus.com.cn/laptops/rog-strix/rog-strix-g15-2022-series/" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
-<article class="equipv2-card"><div class="equipv2-card-cover"><img src="/img/devices/ipad%20air%204.png" alt="iPad Air 4" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="iPad Air 4">iPad Air 4</h3><div class="equipv2-card-spec">平板 · 阅读 / 笔记</div><p>阅读文档、看课件、轻量批注都很顺手。它更像一块随手拿起的第二屏，适合把资料和主力电脑分开。</p></div><div class="equipv2-card-foot"><a href="https://support.apple.com/kb/SP828?locale=zh_CN" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-tall" src="/img/devices/ipad_air_4-removebg-preview.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="iPad Air 4">iPad Air 4</div><div class="equipv2-card-spec">平板 · 阅读 / 笔记</div><p>阅读文档、看课件、轻量批注都很顺手。它更像一块随手拿起的第二屏，适合把资料和主力电脑分开。</p></div><div class="equipv2-card-foot"><a href="https://support.apple.com/kb/SP828?locale=zh_CN" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
 </div>
 </section>
@@ -42,11 +42,11 @@ comments: false
 </div>
 <div class="equipv2-grid">
 
-<article class="equipv2-card"><div class="equipv2-card-cover"><img src="/img/devices/苹果13.png" alt="iPhone 13" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="iPhone 13">iPhone 13</h3><div class="equipv2-card-spec">手机 · 日常主力</div><p>负责通信、拍照、支付和日常信息流，系统稳定、拍照省心，是随身设备里最不需要操心的那一个。</p></div><div class="equipv2-card-foot"><a href="https://support.apple.com/kb/SP851?locale=zh_CN" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-tall" src="/img/devices/苹果13-removebg-preview.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="iPhone 13">iPhone 13</div><div class="equipv2-card-spec">手机 · 日常主力</div><p>负责通信、拍照、支付和日常信息流，系统稳定、拍照省心，是随身设备里最不需要操心的那一个。</p></div><div class="equipv2-card-foot"><a href="https://support.apple.com/kb/SP851?locale=zh_CN" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
-<article class="equipv2-card"><div class="equipv2-card-cover"><img src="/img/devices/meizu20.png" alt="魅族 20" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="魅族 20">魅族 20</h3><div class="equipv2-card-spec">手机 · 安卓体验机</div><p>用来保留 Android 侧的体验和折腾空间，也适合做双平台测试。轻快的系统和直屏手感很适合日常把玩。</p></div><div class="equipv2-card-foot"><a href="https://www.meizu.com/meizu20" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-tall" src="/img/devices/meizu20-removebg-preview.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="魅族 20">魅族 20</div><div class="equipv2-card-spec">手机 · 安卓体验机</div><p>用来保留 Android 侧的体验和折腾空间，也适合做双平台测试。轻快的系统和直屏手感很适合日常把玩。</p></div><div class="equipv2-card-foot"><a href="https://www.meizu.com/meizu20" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
-<article class="equipv2-card"><div class="equipv2-card-cover"><img src="/img/devices/oppo%20enco%20free%204.png" alt="OPPO Enco Free4" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="OPPO Enco Free4">OPPO Enco Free4</h3><div class="equipv2-card-spec">耳机 · 无线降噪</div><p>通勤、会议和刷视频都很常用，佩戴轻松，降噪够用。外出时能把环境音压下去，让注意力更容易回来。</p></div><div class="equipv2-card-foot"><a href="https://www.oppo.com/cn/headphones/" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-wide" src="/img/devices/oppo_enco_free_4-removebg-preview.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="OPPO Enco Free4">OPPO Enco Free4</div><div class="equipv2-card-spec">耳机 · 无线降噪</div><p>通勤、会议和刷视频都很常用，佩戴轻松，降噪够用。外出时能把环境音压下去，让注意力更容易回来。</p></div><div class="equipv2-card-foot"><a href="https://www.oppo.com/cn/headphones/" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
 </div>
 </section>
@@ -58,9 +58,9 @@ comments: false
 </div>
 <div class="equipv2-grid">
 
-<article class="equipv2-card"><div class="equipv2-card-cover"><img src="/img/devices/pmo%20p75.png" alt="PMO P75" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="PMO P75">PMO P75</h3><div class="equipv2-card-spec">键盘 · 75 配列</div><p>兼顾功能键和桌面空间，适合长时间输入。相比全尺寸更清爽，也比小配列少一些组合键负担。</p></div><div class="equipv2-card-foot"><a href="https://search.jd.com/Search?keyword=PMO%20P75" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-square" src="/img/devices/pmo_p75-removebg-preview.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="PMO P75">PMO P75</div><div class="equipv2-card-spec">键盘 · 75 配列</div><p>兼顾功能键和桌面空间，适合长时间输入。相比全尺寸更清爽，也比小配列少一些组合键负担。</p></div><div class="equipv2-card-foot"><a href="https://search.jd.com/Search?keyword=PMO%20P75" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
-<article class="equipv2-card"><div class="equipv2-card-cover"><img src="/img/devices/多彩m800ultra.png" alt="多彩 M800 Ultra" loading="lazy"/></div><div class="equipv2-card-body"><h3 title="多彩 M800 Ultra">多彩 M800 Ultra</h3><div class="equipv2-card-spec">鼠标 · 轻量无线</div><p>轻量、响应快，长时间移动也不累。它是桌面上最容易被忽略但最影响手感的设备之一。</p></div><div class="equipv2-card-foot"><a href="https://search.jd.com/Search?keyword=%E5%A4%9A%E5%BD%A9%20M800%20Ultra" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
+<article class="equipv2-card"><div class="equipv2-card-cover"><img class="equipv2-img-square" src="/img/devices/多彩m800ultra-removebg-preview.png" alt="" loading="lazy"/></div><div class="equipv2-card-body"><div class="equipv2-card-title" title="多彩 M800 Ultra">多彩 M800 Ultra</div><div class="equipv2-card-spec">鼠标 · 轻量无线</div><p>轻量、响应快，长时间移动也不累。它是桌面上最容易被忽略但最影响手感的设备之一。</p></div><div class="equipv2-card-foot"><a href="https://search.jd.com/Search?keyword=%E5%A4%9A%E5%BD%A9%20M800%20Ultra" target="_blank" rel="external nofollow noreferrer">详情</a></div></article>
 
 </div>
 </section>
