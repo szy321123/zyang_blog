@@ -4173,6 +4173,73 @@ textarea[disabled],
   }
 }
 
+/* Light mode readability patch */
+[data-theme="light"] {
+  --font-color: #18212f;
+  --second-text-color: #445166;
+  --text-bg-hover: #f0f4fa;
+  --card-bg: #ffffff;
+  --anzhiyu-card-bg: #ffffff;
+  --anzhiyu-secondbg: #f4f7fc;
+  --style-border: #d7e0ec;
+  --style-border-always: #cfd9e6;
+}
+
+[data-theme="light"] body,
+[data-theme="light"] #article-container,
+[data-theme="light"] #aside-content,
+[data-theme="light"] #recent-posts {
+  color: var(--font-color);
+  font-weight: 500;
+}
+
+[data-theme="light"] #article-container p,
+[data-theme="light"] #article-container li,
+[data-theme="light"] #article-container blockquote,
+[data-theme="light"] .post-meta__info,
+[data-theme="light"] .article-meta__link,
+[data-theme="light"] .categoryBar-list-item,
+[data-theme="light"] .card-info-data-item {
+  color: var(--second-text-color) !important;
+}
+
+[data-theme="light"] #article-container a,
+[data-theme="light"] #recent-posts a,
+[data-theme="light"] #aside-content a {
+  color: #0f5fc9;
+}
+
+[data-theme="light"] #article-container a:hover,
+[data-theme="light"] #recent-posts a:hover,
+[data-theme="light"] #aside-content a:hover {
+  color: #0b4ea8;
+}
+
+[data-theme="light"] #recent-posts > .recent-post-item,
+[data-theme="light"] #aside-content .card-widget,
+[data-theme="light"] div#post,
+[data-theme="light"] div#page,
+[data-theme="light"] div#archive {
+  background: #ffffff !important;
+  border: 1px solid #dbe3ef !important;
+  box-shadow: 0 10px 24px rgba(22, 34, 53, 0.08) !important;
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  color: #1a2433 !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd6e4 !important;
+}
+
+[data-theme="light"] #nav #nav-right .site-page,
+[data-theme="light"] #nav #toggle-menu .site-page {
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #18212f !important;
+  border: 1px solid rgba(170, 184, 204, 0.55);
+}
+
 /* 2026-04 refresh: sharing, equipment, qr tool */
 .fav-hero {
   grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
