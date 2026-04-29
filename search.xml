@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>从零搭建 Hexo + Butterfly 博客教程</title>
+    <url>/posts/hexo-butterfly-tutorial/</url>
+    <content><![CDATA[从零搭建 Hexo + Butterfly 博客教程
+本教程将从购买域名、服务器选购开始，手把手教你搭建一个完整的 Hexo + Butterfly 个人博客。
+
+📋 目录
+一、环境准备
+二、服务器与域名
+三、安装 Hexo 框架
+四、安装 Butterfly 主题
+五、主题配置
+六、写作与部署
+七、优化与美化
+
+
+一、环境准备1.1 安装 Node.jsHexo 基于 Node.js 运行，需要先安装 Node.js 环境。
+Linux&#x2F;macOS（通过 nvm 安装）：
+# 安装 nvm（Node.js 版本管理工具）curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# 重新加载终端配置source ~/.bashrc  # 或 source ~/.zshrc# 安装最新版 Node.js（建议 v18+）nvm install 20nvm use 20# 验证安装node -v   # v20.x.xnpm -v    # 10.x.x
+
+Windows：
+直接下载安装包：https://nodejs.org/，选择 LTS 版本即可。
+
+1.2 安装 Git# Debian/Ubuntusudo apt updatesudo apt install -y git# macOS（已自带）git --version
+
+
+二、服务器与域名2.1 选购服务器推荐使用 1核1G 以上的 VPS，以下服务商均可：
+
+
+
+服务商
+特点
+
+
+
+DigitalOcean
+稳定、价格适中
+
+
+Vultr
+按小时计费，灵活
+
+
+阿里云&#x2F;腾讯云
+国内访问快，需要备案
+
+
+CloudCone
+性价比高
+
+
+
+💡 如果面向国内用户，建议选择国内服务器并完成 ICP 备案。
+
+
+2.2 域名购买与解析推荐域名注册商：
+
+Namecheap — 价格便宜
+Cloudflare Registrar — 隐私保护好
+阿里云&#x2F;腾讯云 — 国内主流
+
+添加 DNS 解析：
+
+登录域名服务商后台
+添加 A 记录指向服务器 IP：
+主机记录： @（或 zyang.me）
+记录值： 你的服务器公网IP
+
+
+如需 www 子域名，再添加一条：
+主机记录： www
+记录值： 你的服务器公网IP
+
+
+
+
+2.3 服务器环境配置连接服务器并安装基础软件：
+# 连接服务器（替换为你的 IP）ssh root@你的服务器IP# 安装必要软件apt update &amp;&amp; apt install -y nginx python3-certbot-python3# 启动 nginxsystemctl enable nginxsystemctl start nginx
+
+
+三、安装 Hexo 框架3.1 创建博客目录# 在本地电脑上操作（不是服务器）# 选择一个合适的目录创建博客项目mkdir -p ~/blogcd ~/blog
+
+3.2 初始化 Hexo 项目# 使用 npm 安装 Hexo CLI（如果遇到权限问题加 sudo）npm install -g hexo-cli# 初始化博客（my-blog 是项目名，可自定义）hexo init my-blogcd my-blog# 安装依赖npm install
+
+初始化完成后，目录结构如下：
+my-blog/├── _config.yml          # Hexo 主配置文件├── package.json         # 项目依赖├── scaffolds/          # 文章模板├── source/             # 博客源码（写在这里）│   └── _posts/         # 文章存放目录└── themes/             # 主题目录
+
+3.3 本地预览# 启动本地服务器hexo server# 浏览器访问 http://localhost:4000# 按 Ctrl+C 停止
+
+
+四、安装 Butterfly 主题4.1 下载主题在博客目录下执行：
+# 进入主题目录cd themes# 方式一：Git 下载（推荐）git clone https://github.com/jerryc127/hexo-theme-butterfly.git butterfly# 方式二：如果你在国内，克隆速度慢，可以手动下载后上传# 下载地址：https://github.com/jerryc127/hexo-theme-butterfly/releases
+
+4.2 安装主题依赖Butterfly 主题有一些额外依赖需要安装：
+# 回到博客根目录cd ..# 安装主题依赖npm install hexo-renderer-pug hexo-renderer-stylus hexo-generator-searchdb hexo-wordcount
+
+依赖说明：
+
+hexo-renderer-pug — Pug 模板引擎
+hexo-renderer-stylus — Stylus CSS 预处理器
+hexo-generator-searchdb — 本地搜索
+hexo-wordcount — 文章字数统计
+
+4.3 启用主题打开博客根目录下的 _config.yml，找到 theme 字段并修改：
+# Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/theme: butterfly
+
+4.4 复制主题配置Butterfly 主题有独立配置文件，在主题目录下：
+# 从主题目录复制示例配置cp themes/butterfly/_config.yml _config.butterfly.yml
+
+
+⚠️ 重要： Butterfly 主题的所有配置都在 _config.butterfly.yml 中修改，不要直接修改主题目录内的 _config.yml。
+
+
+五、主题配置5.1 基础信息配置打开 _config.yml（博客根目录），修改以下内容：
+# Sitetitle: 你的博客名称subtitle: &#x27;博客副标题&#x27;description: &#x27;博客描述&#x27;author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;
+
+5.2 Butterfly 导航菜单打开 _config.butterfly.yml，找到 menu 部分：
+menu:  首页: / || fas fa-home  文章||fas fa-pen-nib||hide:    分类: /categories/ || fas fa-folder-open  资源||fas fa-box-open||hide:    工具: /tools/ || fas fa-wrench    宝藏网站: /sites/ || fas fa-gem  关于: /about/ || fas fa-user
+
+菜单格式：显示名称: 路径 || 图标
+图标可以去 Font Awesome 挑选。
+5.3 头像与图标# 网站图标（放在 source/img/ 目录下）favicon: /img/touxiang.jpg# 头像设置avatar:  img: /img/touxiang.jpg  effect: true  # 悬停旋转效果
+
+5.4 社交链接social:  fab fa-github: https://github.com/你的用户名 || Github || &#x27;#24292e&#x27;  fas fa-envelope: mailto:your@email.com || Email || &#x27;#4a7dbe&#x27;
+
+5.5 首页横幅图片# 索引页横幅index_img: /img/lunbo2.png# 禁用顶部图片（全局）disable_top_img: false
+
+5.6 代码块配置code_blocks:  theme: light  macStyle: true  height_limit: 320  word_wrap: true  copy: true  language: true  shrink: true  fullpage: true
+
+
+六、写作与部署6.1 创建文章# 创建新文章（自动生成 md 文件）hexo new &quot;我的第一篇文章&quot;# 创建自定义模板的文章hexo new page &quot;about&quot;    # 创建关于页面hexo new page &quot;tools&quot;    # 创建工具页面
+
+文章会保存在 source/_posts/ 目录下，使用 Markdown 编写。
+6.2 文章Front-matter每篇文章头部需要填写元信息：
+---title: 文章标题date: 2026-04-22 18:00:00categories:  - 分类1  - 分类2tags:  - 标签1  - 标签2description: 文章描述top_img: /img/xxx.jpg    # 顶部图片---
+
+6.3 本地预览hexo clean     # 清理缓存hexo generate # 生成静态文件hexo server   # 本地预览
+
+6.4 部署到服务器方式一：Git 自动部署在服务器上配置 Git 钩子，实现 push 自动部署：
+服务器端：
+# 创建 Git 仓库mkdir -p /var/repo/zyang_blog.gitcd /var/repo/zyang_blog.gitgit init --bare# 创建 Git 钩子cat &gt; hooks/post-receive &lt;&lt; &#x27;EOF&#x27;#!/bin/bashGIT_REPO=/var/repo/zyang_blog.gitTMP_GIT_CLONE=/tmp/zyang_blogPUBLIC_WWW=/var/www/zyang_bloggit clone $GIT_REPO $TMP_GIT_CLONEcd $TMP_GIT_CLONEnpm installhexo cleanhexo generaterm -rf $PUBLIC_WWW/*cp -r $TMP_GIT_CLONE/public/* $PUBLIC_WWW/rm -rf $TMP_GIT_CLONEEOFchmod +x hooks/post-receive
+
+本地端：
+安装部署插件：
+npm install hexo-deployer-git --save
+
+修改 _config.yml：
+deploy:  type: git  repo: root@你的服务器IP:/var/repo/zyang_blog.git  branch: master
+
+部署命令：
+hexo deploy
+
+方式二：手动部署（简单直接）# 在本地博客目录hexo cleanhexo generate# 上传到服务器rsync -avz --delete public/ root@你的服务器IP:/var/www/zyang_blog/
+
+6.5 配置 Nginx在服务器上创建 Nginx 配置文件：
+cat &gt; /etc/nginx/sites-available/yourblog &lt;&lt; &#x27;EOF&#x27;server &#123;    listen 80;    server_name yourdomain.com www.yourdomain.com;        root /var/www/zyang_blog;    index index.html;        location / &#123;        try_files $uri $uri/ =404;    &#125;        # 静态资源缓存    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ &#123;        expires 1y;        add_header Cache-Control &quot;public, immutable&quot;;    &#125;&#125;EOFln -sf /etc/nginx/sites-available/yourblog /etc/nginx/sites-enabled/nginx -t &amp;&amp; systemctl reload nginx
+
+6.6 配置 SSL 证书（Let’s Encrypt）# 安装 certbotapt install -y python3-certbot-nginx# 获取并自动配置 SSL 证书certbot --nginx -d yourdomain.com -d www.yourdomain.com# 自动续期测试certbot renew --dry-run
+
+
+七、优化与美化7.1 添加自定义 CSS在 source/css/ 目录下创建 custom.css：
+/* 自定义字体 */body &#123;  font-family: &#x27;Noto Sans SC&#x27;, sans-serif;&#125;/* 自定义代码高亮颜色 */code &#123;  background: #f5f5f5;  color: #e74c3c;&#125;
+
+在 _config.butterfly.yml 中引入：
+inject:  head:    - &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/custom.css&quot;&gt;
+
+7.2 添加评论区Butterfly 支持多种评论系统，推荐使用 Twikoo（轻量、免费）：
+
+去 Twikoo 官网 注册并获取 API
+在 _config.butterfly.yml 中配置：
+
+comments:  use:    - Twikoo  text: true  tirkkoo:    env_id: 你的环境ID
+
+7.3 添加网站统计推荐使用 不蒜子 或 Google Analytics：
+# 不蒜子统计busuanzi: true
+
+7.4 SEO 优化安装 SEO 插件：
+npm install hexo-generator-sitemap hexo-generator-baidu-url --save
+
+在 _config.yml 中添加：
+sitemap:  path: sitemap.xmlbaidu_url:  slug: 
+
+
+🎉 恭喜！你的 Hexo + Butterfly 博客已经搭建完成！现在你可以：
+
+📝 开始写文章
+🎨 自定义主题样式
+🚀 完善内容并推广
+
+有任何问题欢迎留言交流！
+
+
+我的博客源码： https://github.com/szy321123/zyang_blog
+完整配置可参考我的项目，有问题欢迎提 Issue。
+
+]]></content>
+      <categories>
+        <category>建站教程</category>
+        <category>静态博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>博客搭建</tag>
+        <tag>Nginx</tag>
+        <tag>SSL</tag>
+        <tag>VPS</tag>
+        <tag>自动部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 服务器运维神器：一个脚本搞定所有</title>
+    <url>/posts/kejilion-sh-toolbox/</url>
+    <content><![CDATA[Linux 服务器运维神器：一个脚本搞定所有如果你管理着多台 Linux 服务器，一定会有过这样的烦恼——装 Docker 要查教程、配 Nginx 要翻文档、申请 SSL 证书又是一堆命令。今天推荐一个 49万+ 安装量 的开源脚本，轻轻一句命令，所有日常运维操作都能搞定。
+
+
+前置准备：安装 curl如果你的系统默认没有 curl，先装好：
+# Debian / Ubuntuapt update -y &amp;&amp; apt install -y curl
+
+# CentOS / RedHat / Fedora / AlmaLinux / Rocky Linuxyum update -y &amp;&amp; yum install -y curl
+
+# Alpineapk update &amp;&amp; apk add curl
+
+快速启动一条命令进入交互式菜单，支持 Ubuntu、Debian、CentOS、Alpine、Kali、Arch 等主流发行版：
+bash &lt;(curl -sL kejilion.sh)
+
+核心功能一览
+
+
+模块
+说明
+
+
+
+系统管理
+系统信息查询、更新维护、性能优化
+
+
+Docker 管理
+容器管理、镜像部署，无需安装任何面板
+
+
+LDNMP 建站
+Nginx + MySQL + PHP 一键部署，SSL 证书、域名绑定一条龙
+
+
+工具集合
+BBR 加速、WARP 管理、性能测试、FRP 内网穿透
+
+
+常用快捷命令不想进交互菜单？直接传参执行指定功能，更高效。
+建站与反向代理# 一键安装 WordPressbash &lt;(curl -sL kejilion.sh) en wp# Nginx 反向代理bash &lt;(curl -sL kejilion.sh) en fd# 申请 SSL 证书bash &lt;(curl -sL kejilion.sh) en ssl
+
+系统与网络优化# Docker 快速安装bash &lt;(curl -sL kejilion.sh) en docker install# BBRv3 加速bash &lt;(curl -sL kejilion.sh) en bbr3# 系统内核调优bash &lt;(curl -sL kejilion.sh) en nhyh
+
+内网穿透与部署# FRP 服务器bash &lt;(curl -sL kejilion.sh) en frps# FRP 客户端bash &lt;(curl -sL kejilion.sh) en frpc# 负载均衡部署bash &lt;(curl -sL kejilion.sh) en loadbalance
+
+系统重装# DD 重装系统（预装好自动化环境）bash &lt;(curl -sL kejilion.sh) en dd
+
+
+DD 重装系统会清空当前服务器所有数据，操作前请务必备份重要文件！
+
+适用人群
+新手站长：不想记命令，建站、SSL、备案一条龙
+多服管理：统一工具链，多台服务器批量操作更高效
+临时环境：快速拉起 Docker、LNMP 测试环境，用完即删
+
+项目信息
+
+
+项目
+地址
+
+
+
+官网
+https://kejilion.sh
+
+
+GitHub
+https://github.com/kejilion/sh ⭐ 2.7k
+
+
+安装量
+496,000+
+
+
+
+一个脚本替代一堆工具箱，省心省力。
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+        <category>工具推荐</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维脚本</tag>
+        <tag>Kejilion</tag>
+        <tag>Docker</tag>
+        <tag>LDNMP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 与 GitHub 团队协作完全指南</title>
+    <url>/posts/git-github-collaboration-tutorial/</url>
+    <content><![CDATA[Git 与 GitHub 团队协作完全指南
+Git 是目前最流行的版本控制系统，GitHub 则是全球最大的代码托管平台。两者结合可以让团队协作高效且有条不紊。
+
+📋 目录
+一、Git 核心概念
+二、Git 基础配置
+三、基础命令
+四、分支管理
+五、远程仓库
+六、Git 标签与版本管理
+七、GitHub 协作流程
+八、Pull Request 详解
+九、Code Review 实战
+十、冲突处理
+十一、Git 工作流
+十二、Hexo + GitHub 自动部署
+十三、高级技巧
+
+
+一、Git 核心概念理解 Git 的核心概念是高效使用它的前提。这些概念会贯穿你后续所有的 Git 操作。
+1.1 什么是 GitGit 是一个分布式版本控制系统（DVCS），由 Linus Torvalds 于 2005 年为开发 Linux 内核而创建。它的核心特点：
+
+
+
+特性
+说明
+
+
+
+分布式
+每个开发者都有完整的代码仓库副本
+
+
+快照而非差异
+Git 存储每次提交的完整快照，而非文件差异
+
+
+本地优先
+大部分操作在本地完成，无需网络连接
+
+
+完整性
+每个对象通过 SHA-1 哈希校验
+
+
+分支轻量
+创建和切换分支几乎瞬间完成
+
+
+1.2 三个区域Git 管理下的仓库有三个主要区域，理解它们之间的流转关系至关重要：
+┌─────────────────────────────────────────────────────┐│                    工作目录 (Working Directory)       ││  你正在编辑文件的目录                                  │└────────────────────┬────────────────────────────────┘                     │  git add                     ▼┌─────────────────────────────────────────────────────┐│                   暂存区 (Staging Area / Index)      ││  准备下次提交的文件快照                                 │└────────────────────┬────────────────────────────────┘                     │  git commit                     ▼┌─────────────────────────────────────────────────────┐│                   本地仓库 (Local Repository)        ││  .git 目录，存放所有历史提交记录                        │└─────────────────────────────────────────────────────┘                     │  git push                     ▼              ┌─────────────────┐              │   远程仓库        │              │ (GitHub/GitLab) │              └─────────────────┘
+
+流程说明：工作目录 → 暂存区 → 本地仓库 → 远程仓库，是代码提交的标准路径。
+1.3 文件的三种状态Git 中每个文件处于以下三种状态之一：
+
+已修改（Modified）：文件被修改但未放入暂存区
+已暂存（Staged）：文件被标记为待提交，已加入暂存区
+已提交（Committed）：文件快照已安全保存到本地仓库
+
+理解这三种状态是掌握 Git 的基础。
+
+二、Git 基础配置正确的配置能让你在后续使用时少走弯路，特别是在与 GitHub 交互时。
+2.1 安装 Git# Debian / Ubuntusudo apt update &amp;&amp; sudo apt install git
+
+# CentOS / RHELsudo yum install git# 或sudo dnf install git
+
+# macOS（通常已预装）git --version
+
+Windows 用户前往 git-scm.com 下载 Git Bash 安装即可。
+
+
+2.2 首次使用配置Git 需要设置用户名和邮箱，这些信息会嵌入每次提交中：
+# 全局配置（所有仓库都使用此身份）git config --global user.name &quot;Your Name&quot;git config --global user.email &quot;your.email@example.com&quot;# 某项目单独配置（覆盖全局）git config --local user.name &quot;Project Name&quot;git config --local user.email &quot;project@example.com&quot;# 查看当前配置git config --listgit config user.name          # 只看用户名git config user.email         # 只看邮箱
+
+2.3 常用配置选项# 设置默认分支名（Git 2.28+ 支持）git config --global init.defaultBranch main# 设置默认编辑器git config --global core.editor vimgit config --global core.editor code --wait    # VS Code# 启用命令别名（输入 git co 代替 git checkout）git config --global alias.co checkoutgit config --global alias.br branchgit config --global alias.ci commitgit config --global alias.st statusgit config --global alias.lg &quot;log --oneline --graph --all&quot;# 启用命令 colorequals输出彩色git config --global color.ui auto# 设置默认拉取策略（推荐）git config --global pull.rebase false    # merge 方式（默认）git config --global pull.rebase true     # rebase 方式# 记住密码（15 分钟）git config --global credential.helper cache# 永久保存密码git config --global credential.helper store
+
+2.4 SSH 密钥配置（与 GitHub 通信）与 GitHub 通信推荐使用 SSH 密钥，可以省去每次输入密码的麻烦。
+# 生成 SSH 密钥对（推荐 Ed25519）ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
+
+如果你的 GitHub 账号较老，不支持 Ed25519，可以用 RSA：
+ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+Ed25519 性能更好、安全性更高，优先选择。
+
+
+# 查看公钥cat ~/.ssh/id_ed25519.pub
+
+添加到 GitHub：
+
+登录 GitHub → Settings → SSH and GPG keys → New SSH key
+Title 填 “My Laptop” 或 “Office Desktop”
+Key 粘贴公钥内容
+点击 Add SSH key
+
+# 测试连接ssh -T git@github.com# 如果成功，会看到：# Hi username! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+
+
+三、基础命令熟练掌握这些基础命令是日常开发的第一步。它们是你与 Git 交互的最基本工具。
+3.1 创建与初始化仓库# 在当前目录初始化新仓库git init# 克隆远程仓库git clone https://github.com/username/repo.gitgit clone git@github.com:username/repo.git          # SSH 方式（推荐）git clone --depth 1 https://github.com/username/repo.git  # 浅克隆（只拉最新一次提交）
+
+3.2 查看状态与差异查看工作目录状态是你每次开始工作前首先要做的。
+查看工作目录状态：
+git status                      # 查看工作目录状态（最常用）git status -s                   # 简洁模式（M = 已修改，A = 已暂存，?? = 未跟踪）git status --short              # 同上
+
+查看未暂存的修改（工作区 vs 暂存区）：
+git diff                        # 查看所有文件的未暂存修改git diff filename.txt           # 查看特定文件的修改git diff --stat                 # 只显示统计信息（哪些文件改了，多少行）
+
+查看已暂存的修改（暂存区 vs 上次提交）：
+git diff --staged               # 查看即将提交的内容git diff --cached               # 同上，--cached 是旧写法
+
+查看某次提交的修改：
+git show &lt;commit-hash&gt;          # 某次提交的完整信息git show &lt;commit-hash&gt; --stat   # 只看改了哪些文件
+
+3.3 暂存与提交暂存和提交是 Git 最核心的操作，需要理解它们之间的区别。
+暂存文件（将修改加入暂存区）：
+git add filename.txt            # 暂存单个文件git add file1.txt file2.txt     # 暂存多个文件git add *.txt                    # 暂存所有 .txt 文件git add .                        # 暂存当前目录所有修改（慎用！）git add -A                       # 暂存所有修改（包括删除的）git add -p                       # 交互式暂存（逐个文件/块选择）
+
+git add . 会暂存当前目录所有修改，初学者慎用，容易不小心提交不该提交的文件（如编译产物、本地配置）。
+
+
+提交（将暂存区快照写入本地仓库）：
+git commit -m &quot;提交信息&quot;         # 简短提交信息git commit                        # 打开编辑器写多行提交信息git commit -am &quot;提交信息&quot;        # 自动暂存所有已跟踪文件的修改（跳过 git add）git commit --amend               # 修改最后一次提交（追加修改或改提交信息）git commit -m &quot;feat: add new feature&quot;   # 约定式提交（推荐格式）
+
+查看提交历史：
+git log                          # 完整历史git log --oneline                # 每行一条（简洁）git log --oneline -10            # 最近 10 条git log --graph --oneline --all  # 图形化分支历史git log -p filename.txt          # 查看某文件的修改历史git log --author=&quot;name&quot;          # 只看某作者的提交git log --since=&quot;2026-01-01&quot;    # 只看某日期之后的提交git log --grep=&quot;fix&quot;            # 搜索提交信息
+
+3.4 撤销操作撤销操作需要谨慎执行，特别是涉及 reset 的命令。
+撤销工作目录中的修改（未暂存！）：
+git checkout -- filename.txtgit restore filename.txt        # Git 2.23+ 推荐写法git restore .                   # 撤销所有文件的修改
+
+取消暂存（已 add 但未 commit）：
+git reset HEAD filename.txt    # 取消暂存单个文件git reset HEAD .               # 取消暂存所有文件git restore --staged filename.txt  # 同上，新写法
+
+回退已提交的版本（未 push）：
+git revert &lt;commit-hash&gt;         # 创建新提交来撤销指定提交（安全，保留历史）git reset --soft HEAD~1          # 回退一次提交，保留修改在暂存区git reset --mixed HEAD~1         # 回退一次提交，保留修改在工作区（默认）git reset --hard HEAD~1         # 回退一次提交，丢弃所有修改（危险！）
+
+删除未提交的修改（非常危险）：
+git reset --hard HEADgit clean -fd                    # 删除所有未跟踪的文件（-f 文件，-d 目录）
+
+git reset --hard 是危险操作，会丢失未提交的修改。执行前务必确认你已经提交了所有重要工作。git reflog 可以恢复误删的提交。
+
+
+3.5 恢复误删的提交Git 的操作几乎都是可逆的，即使你做了危险的 reset 也可以恢复：
+git reflog                        # 查看所有操作历史git reflog --date=relative        # 显示相对时间# 假设你 reset --hard 到了某个旧提交，可以通过 reflog 恢复：git checkout HEAD@&#123;5&#125;git reset --hard HEAD@&#123;5&#125;
+
+
+四、分支管理分支是 Git 最强大的功能之一，让多人并行开发和功能隔离变得轻而易举。
+4.1 查看与创建分支# 查看本地分支git branch# 查看所有分支（包括远程）git branch -a# 查看分支详情git branch -v                    # 显示每个分支的最后一次提交git branch -vv                   # 显示本地分支跟踪的远程分支# 创建新分支（不会自动切换）git branch feature-new# 创建并切换到新分支git checkout -b feature-newgit switch -c feature-new        # Git 2.23+ 推荐写法
+
+4.2 切换分支git checkout main                # 切换到 main 分支git switch main                  # 同上，更直观git switch -                     # 切换到上一次所在的分支（相当于 cd -）# 切换时丢弃未提交的修改（危险）git checkout -f main
+
+4.3 删除与重命名分支# 删除已合并的分支git branch -d feature-old# 强制删除未合并的分支git branch -D feature-old# 重命名当前分支git branch -m new-name# 重命名其他分支git branch -m old-name new-name
+
+4.4 合并分支# 将指定分支合并到当前分支git checkout maingit merge feature-new# 合并时如果两个分支修改了同一文件，会产生**冲突**，需要手动解决（见第十节）# 禁止 Fast-forward 合并（保留分支历史）git merge --no-ff feature-new# 合并特定的 commit（不是整个分支）git cherry-pick &lt;commit-hash&gt;
+
+4.5 Rebase（变基）什么时候用 merge vs rebase？
+
+merge：保留完整历史，合并所有分支，适合公共分支
+rebase：线性历史，适合整理个人分支的提交记录
+
+
+
+# 将当前分支变基到目标分支之上（重写提交历史）git checkout feature-newgit rebase main# 交互式变基（重写、合并、修改、删除提交 — 最强大的工具）git rebase -i HEAD~5           # 修改最近 5 个提交
+
+在 rebase 过程中：
+
+pick &#x3D; 保留此提交
+squash &#x3D; 合并到上一个提交（保留消息）
+fixup &#x3D; 合并到上一个提交（丢弃消息）
+reword &#x3D; 修改提交信息
+drop &#x3D; 删除提交
+
+解决完冲突后继续 rebase：
+git rebase --continue# 中止 rebase，恢复原状态git rebase --abort
+
+4.6 暂存工作（Stash）当你在某个分支上有未提交的修改，但需要紧急切换到其他分支处理问题时，用 stash 可以临时保存工作状态：
+# 暂存当前所有修改（包括未跟踪文件）git stashgit stash -u                    # 包含未跟踪文件git stash -a                    # 包含被忽略的文件# 带消息的暂存git stash push -m &quot;WIP: working on feature X&quot;
+
+查看和恢复 stash：
+git stash list                  # 查看暂存列表# 恢复最新暂存（同时从 stash 列表删除）git stash pop# 恢复最新暂存（保留在 stash 列表中）git stash apply# 恢复指定暂存git stash apply stash@&#123;2&#125;
+
+查看和删除 stash：
+git stash show                  # 查看暂存的内容git stash show -p               # 查看详细 diff# 删除某个 stashgit stash drop stash@&#123;0&#125;# 清空所有 stashgit stash clear
+
+
+五、远程仓库远程仓库让你可以与他人共享代码，也是备份和安全协作的基础。
+5.1 添加与查看远程仓库# 查看远程仓库git remote                      # 只显示名称git remote -v                   # 显示名称 + URL# 添加远程仓库git remote add origin git@github.com:username/repo.gitgit remote add upstream https://github.com/original/repo.git# 重命名远程仓库git remote rename origin github# 删除远程仓库git remote remove origin
+
+5.2 拉取与推送# 拉取远程分支（不合并）git fetch origin# 拉取并合并（最常用）git pull                       # 等同于 fetch + mergegit pull origin maingit pull --rebase origin main  # 变基式拉取（保持线性历史）# 推送（第一次推送时设置上游分支）git push -u origin main        # -u = --set-upstream，建立跟踪关系git push origin feature-new   # 推送新分支到远程# 后续推送（已有上游分支）git push# 推送所有分支git push --all origin# 推送标签git push origin v1.0.0        # 推送单个标签git push --tags origin         # 推送所有标签# 删除远程分支git push origin --delete feature-old
+
+5.3 跟踪关系# 查看本地分支的跟踪分支git branch -vv# 设置上游分支git branch --set-upstream-to=origin/main# 取消跟踪git branch --unset-upstream
+
+
+六、Git 标签与版本管理标签用于标记特定的提交点，通常用于发布版本，是版本管理的基础。
+6.1 创建标签# 查看所有标签git tag# 创建附注标签（推荐，含元信息）git tag -a v1.0.0 -m &quot;Version 1.0.0, initial release&quot;git tag -a v1.0.0 &lt;commit-hash&gt; -m &quot;Tag specific commit&quot;# 创建轻量标签git tag v1.0.0# 给已存在的标签添加注释git tag -a v1.0.0 -m &quot;Version 1.0.0&quot; &lt;commit-hash&gt;
+
+6.2 推送与删除标签# 推送标签到远程git push origin v1.0.0git push --tags# 删除本地标签git tag -d v1.0.0# 删除远程标签git push origin --delete v1.0.0git push origin :refs/tags/v1.0.0    # 旧写法
+
+6.3 查看标签详情git show v1.0.0
+
+
+七、GitHub 协作流程了解标准的 GitHub 协作流程是与开源项目或团队高效合作的前提。
+7.1 Fork 与 Clone当你参与一个开源项目（或团队项目）时，通常的流程是：
+1. 在 GitHub 网页上 Fork 项目（创建你自己的副本）2. Clone 你 Fork 的仓库到本地3. 在本地创建分支，修改代码4. 推送分支到你的 Fork5. 在 GitHub 上发起 Pull Request（PR）6. 等待项目维护者 Code Review7. 合并后，同步最新代码到你的 Fork
+
+添加上游仓库（方便后续同步原项目的更新）：
+git remote add upstream https://github.com/original/repo.git
+
+验证远程仓库配置：
+git remote -v
+
+origin    git@github.com:yourname/repo.git (fetch)origin    git@github.com:yourname/repo.git (push)upstream  https://github.com/original/repo.git (fetch)upstream  https://github.com/original/repo.git (push)
+
+7.2 同步上游仓库合并方式：
+# 切换到 main 分支git checkout main# 合并上游的 main 到本地git merge upstream/main
+
+变基方式（可选，保留线性历史）：
+git checkout your-feature-branchgit rebase upstream/main
+
+7.3 GitHub 上的角色与权限
+
+
+角色
+权限
+
+
+
+Owner
+完全控制仓库（billing, settings, 删除仓库）
+
+
+Maintainer
+管理分支、标签、关闭 PR&#x2F;PR
+
+
+Write
+推送代码、创建分支、提交 PR
+
+
+Triage
+管理 Issues 和 PR（不能直接推送）
+
+
+Read
+只能读取代码（Fork 之后才能贡献）
+
+
+
+八、Pull Request 详解Pull Request（PR）是 GitHub 协作的核心，理解它的工作机制可以让协作更顺畅。
+8.1 创建 Pull Request当你完成了功能开发并推送到 Fork（或同一仓库的分支）后，在 GitHub 上发起 PR：
+
+打开你的仓库页面
+切换到你的分支
+点击 Compare &amp; pull request
+填写 PR 信息并提交
+
+也可以用 GitHub CLI 命令行创建：
+# 安装 GitHub CLI（Debian/Ubuntu）sudo apt install gh# 登录gh auth login# 创建 PRgh pr create --base main --head feature-new \  --title &quot;feat: add new feature&quot; \  --body &quot;## Description\n\nAdds a new feature that...&quot;# 查看 PRgh pr listgh pr view 123# 查看 PR 差异gh pr diff 123
+
+8.2 PR 描述模板（建议在仓库中创建）在项目根目录创建 .github/pull_request_template.md：
+## 描述&lt;!-- 简要说明这次 PR 做了什么 --&gt;## 改动内容&lt;!-- 详细说明改动点 --&gt;## 相关 Issue&lt;!-- 关联的 Issue，如 Closes #123 --&gt;## 测试&lt;!-- 你做了哪些测试 --&gt;## 截图（如果有 UI 改动）&lt;!-- 附上截图 --&gt;
+
+8.3 PR 审查与合并# 查看 PR 状态gh pr status# 批准 PRgh pr review 123 --approve# 请求修改gh pr review 123 --request-changes -b &quot;需要修改以下几点...&quot;# 添加评论gh pr comment 123 --body &quot;LGTM! 💯&quot;# 合并 PRgh pr merge 123gh pr merge 123 --squash    # Squash and merge（把所有提交压缩成一个）gh pr merge 123 --rebase    # Rebase and merge（保留线性历史）
+
+8.4 代码合并策略
+
+
+策略
+说明
+适用场景
+
+
+
+Create a merge commit
+合并时创建一个 merge commit
+保留完整分支历史
+
+
+Squash and merge
+所有 commits 压缩成一个
+PR 内的多个 wip 提交，线性历史
+
+
+Rebase and merge
+变基后直接合并
+保持线性历史，需要干净的 commits
+
+
+推荐团队统一约定一种策略，比如 GitHub 仓库设置中强制 squash merge。
+
+
+
+九、Code Review 实战Code Review 是保证代码质量和团队知识共享的关键环节，越来越被重视。
+9.1 Code Review 的价值
+🐛 发现 bug：审查阶段发现的问题比上线后修复代价低 10-100 倍
+📖 知识共享：团队成员互相了解彼此的代码
+🎓 标准统一：通过 Review 建立和维护代码规范
+🔒 安全审查：及时发现潜在安全漏洞
+
+9.2 提交 Code Review 的规范作为被审查者：
+# PR 描述要清晰# 每个 commit 应该是原子性的（一个 commit 做一个改动）# commit 信息要规范git log --oneline -5   # 审查前先看看提交历史是否清晰
+
+作为审查者：
+# 仔细阅读 diffgh pr diff 123# 查看单个文件改动gh pr diff 123 -- filename.txt# 检出 PR 到本地测试git fetch origin pull/123/head:pr-123git checkout pr-123
+
+9.3 常见的 Review 反馈模式&lt;!-- 建议（用 Should / Consider --&gt;&lt;!-- Nit: 这种写法可以更简洁 --&gt;&lt;!-- 必须修复（用 Must / Need to） --&gt;&lt;!-- Blocking: 这里有 bug，需要修复后再合并 --&gt;&lt;!-- 提问（用 Question / Curious about） --&gt;&lt;!-- Question: 为什么这里用 set 而不是 list？--&gt;&lt;!-- 称赞（适当使用，激励团队） --&gt;&lt;!-- Nitpick: 可选，但这个变量名很清晰 👍 --&gt;
+
+9.4 GitHub 上的 Review 操作# 添加单行评论gh pr comment 123 --body &quot;这里可以用列表推导式&quot; -o filename.txt -L 10# 开始 Reviewgh pr review 123 --body &quot;整体看起来不错，有几个小建议&quot; --approve
+
+
+十、冲突处理冲突是多人协作中不可避免的情况，掌握处理方法是团队协作的必备技能。
+10.1 为什么会产生冲突冲突发生在两个分支修改了同一文件的同一位置，而 Git 无法自动合并时：
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEADconst name = &quot;Alice&quot;;=======const name = &quot;Bob&quot;;&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-branch
+
+10.2 解决冲突的步骤# 1. 确保当前分支是要保留的分支（如 main）git checkout maingit pull origin main# 2. 切换到有冲突的分支git checkout feature-new# 3. 将 main 合并进来（触发冲突）git merge main# Git 会列出有冲突的文件# 4. 手动编辑冲突文件，删除冲突标记，选择保留内容# 打开冲突文件，找到 &lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, &gt;&gt;&gt;&gt;&gt;&gt;&gt;# 保留需要的代码，删除冲突标记# 5. 暂存解决后的文件git add filename.txt# 6. 完成提交（Git 会自动生成 merge commit 信息）git commit -m &quot;Merge main into feature-new, resolve conflicts&quot;git push
+
+10.3 避免冲突的最佳实践
+频繁 rebase main：在功能分支上工作时，定期 git rebase main
+小步提交：每次只做一个小改动，减少冲突概率
+提前沟通：团队成员分配好各自负责的文件，减少同一文件改动
+功能分支独立性强：减少与其他分支的代码耦合
+
+10.4 Abort 放弃合并如果冲突太复杂，一时半会解决不了：
+git merge --abort
+
+
+十一、Git 工作流选择一个适合团队的工作流可以让协作更加规范和高效。
+11.1 Gitflow 工作流最经典的多人协作工作流，适合有固定发布周期的项目：
+main (生产环境)  ───●──────●──────●──────●────── (merge from release/hotfix)         /release/1.0 ────●──●──●  (发布分支)         /develop ───●──●──●──●──●──●──●  (开发主线)            \   \       / hotfix/1.0.1 ─●─        (热修复分支，紧急从 main 切)                \             feature/user-auth ─●──●──●  (功能分支)
+
+说明：main 用于生产环境，develop 是开发主线，release 分支用于发布准备，hotfix 用于紧急修复，feature 用于功能开发。
+# 开始一个新功能git checkout developgit checkout -b feature/user-auth# 完成功能git checkout developgit merge --no-ff feature/user-authgit branch -d feature/user-auth# 创建发布分支git checkout -b release/1.0.0 develop# 完成发布git checkout maingit merge --no-ff release/1.0.0git tag -a v1.0.0 -m &quot;Version 1.0.0&quot;git checkout developgit merge --no-ff release/1.0.0git branch -d release/1.0.0
+
+11.2 GitHub Flow（更轻量）适合持续部署的 Web 项目，流程极其简单：
+main ───●──●──●──●──●──●  (所有代码经过 PR 审查后直接合并到 main)            \             ●──●──●──●──●  (功能分支，完成后 PR 到 main)
+
+规则：main 分支始终可部署，任何改动通过 PR 合并。
+11.3 trunk-based development所有开发者从 main（trunk）创建短生命周期功能分支（最多 1-2 天），频繁合并到 trunk。适合小团队和快速迭代。
+
+十二、Hexo + GitHub 自动部署让你的博客自动更新是持续部署的最好实践，省时省力。
+12.1 方案一：GitHub Actions 自动部署（推荐）这是最流行的方案：本地写文章 → 推送到 GitHub → GitHub Actions 自动构建并部署到 VPS。
+步骤 1：在 GitHub 上创建空仓库
+在 https://github.com/new 创建 zyang-blog 仓库。
+步骤 2：在 VPS 上创建部署用户（安全隔离）
+# 创建一个专门用于部署的 Linux 用户（不在本教程的演示中，假设用 root）sudo adduser deployersudo usermod -aG sshd deployer
+
+步骤 3：在 GitHub 仓库中创建 Actions Workflow
+在 .github/workflows/deploy.yml 中写入：
+name: Deploy to VPSon:  push:    branches:      - main   # main 分支有新推送时触发jobs:  deploy:    runs-on: ubuntu-latest    steps:      - name: Checkout code        uses: actions/checkout@v4        with:          submodules: true  # 拉取 Butterfly 主题 submodule          fetch-depth: 1      - name: Setup Node.js        uses: actions/setup-node@v4        with:          node-version: &#x27;20&#x27;      - name: Install dependencies        run: npm ci      - name: Build site        run: npx hexo generate        env:          TZ: Asia/Shanghai      - name: Deploy to server via RSYNC        uses: AEnterprise/rsync-deploy@v1.0        with:          switches: -avz --delete          remote_path: &#x27;/var/www/zyang_blog/&#x27;          remote_host: $&#123;&#123; secrets.VPS_HOST &#125;&#125;          remote_user: root          remote_key: $&#123;&#123; secrets.VPS_SSH_KEY &#125;&#125;          # 排除不需要上传的目录          exclude: &gt;-            .github            node_modules            .git            .gitignore            _config.yml
+
+步骤 4：配置 GitHub Secrets
+在 GitHub 仓库页面 → Settings → Secrets and variables → Actions → New repository secret：
+
+
+
+Secret 名称
+内容
+
+
+
+VPS_HOST
+你的 VPS IP（如 68.183.230.214）
+
+
+VPS_SSH_KEY
+VPS 的私钥内容（cat ~/.ssh/id_rsa）
+
+
+步骤 5：本地推送文章，自动触发部署
+# 关联远程仓库（替换为你的 GitHub 仓库地址）git remote add origin git@github.com:yourname/zyang-blog.git# 提交博客源码git add .git commit -m &quot;docs: write new article&quot;git push -u origin main
+
+此后，每次 git push 到 GitHub，Actions 都会自动运行：
+
+拉取最新代码
+安装 npm 依赖
+执行 hexo generate 构建
+通过 rsync 同步到 VPS /var/www/zyang_blog/
+
+整个过程无需人工干预，你只需要写完文章 git push，5 分钟内网站就更新了。
+12.2 方案二：Git Hooks 自动部署（经典方案）在服务器上配置 Git 仓库，通过 post-receive 钩子自动部署：
+步骤 1：在本地博客目录初始化 Git
+cd ~/blog/zyang_blog  # 你的博客源码目录git initgit add .git commit -m &quot;Initial commit&quot;
+
+步骤 2：在服务器上创建裸仓库
+sudo mkdir -p /var/repo/zyang_blog.gitcd /var/repo/zyang_blog.gitsudo git init --baresudo chown -R $USER:$USER /var/repo
+
+步骤 3：创建 post-receive 钩子
+cat &gt; /var/repo/zyang_blog.git/hooks/post-receive &lt;&lt; &#x27;EOF&#x27;#!/bin/bashGIT_REPO=/var/repo/zyang_blog.gitTMP_CLONE=/tmp/zyang_blog_deployPUBLIC_WWW=/var/www/zyang_blog# 克隆仓库到临时目录git clone $GIT_REPO $TMP_CLONE# 进入博客目录cd $TMP_CLONE# 安装依赖npm install# 清理并构建hexo cleanhexo generate# 同步到 Web 目录rm -rf $PUBLIC_WWW/*cp -r $TMP_CLONE/public/* $PUBLIC_WWW/# 清理临时目录rm -rf $TMP_CLONEecho &quot;Deploy completed at $(date)&quot;EOFchmod +x /var/repo/zyang_blog.git/hooks/post-receive
+
+步骤 4：本地添加远程仓库并推送
+# 在本地博客目录git remote add deploy ssh://root@68.183.230.214:/var/repo/zyang_blog.git# 推送（首次需要配置 SSH 无密码登录）git push deploy main
+
+步骤 5：配置 SSH 无密码登录
+# 在本地机器ssh-copy-id root@68.183.230.214
+
+12.3 方案对比
+
+
+方案
+优点
+缺点
+
+
+
+GitHub Actions
+免费、CI&#x2F;CD 功能强大、可视化、可同时部署到多台服务器
+需要配置 Secrets，Actions 日志在国内访问较慢
+
+
+Git Hooks
+简单直接，无额外服务
+服务器必须开放 SSH 端口给 GitHub
+
+
+
+十三、高级技巧这些高级技巧可以帮你解决特殊场景下的问题，提升 Git 使用效率。
+13.1 交互式暂存（分块提交）当一个文件有多处改动，想分多次提交时：
+git add -p filename.txt# Git 会逐块显示改动，询问操作：#   y = 暂存此块#   n = 不暂存此块#   s = 拆分小块#   e = 手动编辑
+
+13.2 Bisect 定位 bugGit bisect 通过二分查找快速定位引入 bug 的提交：
+git bisect startgit bisect bad HEAD                    # 当前版本有 buggit bisect good v1.0.0                # 某个旧版本是好的# Git 会 checkout 中间版本，测试是否正常# 告诉 Git 结果：git bisect good    # 此版本正常git bisect bad     # 此版本有 bug# 重复直到找到引入 bug 的提交git bisect reset   # 结束后回到原分支
+
+13.3 子模块（Submodule）当一个仓库需要引用另一个独立仓库的特定版本时：
+# 添加子模块git submodule add https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly# 克隆包含子模块的仓库git clone --recurse-submodules https://github.com/username/repo.git# 更新子模块git submodule update --remote themes/butterfly# 在子模块中提交cd themes/butterflygit checkout main &amp;&amp; git pullcd ../..git add themes/butterflygit commit -m &quot;Update butterfly theme&quot;
+
+13.4 Worktree（多分支同时工作）同时在多个分支上工作，而不需要切换：
+# 在新目录打开 feature 分支git worktree add ../feature-worktree feature-new# 查看所有 worktreegit worktree list# 移除 worktreegit worktree remove ../feature-worktree
+
+13.5 约定式提交（Conventional Commits）统一提交信息格式，便于自动化工具处理（changelog 生成、版本管理等）：
+&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;# type 类型：#   feat:     新功能#   fix:      修复 bug#   docs:     文档改动#   style:    格式调整（不影响代码运行）#   refactor: 重构（非功能修改）#   test:     测试相关#   chore:    构建或辅助工具变动# 示例：git commit -m &quot;feat(sites): add Awwwards website card&quot;git commit -m &quot;fix(nginx): correct proxy_pass trailing slash&quot;git commit -m &quot;docs(readme): update deployment guide&quot;
+
+
+附录：常用 Git 命令速查以下命令表格按场景分类，方便日常开发时快速查阅。
+
+
+
+场景
+命令
+
+
+
+初始化仓库
+git init
+
+
+克隆仓库
+git clone &lt;url&gt;
+
+
+查看状态
+git status
+
+
+暂存文件
+git add &lt;file&gt;
+
+
+提交
+git commit -m &quot;&lt;msg&gt;&quot;
+
+
+查看历史
+git log --oneline
+
+
+创建分支
+git checkout -b &lt;branch&gt;
+
+
+切换分支
+git checkout &lt;branch&gt;
+
+
+合并分支
+git merge &lt;branch&gt;
+
+
+拉取代码
+git pull
+
+
+推送代码
+git push
+
+
+暂存修改
+git stash
+
+
+恢复 stash
+git stash pop
+
+
+解决冲突
+手动编辑 + git add + git commit
+
+
+撤销修改
+git checkout -- &lt;file&gt;
+
+
+查看差异
+git diff
+
+
+查看远程
+git remote -v
+
+
+创建标签
+git tag -a v1.0 -m &quot;msg&quot;
+
+
+变基
+git rebase main
+
+
+交互式变基
+git rebase -i HEAD~n
+
+
+查找 bug
+git bisect start
+
+
+
+
+📝 本教程会持续更新。如果有任何问题或建议，欢迎在评论区留言！
+
+
+关联阅读：从零搭建 Hexo + Butterfly 博客教程
+
+]]></content>
+      <categories>
+        <category>开发协作</category>
+        <category>版本控制</category>
+      </categories>
+      <tags>
+        <tag>自动部署</tag>
+        <tag>Git</tag>
+        <tag>GitHub</tag>
+        <tag>Pull Request</tag>
+        <tag>Code Review</tag>
+        <tag>Git 工作流</tag>
+        <tag>CI/CD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 系统常用命令完全指南</title>
+    <url>/posts/linux-common-commands-tutorial/</url>
+    <content><![CDATA[Linux 系统常用命令完全指南
+Linux 命令行是每个开发者、运维工程师的必备技能。本文系统梳理最常用的命令及参数，并注明 Debian&#x2F;Ubuntu 与其他主流发行版的差异，帮助你在任何 Linux 环境都能游刃有余。
+
+📋 目录
+一、文件与目录操作
+二、文本查看与编辑
+三、权限与用户管理
+四、软件包管理
+五、进程管理
+六、系统信息
+七、磁盘与文件系统
+八、网络操作
+九、搜索与过滤
+十、压缩与归档
+十一、SSH 远程连接
+十二、定时任务
+十三、其他高频命令
+
+
+一、文件与目录操作1.1 基础导航# 显示当前所在目录pwd# 切换目录cd /path/to/dir      # 切换到绝对路径cd ..                # 返回上一级cd ~                 # 返回用户主目录cd -                 # 返回上一次所在的目录# 列出目录内容ls                   # 不显示隐藏文件ls -a                # 显示所有文件（包括以 . 开头的隐藏文件）ls -l                # 详细列表（权限、大小、修改时间）ls -lh               # -l 配合 -h 以人类可读的单位显示大小ls -lt               # 按修改时间排序（最新在前）ls -ltr              # 按修改时间倒序（最旧在前）ls -la /var/log      # 查看指定目录
+
+1.2 文件与目录的创建、复制、移动、删除# 创建目录mkdir dirname              # 创建单个目录mkdir -p path/to/dir       # 递归创建目录（父目录不存在时自动创建）mkdir -p dir1 dir2 dir3    # 同时创建多个目录# 创建文件touch filename.txt         # 创建空文件（若存在则更新修改时间）touch file1.txt file2.md   # 同时创建多个文件# 复制文件或目录cp source.txt /dest/           # 复制文件到目标目录cp -r source_dir/ /dest/       # 递归复制目录cp -a source_dir/ /dest/       # 保留所有属性（权限、时间戳、链接）cp -v source.txt /dest/        # 显示复制过程（verbose）cp file1.txt file2.txt /dest/  # 复制多个文件到目标目录# 移动或重命名mv oldname.txt newname.txt  # 重命名（同一目录）mv file.txt /new/path/      # 移动到其他目录mv -i file.txt /dest/        # 目标存在时提示确认（interactive）mv -v file.txt /dest/       # 显示移动过程# 删除文件或目录rm filename.txt            # 删除单个文件（会提示确认）rm -f filename.txt         # 强制删除，不提示（force）rm -rf /path/to/dir        # 递归强制删除目录（危险！慎用）rm -v filename.txt         # 显示删除过程# 批量删除（符合某条件的文件）rm *.log                   # 删除所有 .log 文件rm -f file&#123;1..10&#125;.txt     # 删除 file1.txt ~ file10.txt
+
+
+⚠️ rm -rf / 是自杀命令，永远不要执行。生产环境中删除前用 ls 预览一下目标路径。
+
+1.3 链接文件# 硬链接（同一文件的不同名字，共享 inode）ln /path/to/file /path/to/hardlink# 软链接（符号链接，类似 Windows 快捷方式）ln -s /path/to/file /path/to/symlink# 查看链接指向readlink /path/to/symlink# 删除软链接（不要加 trailing slash）rm /path/to/symlink
+
+1.4 查看文件类型file filename.txt       # 查看文件类型（text, binary, directory 等）stat filename.txt       # 查看详细元信息（大小、inode、权限、时间戳）
+
+
+二、文本查看与编辑2.1 快速查看文件内容# 显示文件全部内容cat filename.txt# 带行号显示cat -n filename.txt# 显示文件开头 / 结尾head filename.txt            # 默认显示前 10 行head -n 20 filename.txt      # 显示前 20 行tail filename.txt            # 默认显示最后 10 行tail -n 20 filename.txt      # 显示最后 20 行tail -f /var/log/syslog      # 实时跟踪文件新增内容（Ctrl+C 退出）tail -f /var/log/nginx/access.log --pid=$$  # 跟踪并指定 pid（进程退出自动停止）# 分页查看（适合大文件）less /var/log/syslog         # 上下翻页，q 退出，/搜索，n 跳到下一个匹配more filename.txt            # 只能向下翻页（已逐渐被 less 取代）
+
+2.2 统计信息wc filename.txt           # 输出：行数 单词数 字节数 文件名wc -l filename.txt        # 只看行数wc -c filename.txt        # 只看字节数wc -m filename.txt        # 只看字符数wc -w filename.txt        # 只看单词数# 统计目录或项目的代码行数find /path -name &quot;*.py&quot; | xargs wc -l
+
+2.3 文本处理# 排序sort filename.txt              # 按字典序排序sort -n numbers.txt            # 按数字大小排序sort -r filename.txt           # 倒序sort -u filename.txt           # 去重后排序sort -t&#x27;,&#x27; -k2 filename.csv    # 按 CSV 第二列排序# 去重uniq filename.txt           # 去除相邻的重复行（通常配合 sort 使用）uniq -c filename.txt         # 显示每行重复次数uniq -d filename.txt         # 只显示出现多次的行# 截取列（awk）或字段（cut）awk &#x27;&#123;print $1&#125;&#x27; filename.txt       # 打印第一列（以空格分隔）awk -F&#x27;,&#x27; &#x27;&#123;print $2&#125;&#x27; file.csv     # 以逗号为分隔符，打印第二列cut -d&#x27;:&#x27; -f1 /etc/passwd            # 以冒号为分隔符，打印第一列cut -c1-10 filename.txt             # 截取每行第 1~10 个字符# 替换和转换tr &#x27;a-z&#x27; &#x27;A-Z&#x27; &lt; filename.txt          # 小写转大写tr -d &#x27;[:space:]&#x27; &lt; filename.txt       # 删除所有空白字符sed &#x27;s/old/new/g&#x27; filename.txt         # 全局替换（s= substitution, g= global）sed -i &#x27;s/old/new/g&#x27; filename.txt      # 直接修改文件（-i = in-place）sed -n &#x27;5,10p&#x27; filename.txt            # 只显示第 5~10 行awk &#x27;NR&gt;=5 &amp;&amp; NR&lt;=10&#x27; filename.txt     # 同上，sed 也可以# 合并列（paste）paste file1.txt file2.txt      # 按行合并两个文件
+
+2.4 diff 对比diff file1.txt file2.txt          # 比较两个文件差异diff -u file1.txt file2.txt       # unified 格式（适合给 patch 使用）diff -r dir1/ dir2/                # 递归比较两个目录diff &lt;(cmd1) &lt;(cmd2)                # 比较两个命令输出（bash 进程替换）
+
+
+三、权限与用户管理3.1 权限基础Linux 文件权限分为三组：所有者（owner）、所属组（group）、其他人（others）。
+每组三位：r（读&#x3D;4）+ w（写&#x3D;2）+ x（执行&#x3D;1）。
+-rwxr-xr--  1 root  staff   4096 Apr 23 11:20 script.sh ↑↑↑↑↑↑↑↑↑ ││└┬┘│└┬┘ ││ │ │ └── 其他人的权限  (r-- = 4) ││ │ └────── 所属组权限  (r-x = 5) ││ └──────── 所有者权限 (rwx = 7) │└────────── 链接数 └─────────── 文件类型（- = 普通文件，d = 目录，l = 链接）
+
+3.2 修改权限# 方式一：数字法（最常用）chmod 755 script.sh       # 所有者 rwx，组 rx，其他人 rxchmod 644 file.txt        # 所有者 rw，组 r，其他人 rchmod 600 id_rsa           # 只有所有者可读写（SSH 私钥）chmod 700 ~/.ssh           # 只有所有者可访问（.ssh 目录）chmod +x script.sh         # 给所有人添加执行权限chmod u+x script.sh        # 只给所有者添加执行权限chmod g-x script.sh        # 从组移除执行权限chmod o-r file.txt         # 从其他人移除读权限# 方式二：字母法# u = user(所有者), g = group, o = others, a = all# +/-/= = 添加/移除/设置chmod u=rwx,go=rx script.sh
+
+3.3 修改所有者与所属组# 修改所有者chown user filename.txt# 修改所有者和所属组chown user:group filename.txt# 递归修改（目录及所有子文件）chown -R user:group /path/to/dir# 只修改所属组chgrp group filename.txt
+
+3.4 用户管理# 查看当前用户whoami          # 显示当前用户名id              # 显示用户 UID、GID 及所属组who             # 显示当前登录的所有用户# 添加 / 删除用户# Debian/Ubuntu:sudo adduser username          # 交互式创建用户（推荐，自动创建主目录）sudo useradd -m username       # 非交互式创建用户（CentOS/RHEL 风格）sudo userdel -r username        # 删除用户及其主目录# 修改密码sudo passwd username# 切换用户su - username        # 切换到指定用户（同时切换环境变量）su username          # 切换用户但不加载目标用户环境# sudo 权限管理（Debian/Ubuntu）sudo usermod -aG sudo username   # 把用户加入 sudo 组sudo visudo                             # 编辑 sudoers 文件（安全的编辑方式）
+
+
+💡 Debian&#x2F;Ubuntu vs CentOS&#x2F;RHEL：Ubuntu 默认管理员组是 sudo，CentOS&#x2F;RHEL 是 wheel。添加用户到相应组即可获得 sudo 权限。
+
+
+四、软件包管理4.1 Debian&#x2F;Ubuntu（apt）# 更新软件包列表（每次安装前强烈建议执行）sudo apt update# 升级所有可升级的软件包sudo apt upgrade             # 不自动删除依赖包sudo apt full-upgrade        # 会自动删除/安装依赖（版本升级时必要）# 安装软件sudo apt install nginx       # 安装单个包sudo apt install nginx vim git   # 同时安装多个包sudo apt install ./package.deb   # 从本地 .deb 文件安装# 卸载软件sudo apt remove nginx        # 卸载但保留配置文件sudo apt purge nginx         # 卸载并删除配置文件sudo apt autoremove          # 自动清理不再需要的依赖sudo apt autoremove --purge  # 清理 + 删除配置文件# 搜索软件包apt search nginxapt-cache search &quot;^nginx$&quot;  # 精确搜索# 查看包信息apt show nginx               # 查看包详情（版本、依赖、大小、描述）apt list --installed         # 列出所有已安装的包apt list --installed | grep nginx# 修复依赖sudo apt install -f          # 修复损坏的依赖关系sudo dpkg --configure -a     # 重新配置所有已解压但未配置的包
+
+4.2 CentOS&#x2F;RHEL（yum&#x2F;dnf）# 安装sudo yum install nginx       # 或 sudo dnf install nginx# 卸载sudo yum remove nginx        # 或 sudo dnf remove nginx# 更新sudo yum updatesudo yum check-update        # 检查更新但不安装# 搜索yum search nginxyum info nginx               # 查看包详细信息# 列出已安装yum list installedyum list installed | grep nginx
+
+4.3 Arch Linux（pacman）sudo pacman -S nginx         # 安装sudo pacman -R nginx         # 卸载sudo pacman -Syu             # 同步 + 更新整个系统pacman -Ss nginx             # 搜索pacman -Qs nginx             # 搜索已安装pacman -Qdt                  # 列出不再被依赖的孤立包sudo pacman -Rns $(pacman -Qdtq)  # 清理孤立包
+
+4.4 pip（Python 包管理）pip install requests              # 安装 Python 包pip install -r requirements.txt   # 从文件批量安装pip uninstall requests            # 卸载pip list                         # 列出已安装的包pip freeze                        # 导出当前环境所有包及版本pip freeze &gt; requirements.txt    # 导出到文件pip install --upgrade pip         # 升级 pip 本身
+
+
+五、进程管理5.1 查看进程# 实时进程监视器（交互界面）top                  # 按 q 退出htop                 # 更友好的增强版（需要 apt install htop）btop                 # 更现代化，支持更多信息（可选）# 静态查看进程ps aux                    # 显示所有进程（最常用）ps -ef                    # 显示完整格式（PID、PPID 等）ps aux | grep nginx       # 查找特定进程ps -u username            # 查看指定用户的进程# 常用组合（排除 grep 本身）ps aux | grep python | grep -v grep
+
+5.2 进程操作# 终止进程kill PID              # 正常终止（SIGTERM，优雅退出）kill -9 PID           # 强制杀死（SIGKILL，紧急情况）kill -15 PID          # 同 SIGTERM，明确写法kill -STOP PID        # 暂停进程（挂起）kill -CONT PID        # 继续被暂停的进程# 批量终止（杀死所有匹配进程名的进程）pkill nginx           # 杀死所有 nginx 进程killall nginx         # 同上，但更老派killall -9 nginx      # 强制杀死# 查看特定进程的 PIDpgrep -f &quot;nginx&quot;      # 查找进程名含 nginx 的 PIDpidof nginx           # 精确匹配进程名的 PID
+
+5.3 后台进程与任务管理# 将前台任务放到后台Ctrl+Z                # 挂起当前任务（暂停）bg                    # 将挂起的任务在后台继续运行# 以后台方式运行（不占用终端）nohup ./script.sh &amp;          # 即使终端关闭也继续运行nohup ./script.sh &gt; output.log 2&gt;&amp;1 &amp;   # 重定向输出到日志文件./script.sh &amp;                 # 普通后台运行（终端关闭则终止）# 查看后台任务jobs                  # 列出当前终端的后台任务fg %1                 # 把第 1 个后台任务恢复到前台bg %1                 # 让第 1 个后台任务继续运行# 甩掉当前终端独立运行（已在后台的进程）disown %1             # 让任务脱离终端控制
+
+5.4 系统服务管理（systemd）# 基本操作（Debian/Ubuntu/CentOS 7+）sudo systemctl start nginx        # 启动服务sudo systemctl stop nginx         # 停止服务sudo systemctl restart nginx      # 重启服务sudo systemctl reload nginx       # 重载配置文件（不中断连接）sudo systemctl status nginx       # 查看运行状态sudo systemctl enable nginx       # 开机自启sudo systemctl disable nginx      # 取消开机自启sudo systemctl is-active nginx    # 检查是否正在运行sudo systemctl is-enabled nginx   # 检查是否开机自启# 查看日志sudo journalctl -u nginx                    # 查看 nginx 服务日志sudo journalctl -u nginx -f                  # 实时跟踪sudo journalctl -u nginx --since &quot;1 hour ago&quot;  # 查看最近 1 小时sudo journalctl -xe --since today            # 查看今天所有日志
+
+
+六、系统信息6.1 查看系统与内核版本uname -a                # 完整系统信息（内核、架构、日期等）uname -r                # 只看内核版本cat /etc/os-release     # 发行版信息（Debian/Ubuntu/CentOS 通用）lsb_release -a          # 发行版详细信息（需要 apt install lsb-release）cat /etc/debian_version  # Debian 特有hostnamectl             # 主机名 + 系统信息（systemd 机器）
+
+6.2 查看硬件信息# CPUlscpu                   # CPU 详细信息（型号、核心数、线程、频率、缓存）cat /proc/cpuinfo       # 更底层的 CPU 信息# 内存free -h                 # 内存使用情况（human-readable）free -m                 # 以 MB 为单位显示cat /proc/meminfo       # 更详细的内存信息# 磁盘lsblk                   # 查看所有块设备（磁盘、分区、挂载点）fdisk -l                # 查看磁盘分区表（需要 sudo）df -h                   # 磁盘使用情况（human-readable）df -h /home             # 查看指定挂载点du -sh /var/log         # 查看目录大小（summary）du -h --max-depth=1 /  # 查看根目录下各子目录大小# PCI 设备lspci                   # 列出所有 PCI 设备lspci | grep -i network # 查找网卡# USB 设备lsusb                   # 列出所有 USB 设备
+
+6.3 系统运行状态uptime                  # 运行时长 + 当前负载w                       # 当前登录用户 + 系统负载who                     # 当前登录用户列表last                    # 最近登录记录last reboot             # 历史重启记录# 系统负载详情cat /proc/loadavg       # 1分钟/5分钟/15分钟 平均负载
+
+
+七、磁盘与文件系统7.1 磁盘分区（fdisk &#x2F; parted）
+⚠️ 分区操作有数据丢失风险，请在有备份的情况下谨慎操作。
+
+# 查看现有分区sudo fdisk -l /dev/sda# 分区（交互式）sudo fdisk /dev/sda# 常用交互命令：#   n = 新建分区#   p = 主分区，e = 扩展分区#   w = 保存并退出#   q = 不保存退出# parted（支持 &gt;2TB 磁盘）sudo parted /dev/sdb(parted) mklabel gpt(parted) mkpart primary ext4 0% 100%(parted) quit
+
+7.2 格式化与挂载# 格式化（常用文件系统）sudo mkfs.ext4 /dev/sdb1      # ext4（Linux 最常用）sudo mkfs.xfs /dev/sdb1        # XFS（Red Hat/CentOS 默认，企业级）sudo mkfs.ntfs /dev/sdb1       # NTFS（Windows 兼容）sudo mkfs.vfat /dev/sdb1       # FAT32（U盘常见）# 挂载sudo mount /dev/sdb1 /mnt/data   # 挂载到 /mnt/datamount                              # 查看当前所有挂载mount | grep /mnt                  # 查找特定挂载点# 卸载sudo umount /mnt/data# 开机自动挂载（编辑 fstab）sudo blkid /dev/sdb1              # 查看磁盘 UUID 和文件系统类型sudo nano /etc/fstab# 添加一行：# UUID=xxxx-xxxx  /mnt/data  ext4  defaults  0  2
+
+7.3 磁盘 I&#x2F;O 监控iostat -x 1 5              # 每秒刷新一次，共 5 次（查看磁盘利用率）iotop                      # 交互式查看 I/O 占用（需要 apt install iotop）
+
+
+八、网络操作8.1 网络配置查看ip addr show              # 查看 IP 地址和网络接口（现代命令）ip link show              # 查看网络接口状态ip route show             # 查看路由表ip neigh show             # 查看 ARP 表# 传统命令（仍广泛使用）ifconfig                  # 查看 IP（需要 apt install net-tools）route -n                  # 查看路由表arp -a                    # 查看 ARP 缓存netstat -tulnp            # 查看监听端口（需要 apt install net-tools）ss -tulnp                 # 同上，更现代（socket statistics）
+
+8.2 网络测试# 测试连通性ping -c 4 8.8.8.8           # ping 4 次ping -c 4 google.com         # 也可以 ping 域名# 跟踪路由（数据包经过的节点）traceroute google.com        # 需要 apt install traceroutetracert google.com            # Windows 命令# DNS 查询nslookup google.com           # DNS 解析dig google.com                 # 更详细的 DNS 信息dig +short google.com          # 只返回 IP 地址host google.com                # 简单 DNS 查询# 测试端口连通性nc -zv 8.8.8.8 443            # 测试 TCP 443 端口nc -zv google.com 443 2&gt;&amp;1 | grep -i succeeded# 速度测试curl -s -o /dev/null -w &quot;%&#123;speed_download&#125;&quot; http://speedtest.example.com/file
+
+8.3 下载与上传# 文件下载curl -O https://example.com/file.zip           # 下载文件curl -L -o output.zip https://example.com/file  # -L 跟随重定向，-o 指定文件名wget https://example.com/file.zip              # 经典下载工具wget -c https://example.com/largefile.zip      # 断点续传# 上传（curl）curl -X PUT -d &quot;data&quot; http://example.com/apicurl -F &quot;file=@/path/to/file&quot; http://example.com/upload# 传输文件（SCP）scp local.txt user@remote:/path/      # 上传到远程scp user@remote:/path/file.txt ./     # 从远程下载scp -r ./dir user@remote:/path/        # 递归上传目录scp -P 2222 user@remote:/path/file.txt .   # 指定 SSH 端口# rsync（增量同步，效率极高）rsync -avz ./dir/ user@remote:/path/   # 归档 + 压缩 + 显示过程rsync -avz --delete ./dir/ user@remote:/path/  # 同步删除（两边完全一致）rsync -avz -e &quot;ssh -p 2222&quot; ./dir/ user@remote:/path/  # 指定 SSH 端口
+
+8.4 网络统计netstat -i                  # 查看各网络接口的统计信息netstat -s                  # 各协议汇总统计ss -tlnp                    # 所有监听 TCP 端口ss -tan | grep ESTAB        # 查看所有已建立的连接
+
+
+九、搜索与过滤9.1 文件名搜索# 在文件系统中查找文件find /path -name &quot;filename.txt&quot;         # 按文件名查找find /path -name &quot;*.log&quot;                # 查找所有 .log 文件find /path -name &quot;*.conf&quot; -type f      # 只找普通文件，不找目录find /path -type d -name &quot;node_modules&quot; # 查找目录# 查找并配合操作find /path -name &quot;*.tmp&quot; -exec rm &#123;&#125; \;   # 找到后删除（危险）find /path -name &quot;*.log&quot; -mtime +7        # 查找 7 天前的 log 文件find /path -size +100M                    # 查找大于 100MB 的文件find /path -user username                 # 查找属于某用户的文件# locate（基于预建索引，更快，需要定期 updatedb）locate filename.txtsudo updatedb                    # 更新文件索引数据库
+
+9.2 文件内容搜索# 在文件中搜索文本grep &quot;keyword&quot; filename.txt              # 基本搜索grep -r &quot;keyword&quot; /path/to/dir          # 递归搜索目录grep -rn &quot;keyword&quot; /path/to/dir         # -n 显示行号，-r 递归grep -i &quot;keyword&quot; filename.txt           # -i 忽略大小写grep -v &quot;keyword&quot; filename.txt           # -v 反向选择（不包含关键词的行）grep -c &quot;keyword&quot; filename.txt           # -c 统计匹配行数grep -A 3 &quot;keyword&quot; filename.txt         # -A 显示匹配行及之后 3 行grep -B 3 &quot;keyword&quot; filename.txt         # -B 显示匹配行及之前 3 行grep -E &quot;error|warning&quot; filename.txt     # -E 使用正则，匹配多个关键词（OR）# 常用组合grep -rn &quot;TODO&quot; --include=&quot;*.py&quot; /path   # 只搜索 .py 文件grep -rn &quot;TODO&quot; --exclude-dir=node_modules /path  # 排除某目录# ack / ag / rg（更快的代码搜索）apt install silversearcher-ag    # Debian/Ubuntu 安装 agag &quot;keyword&quot; /path              # 比 grep 快很多（适合大项目）rg &quot;keyword&quot; /path              # ripgrep，更快更强
+
+9.3 命令历史history                        # 显示所有历史命令history | grep apt             # 搜索包含 apt 的历史命令!!                             # 执行上一条命令!n                             # 执行第 n 条历史命令!$-1                           # 执行倒数第二条命令Ctrl+R                         # 交互式反向搜索（输入关键词回溯）
+
+
+十、压缩与归档10.1 tar（最常用的归档工具）# 打包（不压缩）tar -cvf archive.tar /path/to/dir     # 创建归档（c=create, v=verbose, f=file）tar -xvf archive.tar                    # 解开归档（x=extract）tar -xvf archive.tar -C /dest/         # 解压到指定目录# 打包并压缩tar -czvf archive.tar.gz /path/       # gzip 压缩（最常用，速度快）tar -cjvf archive.tar.bz2 /path/      # bzip2 压缩（压缩率更高，慢）tar -cJvf archive.tar.xz /path/        # xz 压缩（最高压缩率，最慢）# 解压tar -xzvf archive.tar.gz             # 解 gziptar -xjvf archive.tar.bz2            # 解 bzip2tar -xJvf archive.tar.xz            # 解 xztar -xzvf archive.tar.gz -C /dest/  # 解压到指定目录# 查看压缩包内容（不解压）tar -tzf archive.tar.gz# 追加文件到已有压缩包tar -rvf archive.tar newfile.txt
+
+10.2 zip &#x2F; unzipzip -r archive.zip /path/to/dir        # 压缩目录zip archive.zip file1.txt file2.txt    # 压缩多个文件unzip archive.zip                      # 解压到当前目录unzip archive.zip -d /dest/            # 解压到指定目录unzip -l archive.zip                   # 只查看内容，不解压unzip -q archive.zip                    # 静默模式，不显示过程
+
+10.3 其他压缩格式# .gz 单文件压缩（不打包）gzip filename.txt          # 生成 filename.txt.gz，原文件删除gunzip filename.txt.gz     # 解压gzip -k filename.txt       # 保留原文件gzcat filename.txt.gz      # 查看压缩文件内容（不解压）# .xzxz filename.txtunxz filename.txt.xz# .7z（需要安装 p7zip）7z a archive.7z /path/      # 创建7z x archive.7z            # 解压
+
+
+十一、SSH 远程连接11.1 基本连接ssh user@hostname               # 标准连接ssh -p 2222 user@hostname        # 指定端口（默认 22）ssh -i ~/.ssh/id_rsa user@hostname  # 使用指定私钥连接
+
+11.2 SSH 密钥管理# 生成 SSH 密钥对ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;   # 推荐的现代算法ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;  # 传统 RSA# 默认保存位置：~/.ssh/id_ed25519（私钥）, ~/.ssh/id_ed25519.pub（公钥）# 将公钥复制到远程服务器（最简方式）ssh-copy-id user@hostname# 手动复制公钥cat ~/.ssh/id_ed25519.pub | ssh user@hostname &quot;mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys&quot;# 修改密钥权限（必须）chmod 700 ~/.sshchmod 600 ~/.ssh/id_ed25519chmod 644 ~/.ssh/id_ed25519.pub
+
+11.3 SSH 配置优化nano ~/.ssh/config
+
+Host myserver    HostName 192.168.1.100    User root    Port 22    IdentityFile ~/.ssh/id_ed25519    ForwardAgent yesHost *    ServerAliveInterval 60      # 防止空闲断开    ServerAliveCountMax 3    AddKeysToAgent yes
+
+11.4 SSH 隧道（端口转发）# 本地端口转发：把远程端口映射到本地ssh -L 8080:localhost:80 user@remote    # 访问远程的 80 端口，映射到本地的 8080# 远程端口转发：把本地端口映射到远程ssh -R 8080:localhost:80 user@remote# SOCKS 代理（科学上网/调试）ssh -D 1080 user@hostname    # 在本地创建 SOCKS5 代理
+
+11.5 远程执行命令ssh user@hostname &quot;df -h &amp;&amp; free -h&quot;   # 执行远程命令并获取输出ssh user@hostname &quot;sudo systemctl restart nginx&quot;  # 远程执行 sudo 命令
+
+
+十二、定时任务12.1 cron（系统级定时任务）# 查看当前用户的 crontabcrontab -l# 编辑 crontabcrontab -e# 清空 crontabcrontab -r
+
+crontab 时间格式：
+┌───────────── 分钟 (0-59)│ ┌─────────── 小时 (0-23)│ │ ┌───────── 日 (1-31)│ │ │ ┌─────── 月 (1-12)│ │ │ │ ┌───── 星期 (0-7，0 和 7 都是周日)│ │ │ │ │* * * * * command
+
+常用示例：
+# 每分钟执行一次* * * * * /path/to/script.sh# 每天凌晨 3 点执行0 3 * * * /path/to/backup.sh# 每周一早上 6 点执行0 6 * * 1 /path/to/job.sh# 每月 1 日零点执行0 0 1 * * /path/to/job.sh# 每隔 5 分钟执行*/5 * * * * /path/to/check.sh# 每小时的第 15 分钟执行15 * * * * /path/to/job.sh# 每天 8:00-18:00 每小时执行0 8-18 * * * /path/to/job.sh# 每年 1 月 1 日零点执行0 0 1 1 * /path/to/newyear.sh# 排除某时段（如：工作时间外每分钟备份）* * 9-18 * * 2-6 /path/to/backup.sh   # 工作日 9-18 点
+
+日志和输出： cron 任务的输出会通过邮件发送（系统），建议重定向到日志：
+0 3 * * * /path/to/backup.sh &gt;&gt; /var/log/backup.log 2&gt;&amp;1
+
+12.2 systemd timer（更现代的方式）# 创建 service 文件sudo nano /etc/systemd/system/mytask.service
+
+[Unit]Description=My scheduled task[Service]Type=oneshotExecStart=/path/to/script.sh
+
+# 创建 timer 文件sudo nano /etc/systemd/system/mytask.timer
+
+[Unit]Description=Run mytask.service daily at 3am[Timer]OnCalendar=*-*-* 03:00:00Persistent=true[Install]WantedBy=timers.target
+
+sudo systemctl daemon-reloadsudo systemctl enable --now mytask.timersudo systemctl list-timers --all
+
+12.3 at（一次性任务）# 在指定时间执行一次at 3:00 tomorrowat now + 5 minutesat 17:00# 进入 at 交互界面，输入要执行的命令，按 Ctrl+D 保存at&gt; /path/to/script.shat&gt; &lt;EOT&gt;# 查看待执行任务atq# 删除任务atrm 3
+
+
+十三、其他高频命令13.1 alias（命令别名）# 临时设置 alias（当前终端有效）alias ll=&#x27;ls -la&#x27;alias gs=&#x27;git status&#x27;alias ..=&#x27;cd ..&#x27;alias ...=&#x27;cd ../..&#x27;# 永久保存 alias（写入 ~/.bashrc 或 ~/.zshrc）echo &quot;alias ll=&#x27;ls -la&#x27;&quot; &gt;&gt; ~/.bashrcsource ~/.bashrc# 取消 aliasunalias ll
+
+13.2 环境变量# 查看环境变量echo $PATHenvprintenv# 临时设置（当前终端有效）export PATH=&quot;/new/path:$PATH&quot;export EDITOR=vim# 永久设置echo &quot;export PATH=\&quot;/new/path:\$PATH\&quot;&quot; &gt;&gt; ~/.bashrcsource ~/.bashrc# 常用环境变量echo $HOME        # 用户主目录echo $USER        # 当前用户名echo $SHELL       # 当前 shell 类型echo $PWD         # 当前目录echo $HOSTNAME    # 主机名
+
+13.3 日期与时间date                         # 显示当前日期时间date &quot;+%Y-%m-%d %H:%M:%S&quot;    # 自定义格式date -d &quot;2026-04-23&quot;         # 指定日期date -s &quot;2026-04-23 12:00:00&quot;  # 设置系统时间（需要 sudo）# 时区timedatectl                          # 查看时区信息sudo timedatectl set-timezone Asia/Shanghai  # 设置时区# 查看硬件时钟sudo hwclock --showsudo hwclock --systohc               # 系统时间同步到硬件时钟
+
+13.4 输入输出重定向command &gt; output.txt       # 标准输出重定向到文件（覆盖）command &gt;&gt; output.txt      # 追加到文件command 2&gt; error.txt        # 标准错误重定向command &gt; output.txt 2&gt;&amp;1   # 标准输出和错误都重定向到文件command &amp;&gt; output.txt       # 同上，简写command &gt; /dev/null 2&gt;&amp;1   # 丢弃所有输出（静默执行）command &lt; input.txt         # 从文件读取输入
+
+13.5 管道（|）管道是 Linux 最强大的特性之一，将前一个命令的输出作为后一个命令的输入：
+# 实用管道组合ls -la | less                    # 分页查看目录cat log.txt | grep ERROR | wc -l  # 统计 ERROR 出现次数ps aux | grep python | grep -v grep  # 查找 Python 进程（排除 grep 本身）df -h | grep /dev/sda            # 查看特定磁盘使用率free -h | awk &#x27;/Mem:/ &#123;print $3&#125;&#x27; # 提取已用内存cat /proc/net/dev | awk &#x27;/eth0/&#123;print $2&#125;&#x27;  # 查看网卡流量
+
+13.6 watch（周期性执行命令）watch -n 1 &#x27;df -h&#x27;                # 每秒刷新 df 输出watch -n 5 &#x27;ps aux | grep nginx&#x27;  # 每 5 秒检查 nginx 进程watch -d -n 2 &#x27;ls -la /tmp&#x27;       # -d 高亮显示差异
+
+13.7 screen 和 tmux（终端多路复用）# screen（会话管理）screen -S mysession          # 创建命名会话screen -ls                   # 列出所有会话screen -r mysession           # 恢复会话screen -d mysession           # 分离会话（远程断开时）Ctrl+A, D                    # 分离当前会话Ctrl+A, K                    # 关闭当前会话# tmux（更现代，功能更强）tmux new -s mysession        # 创建会话tmux ls                      # 列出会话tmux attach -t mysession     # 恢复会话tmux detach                  # 分离（Ctrl+B, D）# tmux 快捷键前缀：Ctrl+B#   D = 分离会话#   C = 新建窗口#   W = 列出窗口#   [ = 进入复制模式（上下滚动）
+
+
+附录：常见问题速查
+
+
+场景
+命令
+
+
+
+查看进程 PID
+pgrep -f &quot;进程名&quot;
+
+
+杀死进程
+kill -9 $(pgrep -f &quot;进程名&quot;)
+
+
+查看端口占用
+ss -tlnp | grep 端口号
+
+
+查找大文件
+find / -size +100M
+
+
+清理日志
+&gt; /var/log/syslog（截断文件）或 truncate -s 0
+
+
+SSH 密钥登录
+ssh-copy-id user@hostname
+
+
+查看实时日志
+tail -f /var/log/syslog
+
+
+查公网 IP
+curl ifconfig.me
+
+
+查内网 IP
+ip addr show
+
+
+查看系统负载
+uptime
+
+
+内存占用排序
+ps aux --sort=-%mem | head
+
+
+CPU 占用排序
+ps aux --sort=-%cpu | head
+
+
+查看开机自启服务
+systemctl list-unit-files --state=enabled
+
+
+
+
+📝 本文会持续更新。如果你发现有遗漏或错误，欢迎在评论区留言补充！
+关注作者，持续获取更多技术干货 🚀
+
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+        <category>系统管理</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>命令行</tag>
+        <tag>Shell</tag>
+        <tag>进程管理</tag>
+        <tag>权限管理</tag>
+        <tag>网络排障</tag>
+        <tag>定时任务</tag>
+      </tags>
+  </entry>
+</search>
