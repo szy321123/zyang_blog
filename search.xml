@@ -1,8 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux 服务器运维神器：一个脚本搞定所有</title>
+    <url>/zyang_blog/posts/kejilion-sh-toolbox/</url>
+    <content><![CDATA[Linux 服务器运维神器：一个脚本搞定所有如果你管理着多台 Linux 服务器，一定会有过这样的烦恼——装 Docker 要查教程、配 Nginx 要翻文档、申请 SSL 证书又是一堆命令。今天推荐一个 49万+ 安装量 的开源脚本，轻轻一句命令，所有日常运维操作都能搞定。
+
+
+前置准备：安装 curl如果你的系统默认没有 curl，先装好：
+# Debian / Ubuntuapt update -y &amp;&amp; apt install -y curl
+
+# CentOS / RedHat / Fedora / AlmaLinux / Rocky Linuxyum update -y &amp;&amp; yum install -y curl
+
+# Alpineapk update &amp;&amp; apk add curl
+
+快速启动一条命令进入交互式菜单，支持 Ubuntu、Debian、CentOS、Alpine、Kali、Arch 等主流发行版：
+bash &lt;(curl -sL kejilion.sh)
+
+核心功能一览
+
+
+模块
+说明
+
+
+
+系统管理
+系统信息查询、更新维护、性能优化
+
+
+Docker 管理
+容器管理、镜像部署，无需安装任何面板
+
+
+LDNMP 建站
+Nginx + MySQL + PHP 一键部署，SSL 证书、域名绑定一条龙
+
+
+工具集合
+BBR 加速、WARP 管理、性能测试、FRP 内网穿透
+
+
+常用快捷命令不想进交互菜单？直接传参执行指定功能，更高效。
+建站与反向代理# 一键安装 WordPressbash &lt;(curl -sL kejilion.sh) en wp# Nginx 反向代理bash &lt;(curl -sL kejilion.sh) en fd# 申请 SSL 证书bash &lt;(curl -sL kejilion.sh) en ssl
+
+系统与网络优化# Docker 快速安装bash &lt;(curl -sL kejilion.sh) en docker install# BBRv3 加速bash &lt;(curl -sL kejilion.sh) en bbr3# 系统内核调优bash &lt;(curl -sL kejilion.sh) en nhyh
+
+内网穿透与部署# FRP 服务器bash &lt;(curl -sL kejilion.sh) en frps# FRP 客户端bash &lt;(curl -sL kejilion.sh) en frpc# 负载均衡部署bash &lt;(curl -sL kejilion.sh) en loadbalance
+
+系统重装# DD 重装系统（预装好自动化环境）bash &lt;(curl -sL kejilion.sh) en dd
+
+
+DD 重装系统会清空当前服务器所有数据，操作前请务必备份重要文件！
+
+适用人群
+新手站长：不想记命令，建站、SSL、备案一条龙
+多服管理：统一工具链，多台服务器批量操作更高效
+临时环境：快速拉起 Docker、LNMP 测试环境，用完即删
+
+项目信息
+
+
+项目
+地址
+
+
+
+官网
+https://kejilion.sh
+
+
+GitHub
+https://github.com/kejilion/sh ⭐ 2.7k
+
+
+安装量
+496,000+
+
+
+
+一个脚本替代一堆工具箱，省心省力。
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+        <category>工具推荐</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维脚本</tag>
+        <tag>Kejilion</tag>
+        <tag>Docker</tag>
+        <tag>LDNMP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从零搭建 Hexo + Butterfly 博客教程</title>
-    <url>/posts/hexo-butterfly-tutorial/</url>
+    <url>/zyang_blog/posts/hexo-butterfly-tutorial/</url>
     <content><![CDATA[从零搭建 Hexo + Butterfly 博客教程
 本教程将从购买域名、服务器选购开始，手把手教你搭建一个完整的 Hexo + Butterfly 个人博客。
 
@@ -211,100 +303,8 @@ sitemap:  path: sitemap.xmlbaidu_url:  slug:
       </tags>
   </entry>
   <entry>
-    <title>Linux 服务器运维神器：一个脚本搞定所有</title>
-    <url>/posts/kejilion-sh-toolbox/</url>
-    <content><![CDATA[Linux 服务器运维神器：一个脚本搞定所有如果你管理着多台 Linux 服务器，一定会有过这样的烦恼——装 Docker 要查教程、配 Nginx 要翻文档、申请 SSL 证书又是一堆命令。今天推荐一个 49万+ 安装量 的开源脚本，轻轻一句命令，所有日常运维操作都能搞定。
-
-
-前置准备：安装 curl如果你的系统默认没有 curl，先装好：
-# Debian / Ubuntuapt update -y &amp;&amp; apt install -y curl
-
-# CentOS / RedHat / Fedora / AlmaLinux / Rocky Linuxyum update -y &amp;&amp; yum install -y curl
-
-# Alpineapk update &amp;&amp; apk add curl
-
-快速启动一条命令进入交互式菜单，支持 Ubuntu、Debian、CentOS、Alpine、Kali、Arch 等主流发行版：
-bash &lt;(curl -sL kejilion.sh)
-
-核心功能一览
-
-
-模块
-说明
-
-
-
-系统管理
-系统信息查询、更新维护、性能优化
-
-
-Docker 管理
-容器管理、镜像部署，无需安装任何面板
-
-
-LDNMP 建站
-Nginx + MySQL + PHP 一键部署，SSL 证书、域名绑定一条龙
-
-
-工具集合
-BBR 加速、WARP 管理、性能测试、FRP 内网穿透
-
-
-常用快捷命令不想进交互菜单？直接传参执行指定功能，更高效。
-建站与反向代理# 一键安装 WordPressbash &lt;(curl -sL kejilion.sh) en wp# Nginx 反向代理bash &lt;(curl -sL kejilion.sh) en fd# 申请 SSL 证书bash &lt;(curl -sL kejilion.sh) en ssl
-
-系统与网络优化# Docker 快速安装bash &lt;(curl -sL kejilion.sh) en docker install# BBRv3 加速bash &lt;(curl -sL kejilion.sh) en bbr3# 系统内核调优bash &lt;(curl -sL kejilion.sh) en nhyh
-
-内网穿透与部署# FRP 服务器bash &lt;(curl -sL kejilion.sh) en frps# FRP 客户端bash &lt;(curl -sL kejilion.sh) en frpc# 负载均衡部署bash &lt;(curl -sL kejilion.sh) en loadbalance
-
-系统重装# DD 重装系统（预装好自动化环境）bash &lt;(curl -sL kejilion.sh) en dd
-
-
-DD 重装系统会清空当前服务器所有数据，操作前请务必备份重要文件！
-
-适用人群
-新手站长：不想记命令，建站、SSL、备案一条龙
-多服管理：统一工具链，多台服务器批量操作更高效
-临时环境：快速拉起 Docker、LNMP 测试环境，用完即删
-
-项目信息
-
-
-项目
-地址
-
-
-
-官网
-https://kejilion.sh
-
-
-GitHub
-https://github.com/kejilion/sh ⭐ 2.7k
-
-
-安装量
-496,000+
-
-
-
-一个脚本替代一堆工具箱，省心省力。
-]]></content>
-      <categories>
-        <category>Linux运维</category>
-        <category>工具推荐</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>运维脚本</tag>
-        <tag>Kejilion</tag>
-        <tag>Docker</tag>
-        <tag>LDNMP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git 与 GitHub 团队协作完全指南</title>
-    <url>/posts/git-github-collaboration-tutorial/</url>
+    <url>/zyang_blog/posts/git-github-collaboration-tutorial/</url>
     <content><![CDATA[Git 与 GitHub 团队协作完全指南
 Git 是目前最流行的版本控制系统，GitHub 则是全球最大的代码托管平台。两者结合可以让团队协作高效且有条不紊。
 
@@ -853,7 +853,7 @@ git bisect start
   </entry>
   <entry>
     <title>Linux 系统常用命令完全指南</title>
-    <url>/posts/linux-common-commands-tutorial/</url>
+    <url>/zyang_blog/posts/linux-common-commands-tutorial/</url>
     <content><![CDATA[Linux 系统常用命令完全指南
 Linux 命令行是每个开发者、运维工程师的必备技能。本文系统梳理最常用的命令及参数，并注明 Debian&#x2F;Ubuntu 与其他主流发行版的差异，帮助你在任何 Linux 环境都能游刃有余。
 
