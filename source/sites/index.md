@@ -56,7 +56,7 @@ comments: false
 <div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/worldvectorlogo.ico" alt="World Vector Logo logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=worldvectorlogo.com" alt="World Vector Logo logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">设计资源</span>
 </div>
 <div class="fav-card-head">
@@ -71,7 +71,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/lottiefiles.png" alt="LottieFiles logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=lottiefiles.com" alt="LottieFiles logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">设计资源</span>
 </div>
 <div class="fav-card-head">
@@ -86,7 +86,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/awwwards.svg" alt="Awwwards logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=awwwards.com" alt="Awwwards logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">设计资源</span>
 </div>
 <div class="fav-card-head">
@@ -109,7 +109,7 @@ comments: false
 <div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/uiverse.ico" alt="UIverse logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=uiverse.io" alt="UIverse logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">设计资源</span>
 </div>
 <div class="fav-card-head">
@@ -124,7 +124,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/magicui.ico" alt="Magic UI logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=magicui.design" alt="Magic UI logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">UI 组件</span>
 </div>
 <div class="fav-card-head">
@@ -139,7 +139,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/sweezy-cursors.png" alt="Sweezy Cursors logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=sweezy-cursors.com" alt="Sweezy Cursors logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">UI 组件</span>
 </div>
 <div class="fav-card-head">
@@ -162,7 +162,7 @@ comments: false
 <div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/ilovepdf.ico" alt="iLovePDF logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=ilovepdf.com" alt="iLovePDF logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">PDF / 图片处理</span>
 </div>
 <div class="fav-card-head">
@@ -177,7 +177,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/iloveimg.ico" alt="iLoveIMG logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=iloveimg.com" alt="iLoveIMG logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">PDF / 图片处理</span>
 </div>
 <div class="fav-card-head">
@@ -192,7 +192,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/yysuni.png" alt="YYsuni 图片工具箱 logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.yysuni.com/images/avatar.png" alt="YYsuni 图片工具箱 logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">PDF / 图片处理</span>
 </div>
 <div class="fav-card-head">
@@ -215,7 +215,7 @@ comments: false
 <div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/qwerty-learner.ico" alt="Qwerty Learner logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=qwerty.kaiyi.cool" alt="Qwerty Learner logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">效率工具</span>
 </div>
 <div class="fav-card-head">
@@ -230,7 +230,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/saduck.ico" alt="SaDuck logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=saduck.top" alt="SaDuck logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">学习考试</span>
 </div>
 <div class="fav-card-head">
@@ -253,7 +253,7 @@ comments: false
 <div class="fav-grid">
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/kejilion.ico" alt="Kejilion logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=kejilion.sh" alt="Kejilion logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">开发运维</span>
 </div>
 <div class="fav-card-head">
@@ -268,7 +268,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/liangxinyun.ico" alt="良心云 logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=tencent.com" alt="良心云 logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">云服务</span>
 </div>
 <div class="fav-card-head">
@@ -283,7 +283,7 @@ comments: false
 
 <article class="fav-card">
 <div class="fav-card-top">
-<div class="fav-logo-wrap"><img class="fav-logo" src="/img/sites/official/kms-cx.svg" alt="KMS.CX logo" loading="lazy"></div>
+<div class="fav-logo-wrap"><img class="fav-logo" src="https://www.google.com/s2/favicons?sz=128&domain=kms.cx" alt="KMS.CX logo" loading="lazy" referrerpolicy="no-referrer"></div>
 <span class="fav-chip">系统维护</span>
 </div>
 <div class="fav-card-head">
