@@ -6,7 +6,7 @@
       giant: '180,184,240',
       star: '226,225,142',
       comet: '226,225,224',
-      density: 0.12,
+      density: 0.06,
       speed: 0.065,
       cometChance: 22,
       alphaBoost: 1.28,
@@ -16,7 +16,7 @@
       giant: '48,86,156',
       star: '28,66,128',
       comet: '28,82,154',
-      density: 0.1,
+      density: 0.05,
       speed: 0.058,
       cometChance: 20,
       alphaBoost: 1.42,
@@ -159,7 +159,7 @@
     }
 
     seed() {
-      const count = Math.max(22, Math.floor(this.width * this.themeConfig.density))
+      const count = Math.max(10, Math.floor(this.width * this.themeConfig.density))
       this.stars = []
       for (let i = 0; i < count; i++) this.stars.push(new Star(this))
     }
@@ -176,7 +176,7 @@
       if (!this.ctx) return
       this.ctx.clearRect(0, 0, this.width, this.height)
       this.frame += 1
-      if (!this.booting && this.frame % 140 === 0) this.injectComets(1)
+      if (!this.booting && this.frame % 220 === 0) this.injectComets(1)
       for (let i = 0; i < this.stars.length; i++) {
         const s = this.stars[i]
         s.move()
@@ -201,7 +201,7 @@
       this.booting = true
       window.setTimeout(() => {
         this.booting = false
-        this.injectComets(window.innerWidth > 768 ? 7 : 4)
+        this.injectComets(window.innerWidth > 768 ? 2 : 1)
       }, 180)
       this.animate()
     }

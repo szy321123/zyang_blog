@@ -1,17 +1,77 @@
 {
   "meta": {
-    "generatedAt": "2026-04-28T09:48:03.212Z",
+    "generatedAt": "2026-04-29T08:26:21.200Z",
     "source": "https://zyang.app",
     "rootPath": "/",
-    "totalItems": 15,
+    "totalItems": 21,
     "categories": {
-      "root": 6,
+      "root": 12,
       "bandizip": 3,
       "geek": 2,
       "v2ray": 4
     }
   },
   "items": [
+    {
+      "name": "Filza4.0破解.ipa",
+      "path": "/Filza4.0破解.ipa",
+      "size": 13912133,
+      "sizeText": "13 MB",
+      "modified": "2026-04-29T08:08:16.547Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/Filza4.0%E7%A0%B4%E8%A7%A3.ipa"
+    },
+    {
+      "name": "QPEhelper-v3.8最终版本.ipa",
+      "path": "/QPEhelper-v3.8最终版本.ipa",
+      "size": 2067446,
+      "sizeText": "1.97 MB",
+      "modified": "2026-04-29T08:08:16.501Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/QPEhelper-v3.8%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC.ipa"
+    },
+    {
+      "name": "TrollLEDs巨魔手电筒.ipa",
+      "path": "/TrollLEDs巨魔手电筒.ipa",
+      "size": 212548,
+      "sizeText": "208 KB",
+      "modified": "2026-04-29T08:08:16.447Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/TrollLEDs%E5%B7%A8%E9%AD%94%E6%89%8B%E7%94%B5%E7%AD%92.ipa"
+    },
+    {
+      "name": "巨魔Fuck法克工具箱_1.8.4.ipa",
+      "path": "/巨魔Fuck法克工具箱_1.8.4.ipa",
+      "size": 56370750,
+      "sizeText": "54 MB",
+      "modified": "2026-04-29T08:08:16.39Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/%E5%B7%A8%E9%AD%94Fuck%E6%B3%95%E5%85%8B%E5%B7%A5%E5%85%B7%E7%AE%B1_1.8.4.ipa"
+    },
+    {
+      "name": "虚拟定位_1.3.7.ipa",
+      "path": "/虚拟定位_1.3.7.ipa",
+      "size": 2250164,
+      "sizeText": "2.15 MB",
+      "modified": "2026-04-29T08:08:16.361Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/%E8%99%9A%E6%8B%9F%E5%AE%9A%E4%BD%8D_1.3.7.ipa"
+    },
+    {
+      "name": "BatteryInfo[电池助手].ipa",
+      "path": "/BatteryInfo[电池助手].ipa",
+      "size": 38433,
+      "sizeText": "38 KB",
+      "modified": "2026-04-29T08:07:31.084Z",
+      "category": "root",
+      "platform": "iOS",
+      "downloadUrl": "https://zyang.app/p/BatteryInfo%5B%E7%94%B5%E6%B1%A0%E5%8A%A9%E6%89%8B%5D.ipa"
+    },
     {
       "name": "ClashMetaForAndroid-v2.11.27.apk",
       "path": "/ClashMetaForAndroid-v2.11.27.apk",
