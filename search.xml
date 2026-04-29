@@ -1,308 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linux 服务器运维神器：一个脚本搞定所有</title>
-    <url>/zyang_blog/posts/kejilion-sh-toolbox/</url>
-    <content><![CDATA[Linux 服务器运维神器：一个脚本搞定所有如果你管理着多台 Linux 服务器，一定会有过这样的烦恼——装 Docker 要查教程、配 Nginx 要翻文档、申请 SSL 证书又是一堆命令。今天推荐一个 49万+ 安装量 的开源脚本，轻轻一句命令，所有日常运维操作都能搞定。
-
-
-前置准备：安装 curl如果你的系统默认没有 curl，先装好：
-# Debian / Ubuntuapt update -y &amp;&amp; apt install -y curl
-
-# CentOS / RedHat / Fedora / AlmaLinux / Rocky Linuxyum update -y &amp;&amp; yum install -y curl
-
-# Alpineapk update &amp;&amp; apk add curl
-
-快速启动一条命令进入交互式菜单，支持 Ubuntu、Debian、CentOS、Alpine、Kali、Arch 等主流发行版：
-bash &lt;(curl -sL kejilion.sh)
-
-核心功能一览
-
-
-模块
-说明
-
-
-
-系统管理
-系统信息查询、更新维护、性能优化
-
-
-Docker 管理
-容器管理、镜像部署，无需安装任何面板
-
-
-LDNMP 建站
-Nginx + MySQL + PHP 一键部署，SSL 证书、域名绑定一条龙
-
-
-工具集合
-BBR 加速、WARP 管理、性能测试、FRP 内网穿透
-
-
-常用快捷命令不想进交互菜单？直接传参执行指定功能，更高效。
-建站与反向代理# 一键安装 WordPressbash &lt;(curl -sL kejilion.sh) en wp# Nginx 反向代理bash &lt;(curl -sL kejilion.sh) en fd# 申请 SSL 证书bash &lt;(curl -sL kejilion.sh) en ssl
-
-系统与网络优化# Docker 快速安装bash &lt;(curl -sL kejilion.sh) en docker install# BBRv3 加速bash &lt;(curl -sL kejilion.sh) en bbr3# 系统内核调优bash &lt;(curl -sL kejilion.sh) en nhyh
-
-内网穿透与部署# FRP 服务器bash &lt;(curl -sL kejilion.sh) en frps# FRP 客户端bash &lt;(curl -sL kejilion.sh) en frpc# 负载均衡部署bash &lt;(curl -sL kejilion.sh) en loadbalance
-
-系统重装# DD 重装系统（预装好自动化环境）bash &lt;(curl -sL kejilion.sh) en dd
-
-
-DD 重装系统会清空当前服务器所有数据，操作前请务必备份重要文件！
-
-适用人群
-新手站长：不想记命令，建站、SSL、备案一条龙
-多服管理：统一工具链，多台服务器批量操作更高效
-临时环境：快速拉起 Docker、LNMP 测试环境，用完即删
-
-项目信息
-
-
-项目
-地址
-
-
-
-官网
-https://kejilion.sh
-
-
-GitHub
-https://github.com/kejilion/sh ⭐ 2.7k
-
-
-安装量
-496,000+
-
-
-
-一个脚本替代一堆工具箱，省心省力。
-]]></content>
-      <categories>
-        <category>Linux运维</category>
-        <category>工具推荐</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>运维脚本</tag>
-        <tag>Kejilion</tag>
-        <tag>Docker</tag>
-        <tag>LDNMP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从零搭建 Hexo + Butterfly 博客教程</title>
-    <url>/zyang_blog/posts/hexo-butterfly-tutorial/</url>
-    <content><![CDATA[从零搭建 Hexo + Butterfly 博客教程
-本教程将从购买域名、服务器选购开始，手把手教你搭建一个完整的 Hexo + Butterfly 个人博客。
-
-📋 目录
-一、环境准备
-二、服务器与域名
-三、安装 Hexo 框架
-四、安装 Butterfly 主题
-五、主题配置
-六、写作与部署
-七、优化与美化
-
-
-一、环境准备1.1 安装 Node.jsHexo 基于 Node.js 运行，需要先安装 Node.js 环境。
-Linux&#x2F;macOS（通过 nvm 安装）：
-# 安装 nvm（Node.js 版本管理工具）curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# 重新加载终端配置source ~/.bashrc  # 或 source ~/.zshrc# 安装最新版 Node.js（建议 v18+）nvm install 20nvm use 20# 验证安装node -v   # v20.x.xnpm -v    # 10.x.x
-
-Windows：
-直接下载安装包：https://nodejs.org/，选择 LTS 版本即可。
-
-1.2 安装 Git# Debian/Ubuntusudo apt updatesudo apt install -y git# macOS（已自带）git --version
-
-
-二、服务器与域名2.1 选购服务器推荐使用 1核1G 以上的 VPS，以下服务商均可：
-
-
-
-服务商
-特点
-
-
-
-DigitalOcean
-稳定、价格适中
-
-
-Vultr
-按小时计费，灵活
-
-
-阿里云&#x2F;腾讯云
-国内访问快，需要备案
-
-
-CloudCone
-性价比高
-
-
-
-💡 如果面向国内用户，建议选择国内服务器并完成 ICP 备案。
-
-
-2.2 域名购买与解析推荐域名注册商：
-
-Namecheap — 价格便宜
-Cloudflare Registrar — 隐私保护好
-阿里云&#x2F;腾讯云 — 国内主流
-
-添加 DNS 解析：
-
-登录域名服务商后台
-添加 A 记录指向服务器 IP：
-主机记录： @（或 zyang.me）
-记录值： 你的服务器公网IP
-
-
-如需 www 子域名，再添加一条：
-主机记录： www
-记录值： 你的服务器公网IP
-
-
-
-
-2.3 服务器环境配置连接服务器并安装基础软件：
-# 连接服务器（替换为你的 IP）ssh root@你的服务器IP# 安装必要软件apt update &amp;&amp; apt install -y nginx python3-certbot-python3# 启动 nginxsystemctl enable nginxsystemctl start nginx
-
-
-三、安装 Hexo 框架3.1 创建博客目录# 在本地电脑上操作（不是服务器）# 选择一个合适的目录创建博客项目mkdir -p ~/blogcd ~/blog
-
-3.2 初始化 Hexo 项目# 使用 npm 安装 Hexo CLI（如果遇到权限问题加 sudo）npm install -g hexo-cli# 初始化博客（my-blog 是项目名，可自定义）hexo init my-blogcd my-blog# 安装依赖npm install
-
-初始化完成后，目录结构如下：
-my-blog/├── _config.yml          # Hexo 主配置文件├── package.json         # 项目依赖├── scaffolds/          # 文章模板├── source/             # 博客源码（写在这里）│   └── _posts/         # 文章存放目录└── themes/             # 主题目录
-
-3.3 本地预览# 启动本地服务器hexo server# 浏览器访问 http://localhost:4000# 按 Ctrl+C 停止
-
-
-四、安装 Butterfly 主题4.1 下载主题在博客目录下执行：
-# 进入主题目录cd themes# 方式一：Git 下载（推荐）git clone https://github.com/jerryc127/hexo-theme-butterfly.git butterfly# 方式二：如果你在国内，克隆速度慢，可以手动下载后上传# 下载地址：https://github.com/jerryc127/hexo-theme-butterfly/releases
-
-4.2 安装主题依赖Butterfly 主题有一些额外依赖需要安装：
-# 回到博客根目录cd ..# 安装主题依赖npm install hexo-renderer-pug hexo-renderer-stylus hexo-generator-searchdb hexo-wordcount
-
-依赖说明：
-
-hexo-renderer-pug — Pug 模板引擎
-hexo-renderer-stylus — Stylus CSS 预处理器
-hexo-generator-searchdb — 本地搜索
-hexo-wordcount — 文章字数统计
-
-4.3 启用主题打开博客根目录下的 _config.yml，找到 theme 字段并修改：
-# Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/theme: butterfly
-
-4.4 复制主题配置Butterfly 主题有独立配置文件，在主题目录下：
-# 从主题目录复制示例配置cp themes/butterfly/_config.yml _config.butterfly.yml
-
-
-⚠️ 重要： Butterfly 主题的所有配置都在 _config.butterfly.yml 中修改，不要直接修改主题目录内的 _config.yml。
-
-
-五、主题配置5.1 基础信息配置打开 _config.yml（博客根目录），修改以下内容：
-# Sitetitle: 你的博客名称subtitle: &#x27;博客副标题&#x27;description: &#x27;博客描述&#x27;author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;
-
-5.2 Butterfly 导航菜单打开 _config.butterfly.yml，找到 menu 部分：
-menu:  首页: / || fas fa-home  文章||fas fa-pen-nib||hide:    分类: /categories/ || fas fa-folder-open  资源||fas fa-box-open||hide:    工具: /tools/ || fas fa-wrench    宝藏网站: /sites/ || fas fa-gem  关于: /about/ || fas fa-user
-
-菜单格式：显示名称: 路径 || 图标
-图标可以去 Font Awesome 挑选。
-5.3 头像与图标# 网站图标（放在 source/img/ 目录下）favicon: /img/touxiang.jpg# 头像设置avatar:  img: /img/touxiang.jpg  effect: true  # 悬停旋转效果
-
-5.4 社交链接social:  fab fa-github: https://github.com/你的用户名 || Github || &#x27;#24292e&#x27;  fas fa-envelope: mailto:your@email.com || Email || &#x27;#4a7dbe&#x27;
-
-5.5 首页横幅图片# 索引页横幅index_img: /img/lunbo2.png# 禁用顶部图片（全局）disable_top_img: false
-
-5.6 代码块配置code_blocks:  theme: light  macStyle: true  height_limit: 320  word_wrap: true  copy: true  language: true  shrink: true  fullpage: true
-
-
-六、写作与部署6.1 创建文章# 创建新文章（自动生成 md 文件）hexo new &quot;我的第一篇文章&quot;# 创建自定义模板的文章hexo new page &quot;about&quot;    # 创建关于页面hexo new page &quot;tools&quot;    # 创建工具页面
-
-文章会保存在 source/_posts/ 目录下，使用 Markdown 编写。
-6.2 文章Front-matter每篇文章头部需要填写元信息：
----title: 文章标题date: 2026-04-22 18:00:00categories:  - 分类1  - 分类2tags:  - 标签1  - 标签2description: 文章描述top_img: /img/xxx.jpg    # 顶部图片---
-
-6.3 本地预览hexo clean     # 清理缓存hexo generate # 生成静态文件hexo server   # 本地预览
-
-6.4 部署到服务器方式一：Git 自动部署在服务器上配置 Git 钩子，实现 push 自动部署：
-服务器端：
-# 创建 Git 仓库mkdir -p /var/repo/zyang_blog.gitcd /var/repo/zyang_blog.gitgit init --bare# 创建 Git 钩子cat &gt; hooks/post-receive &lt;&lt; &#x27;EOF&#x27;#!/bin/bashGIT_REPO=/var/repo/zyang_blog.gitTMP_GIT_CLONE=/tmp/zyang_blogPUBLIC_WWW=/var/www/zyang_bloggit clone $GIT_REPO $TMP_GIT_CLONEcd $TMP_GIT_CLONEnpm installhexo cleanhexo generaterm -rf $PUBLIC_WWW/*cp -r $TMP_GIT_CLONE/public/* $PUBLIC_WWW/rm -rf $TMP_GIT_CLONEEOFchmod +x hooks/post-receive
-
-本地端：
-安装部署插件：
-npm install hexo-deployer-git --save
-
-修改 _config.yml：
-deploy:  type: git  repo: root@你的服务器IP:/var/repo/zyang_blog.git  branch: master
-
-部署命令：
-hexo deploy
-
-方式二：手动部署（简单直接）# 在本地博客目录hexo cleanhexo generate# 上传到服务器rsync -avz --delete public/ root@你的服务器IP:/var/www/zyang_blog/
-
-6.5 配置 Nginx在服务器上创建 Nginx 配置文件：
-cat &gt; /etc/nginx/sites-available/yourblog &lt;&lt; &#x27;EOF&#x27;server &#123;    listen 80;    server_name yourdomain.com www.yourdomain.com;        root /var/www/zyang_blog;    index index.html;        location / &#123;        try_files $uri $uri/ =404;    &#125;        # 静态资源缓存    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ &#123;        expires 1y;        add_header Cache-Control &quot;public, immutable&quot;;    &#125;&#125;EOFln -sf /etc/nginx/sites-available/yourblog /etc/nginx/sites-enabled/nginx -t &amp;&amp; systemctl reload nginx
-
-6.6 配置 SSL 证书（Let’s Encrypt）# 安装 certbotapt install -y python3-certbot-nginx# 获取并自动配置 SSL 证书certbot --nginx -d yourdomain.com -d www.yourdomain.com# 自动续期测试certbot renew --dry-run
-
-
-七、优化与美化7.1 添加自定义 CSS在 source/css/ 目录下创建 custom.css：
-/* 自定义字体 */body &#123;  font-family: &#x27;Noto Sans SC&#x27;, sans-serif;&#125;/* 自定义代码高亮颜色 */code &#123;  background: #f5f5f5;  color: #e74c3c;&#125;
-
-在 _config.butterfly.yml 中引入：
-inject:  head:    - &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/custom.css&quot;&gt;
-
-7.2 添加评论区Butterfly 支持多种评论系统，推荐使用 Twikoo（轻量、免费）：
-
-去 Twikoo 官网 注册并获取 API
-在 _config.butterfly.yml 中配置：
-
-comments:  use:    - Twikoo  text: true  tirkkoo:    env_id: 你的环境ID
-
-7.3 添加网站统计推荐使用 不蒜子 或 Google Analytics：
-# 不蒜子统计busuanzi: true
-
-7.4 SEO 优化安装 SEO 插件：
-npm install hexo-generator-sitemap hexo-generator-baidu-url --save
-
-在 _config.yml 中添加：
-sitemap:  path: sitemap.xmlbaidu_url:  slug: 
-
-
-🎉 恭喜！你的 Hexo + Butterfly 博客已经搭建完成！现在你可以：
-
-📝 开始写文章
-🎨 自定义主题样式
-🚀 完善内容并推广
-
-有任何问题欢迎留言交流！
-
-
-我的博客源码： https://github.com/szy321123/zyang_blog
-完整配置可参考我的项目，有问题欢迎提 Issue。
-
-]]></content>
-      <categories>
-        <category>建站教程</category>
-        <category>静态博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Butterfly</tag>
-        <tag>博客搭建</tag>
-        <tag>Nginx</tag>
-        <tag>SSL</tag>
-        <tag>VPS</tag>
-        <tag>自动部署</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git 与 GitHub 团队协作完全指南</title>
     <url>/zyang_blog/posts/git-github-collaboration-tutorial/</url>
     <content><![CDATA[Git 与 GitHub 团队协作完全指南
@@ -842,13 +540,442 @@ git bisect start
         <category>版本控制</category>
       </categories>
       <tags>
-        <tag>自动部署</tag>
         <tag>Git</tag>
         <tag>GitHub</tag>
         <tag>Pull Request</tag>
         <tag>Code Review</tag>
         <tag>Git 工作流</tag>
         <tag>CI/CD</tag>
+        <tag>自动部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 服务器运维神器：一个脚本搞定所有</title>
+    <url>/zyang_blog/posts/kejilion-sh-toolbox/</url>
+    <content><![CDATA[Linux 服务器运维神器：一个脚本搞定所有如果你管理着多台 Linux 服务器，一定会有过这样的烦恼——装 Docker 要查教程、配 Nginx 要翻文档、申请 SSL 证书又是一堆命令。今天推荐一个 49万+ 安装量 的开源脚本，轻轻一句命令，所有日常运维操作都能搞定。
+
+
+前置准备：安装 curl如果你的系统默认没有 curl，先装好：
+# Debian / Ubuntuapt update -y &amp;&amp; apt install -y curl
+
+# CentOS / RedHat / Fedora / AlmaLinux / Rocky Linuxyum update -y &amp;&amp; yum install -y curl
+
+# Alpineapk update &amp;&amp; apk add curl
+
+快速启动一条命令进入交互式菜单，支持 Ubuntu、Debian、CentOS、Alpine、Kali、Arch 等主流发行版：
+bash &lt;(curl -sL kejilion.sh)
+
+核心功能一览
+
+
+模块
+说明
+
+
+
+系统管理
+系统信息查询、更新维护、性能优化
+
+
+Docker 管理
+容器管理、镜像部署，无需安装任何面板
+
+
+LDNMP 建站
+Nginx + MySQL + PHP 一键部署，SSL 证书、域名绑定一条龙
+
+
+工具集合
+BBR 加速、WARP 管理、性能测试、FRP 内网穿透
+
+
+常用快捷命令不想进交互菜单？直接传参执行指定功能，更高效。
+建站与反向代理# 一键安装 WordPressbash &lt;(curl -sL kejilion.sh) en wp# Nginx 反向代理bash &lt;(curl -sL kejilion.sh) en fd# 申请 SSL 证书bash &lt;(curl -sL kejilion.sh) en ssl
+
+系统与网络优化# Docker 快速安装bash &lt;(curl -sL kejilion.sh) en docker install# BBRv3 加速bash &lt;(curl -sL kejilion.sh) en bbr3# 系统内核调优bash &lt;(curl -sL kejilion.sh) en nhyh
+
+内网穿透与部署# FRP 服务器bash &lt;(curl -sL kejilion.sh) en frps# FRP 客户端bash &lt;(curl -sL kejilion.sh) en frpc# 负载均衡部署bash &lt;(curl -sL kejilion.sh) en loadbalance
+
+系统重装# DD 重装系统（预装好自动化环境）bash &lt;(curl -sL kejilion.sh) en dd
+
+
+DD 重装系统会清空当前服务器所有数据，操作前请务必备份重要文件！
+
+适用人群
+新手站长：不想记命令，建站、SSL、备案一条龙
+多服管理：统一工具链，多台服务器批量操作更高效
+临时环境：快速拉起 Docker、LNMP 测试环境，用完即删
+
+项目信息
+
+
+项目
+地址
+
+
+
+官网
+https://kejilion.sh
+
+
+GitHub
+https://github.com/kejilion/sh ⭐ 2.7k
+
+
+安装量
+496,000+
+
+
+
+一个脚本替代一堆工具箱，省心省力。
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+        <category>工具推荐</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维脚本</tag>
+        <tag>Kejilion</tag>
+        <tag>Docker</tag>
+        <tag>LDNMP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零搭建 Hexo + Butterfly 博客教程</title>
+    <url>/zyang_blog/posts/hexo-butterfly-tutorial/</url>
+    <content><![CDATA[从零搭建 Hexo + Butterfly 博客教程
+本教程将从购买域名、服务器选购开始，手把手教你搭建一个完整的 Hexo + Butterfly 个人博客。
+
+📋 目录
+一、环境准备
+二、服务器与域名
+三、安装 Hexo 框架
+四、安装 Butterfly 主题
+五、主题配置
+六、写作与部署
+七、优化与美化
+
+
+一、环境准备1.1 安装 Node.jsHexo 基于 Node.js 运行，需要先安装 Node.js 环境。
+Linux&#x2F;macOS（通过 nvm 安装）：
+# 安装 nvm（Node.js 版本管理工具）curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# 重新加载终端配置source ~/.bashrc  # 或 source ~/.zshrc# 安装最新版 Node.js（建议 v18+）nvm install 20nvm use 20# 验证安装node -v   # v20.x.xnpm -v    # 10.x.x
+
+Windows：
+直接下载安装包：https://nodejs.org/，选择 LTS 版本即可。
+
+1.2 安装 Git# Debian/Ubuntusudo apt updatesudo apt install -y git# macOS（已自带）git --version
+
+
+二、服务器与域名2.1 选购服务器推荐使用 1核1G 以上的 VPS，以下服务商均可：
+
+
+
+服务商
+特点
+
+
+
+DigitalOcean
+稳定、价格适中
+
+
+Vultr
+按小时计费，灵活
+
+
+阿里云&#x2F;腾讯云
+国内访问快，需要备案
+
+
+CloudCone
+性价比高
+
+
+
+💡 如果面向国内用户，建议选择国内服务器并完成 ICP 备案。
+
+
+2.2 域名购买与解析推荐域名注册商：
+
+Namecheap — 价格便宜
+Cloudflare Registrar — 隐私保护好
+阿里云&#x2F;腾讯云 — 国内主流
+
+添加 DNS 解析：
+
+登录域名服务商后台
+添加 A 记录指向服务器 IP：
+主机记录： @（或 zyang.me）
+记录值： 你的服务器公网IP
+
+
+如需 www 子域名，再添加一条：
+主机记录： www
+记录值： 你的服务器公网IP
+
+
+
+
+2.3 服务器环境配置连接服务器并安装基础软件：
+# 连接服务器（替换为你的 IP）ssh root@你的服务器IP# 安装必要软件apt update &amp;&amp; apt install -y nginx python3-certbot-python3# 启动 nginxsystemctl enable nginxsystemctl start nginx
+
+
+三、安装 Hexo 框架3.1 创建博客目录# 在本地电脑上操作（不是服务器）# 选择一个合适的目录创建博客项目mkdir -p ~/blogcd ~/blog
+
+3.2 初始化 Hexo 项目# 使用 npm 安装 Hexo CLI（如果遇到权限问题加 sudo）npm install -g hexo-cli# 初始化博客（my-blog 是项目名，可自定义）hexo init my-blogcd my-blog# 安装依赖npm install
+
+初始化完成后，目录结构如下：
+my-blog/├── _config.yml          # Hexo 主配置文件├── package.json         # 项目依赖├── scaffolds/          # 文章模板├── source/             # 博客源码（写在这里）│   └── _posts/         # 文章存放目录└── themes/             # 主题目录
+
+3.3 本地预览# 启动本地服务器hexo server# 浏览器访问 http://localhost:4000# 按 Ctrl+C 停止
+
+
+四、安装 Butterfly 主题4.1 下载主题在博客目录下执行：
+# 进入主题目录cd themes# 方式一：Git 下载（推荐）git clone https://github.com/jerryc127/hexo-theme-butterfly.git butterfly# 方式二：如果你在国内，克隆速度慢，可以手动下载后上传# 下载地址：https://github.com/jerryc127/hexo-theme-butterfly/releases
+
+4.2 安装主题依赖Butterfly 主题有一些额外依赖需要安装：
+# 回到博客根目录cd ..# 安装主题依赖npm install hexo-renderer-pug hexo-renderer-stylus hexo-generator-searchdb hexo-wordcount
+
+依赖说明：
+
+hexo-renderer-pug — Pug 模板引擎
+hexo-renderer-stylus — Stylus CSS 预处理器
+hexo-generator-searchdb — 本地搜索
+hexo-wordcount — 文章字数统计
+
+4.3 启用主题打开博客根目录下的 _config.yml，找到 theme 字段并修改：
+# Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/theme: butterfly
+
+4.4 复制主题配置Butterfly 主题有独立配置文件，在主题目录下：
+# 从主题目录复制示例配置cp themes/butterfly/_config.yml _config.butterfly.yml
+
+
+⚠️ 重要： Butterfly 主题的所有配置都在 _config.butterfly.yml 中修改，不要直接修改主题目录内的 _config.yml。
+
+
+五、主题配置5.1 基础信息配置打开 _config.yml（博客根目录），修改以下内容：
+# Sitetitle: 你的博客名称subtitle: &#x27;博客副标题&#x27;description: &#x27;博客描述&#x27;author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;
+
+5.2 Butterfly 导航菜单打开 _config.butterfly.yml，找到 menu 部分：
+menu:  首页: / || fas fa-home  文章||fas fa-pen-nib||hide:    分类: /categories/ || fas fa-folder-open  资源||fas fa-box-open||hide:    工具: /tools/ || fas fa-wrench    宝藏网站: /sites/ || fas fa-gem  关于: /about/ || fas fa-user
+
+菜单格式：显示名称: 路径 || 图标
+图标可以去 Font Awesome 挑选。
+5.3 头像与图标# 网站图标（放在 source/img/ 目录下）favicon: /img/touxiang.jpg# 头像设置avatar:  img: /img/touxiang.jpg  effect: true  # 悬停旋转效果
+
+5.4 社交链接social:  fab fa-github: https://github.com/你的用户名 || Github || &#x27;#24292e&#x27;  fas fa-envelope: mailto:your@email.com || Email || &#x27;#4a7dbe&#x27;
+
+5.5 首页横幅图片# 索引页横幅index_img: /img/lunbo2.png# 禁用顶部图片（全局）disable_top_img: false
+
+5.6 代码块配置code_blocks:  theme: light  macStyle: true  height_limit: 320  word_wrap: true  copy: true  language: true  shrink: true  fullpage: true
+
+
+六、写作与部署6.1 创建文章# 创建新文章（自动生成 md 文件）hexo new &quot;我的第一篇文章&quot;# 创建自定义模板的文章hexo new page &quot;about&quot;    # 创建关于页面hexo new page &quot;tools&quot;    # 创建工具页面
+
+文章会保存在 source/_posts/ 目录下，使用 Markdown 编写。
+6.2 文章Front-matter每篇文章头部需要填写元信息：
+---title: 文章标题date: 2026-04-22 18:00:00categories:  - 分类1  - 分类2tags:  - 标签1  - 标签2description: 文章描述top_img: /img/xxx.jpg    # 顶部图片---
+
+6.3 本地预览hexo clean     # 清理缓存hexo generate # 生成静态文件hexo server   # 本地预览
+
+6.4 部署到服务器方式一：Git 自动部署在服务器上配置 Git 钩子，实现 push 自动部署：
+服务器端：
+# 创建 Git 仓库mkdir -p /var/repo/zyang_blog.gitcd /var/repo/zyang_blog.gitgit init --bare# 创建 Git 钩子cat &gt; hooks/post-receive &lt;&lt; &#x27;EOF&#x27;#!/bin/bashGIT_REPO=/var/repo/zyang_blog.gitTMP_GIT_CLONE=/tmp/zyang_blogPUBLIC_WWW=/var/www/zyang_bloggit clone $GIT_REPO $TMP_GIT_CLONEcd $TMP_GIT_CLONEnpm installhexo cleanhexo generaterm -rf $PUBLIC_WWW/*cp -r $TMP_GIT_CLONE/public/* $PUBLIC_WWW/rm -rf $TMP_GIT_CLONEEOFchmod +x hooks/post-receive
+
+本地端：
+安装部署插件：
+npm install hexo-deployer-git --save
+
+修改 _config.yml：
+deploy:  type: git  repo: root@你的服务器IP:/var/repo/zyang_blog.git  branch: master
+
+部署命令：
+hexo deploy
+
+方式二：手动部署（简单直接）# 在本地博客目录hexo cleanhexo generate# 上传到服务器rsync -avz --delete public/ root@你的服务器IP:/var/www/zyang_blog/
+
+6.5 配置 Nginx在服务器上创建 Nginx 配置文件：
+cat &gt; /etc/nginx/sites-available/yourblog &lt;&lt; &#x27;EOF&#x27;server &#123;    listen 80;    server_name yourdomain.com www.yourdomain.com;        root /var/www/zyang_blog;    index index.html;        location / &#123;        try_files $uri $uri/ =404;    &#125;        # 静态资源缓存    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ &#123;        expires 1y;        add_header Cache-Control &quot;public, immutable&quot;;    &#125;&#125;EOFln -sf /etc/nginx/sites-available/yourblog /etc/nginx/sites-enabled/nginx -t &amp;&amp; systemctl reload nginx
+
+6.6 配置 SSL 证书（Let’s Encrypt）# 安装 certbotapt install -y python3-certbot-nginx# 获取并自动配置 SSL 证书certbot --nginx -d yourdomain.com -d www.yourdomain.com# 自动续期测试certbot renew --dry-run
+
+
+七、优化与美化7.1 添加自定义 CSS在 source/css/ 目录下创建 custom.css：
+/* 自定义字体 */body &#123;  font-family: &#x27;Noto Sans SC&#x27;, sans-serif;&#125;/* 自定义代码高亮颜色 */code &#123;  background: #f5f5f5;  color: #e74c3c;&#125;
+
+在 _config.butterfly.yml 中引入：
+inject:  head:    - &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/custom.css&quot;&gt;
+
+7.2 添加评论区Butterfly 支持多种评论系统，推荐使用 Twikoo（轻量、免费）：
+
+去 Twikoo 官网 注册并获取 API
+在 _config.butterfly.yml 中配置：
+
+comments:  use:    - Twikoo  text: true  tirkkoo:    env_id: 你的环境ID
+
+7.3 添加网站统计推荐使用 不蒜子 或 Google Analytics：
+# 不蒜子统计busuanzi: true
+
+7.4 SEO 优化安装 SEO 插件：
+npm install hexo-generator-sitemap hexo-generator-baidu-url --save
+
+在 _config.yml 中添加：
+sitemap:  path: sitemap.xmlbaidu_url:  slug: 
+
+
+🎉 恭喜！你的 Hexo + Butterfly 博客已经搭建完成！现在你可以：
+
+📝 开始写文章
+🎨 自定义主题样式
+🚀 完善内容并推广
+
+有任何问题欢迎留言交流！
+
+
+我的博客源码： https://github.com/szy321123/zyang_blog
+完整配置可参考我的项目，有问题欢迎提 Issue。
+
+]]></content>
+      <categories>
+        <category>建站教程</category>
+        <category>静态博客</category>
+      </categories>
+      <tags>
+        <tag>自动部署</tag>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>博客搭建</tag>
+        <tag>Nginx</tag>
+        <tag>SSL</tag>
+        <tag>VPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenClaw（小龙虾）彻底卸载指南 — 完整清理不留死角</title>
+    <url>/zyang_blog/posts/openclaw-complete-uninstall-guide/</url>
+    <content><![CDATA[OpenClaw（小龙虾）彻底卸载指南 — 完整清理不留死角使用 OpenClaw 一段时间后，可能因为 Token 费用超支、功能不符合预期、或者单纯玩腻了，想干干净净地把它从系统里移除。但很多人会发现——明明删了 CLI，后台 Gateway 还在跑；重启后服务又自动回来了。
+这篇教程解决的就是这个问题：无论你用哪种方式安装的，都能找到对应的卸载方案，从官方脚本到强制清理，全部覆盖。
+
+
+一、确认安装方式在卸载之前，先搞清楚自己用的是哪种安装方式，不同方式对应不同的卸载命令。
+快速判断# 方式一：npm/pnpm/bun 全局安装which openclaw &amp;&amp; openclaw --version# 方式二：Docker 容器运行docker ps -a | grep openclaw# 方式三：源码 git clonels ~/openclaw 2&gt;/dev/null || ls /opt/openclaw 2&gt;/dev/null
+
+如果三个命令都没有输出，说明可能没装、或者装在其他路径，可以用以下命令全盘搜索：
+find / -name &quot;openclaw&quot; -type f 2&gt;/dev/null | head -20
+
+
+二、官方脚本卸载（最推荐）如果你当初是用官方脚本安装的，最简单的方式是用官方提供的自动卸载命令：
+# 交互式（会弹出确认提示）openclaw uninstall# 非交互式（一行命令搞定，适合服务器）openclaw uninstall --all --yes --non-interactive# 没有安装 CLI 但想跑卸载？用 npx 直接跑npx -y openclaw uninstall --all --yes --non-interactive
+
+
+⚠️ 注意：官方卸载脚本会移除核心组件（Gateway 服务、Agent 运行时、配置、工作区），但配置文件和残留物可能清理不彻底，建议完成后手动做一遍第三节的扫尾检查。
+
+
+三、分步骤手动卸载如果你想自己掌控每一步，或者官方脚本不生效，按以下顺序操作。
+第一步：停止 Gateway 服务这是最重要的一步——先停服务，再删文件，否则可能删了还在跑。
+# 停止 Gatewayopenclaw gateway stop
+
+第二步：卸载 Gateway 启动项防止重启后服务自动复活：
+openclaw gateway uninstall
+
+第三步：删除状态、配置与工作区# 删除主配置目录rm -rf &quot;$&#123;OPENCLAW_STATE_DIR:-$HOME/.openclaw&#125;&quot;# 删除工作区（所有项目数据在这里）rm -rf ~/.openclaw/workspace# 如果用过多个 profile（类似多账号）rm -rf ~/.openclaw-*
+
+
+⚠️ 危险操作：上面命令会删除所有数据，包括项目文件、聊天记录、配置文件。如果有重要内容，先备份：
+# 备份工作区cp -r ~/.openclaw/workspace ~/backup_workspace
+第四步：根据安装方式卸载 CLInpm &#x2F; pnpm &#x2F; bun 安装：
+npm rm -g openclawpnpm remove -g openclawbun remove -g openclaw
+
+Homebrew 安装（macOS）：
+brew uninstall openclaw-cli       # CLI 版本brew uninstall --cask openclaw  # 带 GUI 的 App 版本
+
+源码安装（git clone）：
+# 同样先停服务openclaw gateway uninstall# 再删源码目录（路径换成你实际的）rm -rf ~/openclaw
+
+
+四、强制清理（服务关不掉的救星）很多人遇到的问题是：明明执行了卸载，Gateway 后台还在跑，重启后又自动复活。这是因为启动项没有被清除。下面按系统分开处理。
+Linux（systemd 用户服务）# 查看所有 openclaw 相关服务systemctl --user list-units-files | grep -i openclawsystemctl --user list-units | grep -i openclaw# 停止并禁用用户服务systemctl --user disable --now openclaw-gateway.servicerm -f ~/.config/systemd/user/openclaw-gateway.servicesystemctl --user daemon-reload# 如果安装为系统级服务（root 权限）sudo systemctl disable --now openclaw-gateway.servicesudo rm -f /etc/systemd/system/openclaw-gateway.servicesudo systemctl daemon-reload
+
+
+💡 提示：服务名称在不同版本可能不同，常见名称还有 openclaw.service、clawdbot.service、com.openclaw.gateway.service。如果上面命令没效果，用 systemctl --user list-units-files | grep -i claw 查一下。
+
+macOS（launchd）# 查找所有 openclaw 相关启动项launchctl list | grep -i openclawls ~/Library/LaunchAgents/ | grep -i openclawls /Library/LaunchAgents/ | grep -i openclaw# 强制停止并移除（把 $UID 换成你的用户 UID，用 id 命令查看）launchctl bootout gui/$UID/ai.openclaw.gatewayrm -f ~/Library/LaunchAgents/ai.openclaw.gateway.plist# 也可能是这些名称，逐个检查# ai.openclaw.gateway# com.openclaw.gateway# com.clawdbot.gateway
+
+Windows（任务计划）以管理员身份运行 PowerShell：
+# 删除计划任务schtasks /Delete /F /TN &quot;OpenClaw Gateway&quot;# 删除启动脚本Remove-Item -Force &quot;$env:USERPROFILE\.openclaw\gateway.cmd&quot;
+
+
+五、Docker 容器卸载（最简单）如果你用的是 Docker 运行 OpenClaw，卸载非常轻松，因为容器环境是隔离的，不会污染宿主机：
+# 查看所有 openclaw 容器docker ps -a | grep openclaw# 停止并删除容器docker rm -f $(docker ps -a | grep openclaw | awk &#x27;&#123;print $1&#125;&#x27;)# 删除镜像（节省空间）docker rmi $(docker images | grep openclaw | awk &#x27;&#123;print $3&#125;&#x27;)
+
+
+六、彻底扫尾 — 确认无残留做完以上步骤，运行以下命令做最终确认：
+检查进程# Linux/macOSps aux | grep -i openclaw | grep -v greplsof -iTCP -sTCP:LISTEN -P -n | grep -i openclawss -lptn | grep -i openclaw
+
+检查启动项# systemdsystemctl --user list-units-files | grep -i openclaw# launchd (macOS)launchctl list | grep -i openclaw# crontab 定时任务（可能有人在这里埋了自启动）crontab -l | grep -i openclaw# 查看所有用户的 crontabsudo cat /var/spool/cron/crontabs/* | grep -i openclaw
+
+检查残留文件# 常见安装路径ls -la ~/.openclaw 2&gt;/dev/null &amp;&amp; echo &quot;残留！&quot; || echo &quot;干净&quot;ls -la ~/.config/openclaw 2&gt;/dev/null &amp;&amp; echo &quot;残留！&quot; || echo &quot;干净&quot;ls -la /opt/openclaw 2&gt;/dev/null &amp;&amp; echo &quot;残留！&quot; || echo &quot;干净&quot;ls -la /usr/local/bin/openclaw 2&gt;/dev/null &amp;&amp; echo &quot;残留！&quot; || echo &quot;干净&quot;
+
+如果以上所有命令都显示「干净」或无输出，恭喜你，OpenClaw 已彻底卸载。
+
+七、卸载后的额外注意事项云服务检查如果你是在云服务器（VPS）上安装的，检查：
+
+服务器是否还需要：如果不再使用，及时销毁实例避免继续计费
+有无附带收费服务：有些活动套餐可能附带 Token 包或附加服务，确认是否会自动续费
+
+API Key 安全如果决定不再使用模型 API，建议去对应厂商的管理后台删除不再使用的 API Key，防止泄露或被盗用造成额外费用：
+
+OpenAI API Key 管理：https://platform.openai.com/api-keys
+Anthropic API Key 管理：https://console.anthropic.com/settings/keys
+国内各大模型厂商均可在各自控制台管理
+
+备份与恢复如果以后还可能回来玩，卸载前可以导出配置和工作区：
+# 备份工作区cp -r ~/.openclaw/workspace ~/backup_workspace# 备份配置文件cp ~/.openclaw/config.json ~/backup_config.json 2&gt;/dev/null
+
+下次安装时，官方支持从备份恢复，工作区和聊天记录都能回来。
+
+总结
+
+
+场景
+操作
+
+
+
+官方脚本安装
+openclaw uninstall --all --yes --non-interactive
+
+
+Docker 安装
+docker rm -f $(docker ps -a -q)
+
+
+npm&#x2F;pnpm&#x2F;bun 安装
+npm rm -g openclaw
+
+
+服务删不掉（Linux）
+systemctl --user disable --now openclaw-gateway.service
+
+
+服务删不掉（macOS）
+launchctl bootout gui/$UID/ai.openclaw.gateway
+
+
+服务删不掉（Windows）
+schtasks /Delete /F /TN &quot;OpenClaw Gateway&quot;
+
+
+关键原则：先停服务，再删文件，最后清启动项。按这个顺序来，没有删不掉的。
+]]></content>
+      <categories>
+        <category>工具推荐</category>
+      </categories>
+      <tags>
+        <tag>OpenClaw</tag>
+        <tag>环境清理</tag>
+        <tag>卸载教程</tag>
       </tags>
   </entry>
   <entry>

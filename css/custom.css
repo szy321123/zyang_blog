@@ -15,10 +15,10 @@
 
 /* Custom cursor from local assets */
 :root {
-  --zy-cursor-main: url("/img/cursors/flapjack-cursor-plus2.png");
+  --zy-cursor-main: url("/zyang_blog/img/cursors/flapjack-cursor-plus2.png");
   --zy-cursor-main-x: 5;
   --zy-cursor-main-y: 1;
-  --zy-cursor-pointer: url("/img/cursors/flapjack-pointer-plus2.png");
+  --zy-cursor-pointer: url("/zyang_blog/img/cursors/flapjack-pointer-plus2.png");
   --zy-cursor-pointer-x: 2;
   --zy-cursor-pointer-y: 1;
   --zy-font-sans: "Yozai Medium", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -70,7 +70,7 @@ samp {
 html,
 body {
   cursor: var(--zy-cursor-main) var(--zy-cursor-main-x) var(--zy-cursor-main-y),
-    url("/img/cursors/flapjack-cursor.cur") 5 1,
+    url("/zyang_blog/img/cursors/flapjack-cursor.cur") 5 1,
     auto;
 }
 
@@ -102,7 +102,7 @@ body {
     input[type="submit"]
   ):not([disabled]):not([aria-disabled="true"]) * {
   cursor: var(--zy-cursor-pointer) var(--zy-cursor-pointer-x) var(--zy-cursor-pointer-y),
-    url("/img/cursors/flapjack-pointer.cur") 2 1,
+    url("/zyang_blog/img/cursors/flapjack-pointer.cur") 2 1,
     pointer;
 }
 
