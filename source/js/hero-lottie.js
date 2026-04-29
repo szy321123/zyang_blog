@@ -3,7 +3,9 @@
 
   const HERO_LOTTIE = {
     scriptUrl: 'https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js',
-    jsonPath: '/json/hero-panda.json'
+    jsonPath: '/json/hero-panda.json',
+    speed: 1,
+    autoplay: true
   }
 
   const manager = {
@@ -79,13 +81,16 @@
             container,
             renderer: 'svg',
             loop: true,
-            autoplay: true,
+            autoplay: HERO_LOTTIE.autoplay,
             path: HERO_LOTTIE.jsonPath,
             rendererSettings: {
               progressiveLoad: true,
               preserveAspectRatio: 'xMidYMid meet'
             }
           })
+
+          // Keep timing deterministic across devices/pages.
+          this.animation.setSpeed(HERO_LOTTIE.speed)
         })
         .catch(() => {
           const wrap = container.closest('.hero-lottie-wrap')
@@ -111,10 +116,10 @@
       if (window.btf && typeof window.btf.addGlobalFn === 'function') {
         window.btf.addGlobalFn('pjaxSend', () => this.destroy(), 'hero_lottie_destroy')
         window.btf.addGlobalFn('pjaxComplete', () => this.init(), 'hero_lottie_init')
+      } else {
+        document.addEventListener('pjax:send', () => this.destroy(), { passive: true })
+        document.addEventListener('pjax:complete', () => this.init(), { passive: true })
       }
-
-      document.addEventListener('pjax:send', () => this.destroy(), { passive: true })
-      document.addEventListener('pjax:complete', () => this.init(), { passive: true })
     }
   }
 

@@ -13,8 +13,8 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://szy321123.github.io
-root: /zyang_blog/
+url: https://zyang.me
+root: /
 permalink: posts/:title/
 permalink_defaults:
 pretty_urls:
@@ -99,12 +99,6 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: butterfly
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/szy321123/zyang_blog.git
-  branch: gh-pages
 
 # Local search index (for Butterfly local_search)
 search:

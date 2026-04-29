@@ -299,10 +299,10 @@
       if (window.btf && typeof window.btf.addGlobalFn === 'function') {
         window.btf.addGlobalFn('pjaxSend', () => this.destroy(), 'hero_lite_destroy')
         window.btf.addGlobalFn('pjaxComplete', () => this.init(), 'hero_lite_init')
+      } else {
+        document.addEventListener('pjax:send', () => this.destroy(), { passive: true })
+        document.addEventListener('pjax:complete', () => this.init(), { passive: true })
       }
-
-      document.addEventListener('pjax:send', () => this.destroy(), { passive: true })
-      document.addEventListener('pjax:complete', () => this.init(), { passive: true })
 
       window.addEventListener('resize', () => {
         window.clearTimeout(this.resizeTimer)
