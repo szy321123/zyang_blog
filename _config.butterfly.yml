@@ -120,7 +120,12 @@ cover:
   archives_enable: false
   # 未设置封面时，显示默认封面
   default_cover:
-    # - 示例图片：xxx.jpg
+    - /img/covers/cover-01.svg
+    - /img/covers/cover-02.svg
+    - /img/covers/cover-03.svg
+    - /img/covers/cover-04.svg
+    - /img/covers/cover-05.svg
+    - /img/covers/cover-06.svg
 
 # 替换损坏的图像
 error_img:
@@ -262,10 +267,10 @@ reward:
 # 帖子编辑
 # 轻松在线浏览和编辑博客源代码。
 post_edit:
-  enable: false
+  enable: true
   # 编辑地址：https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
   # 例如：https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url: https://github.com/your-name/your-repo/edit/main/source/
+  url: https://github.com/szy321123/zyangblog/edit/main/source/
 
 # 相关文章
 related_post:
@@ -298,6 +303,56 @@ noticeOutdate:
 # --------------------------------------
 footer:
   nav: false
+  build_date: 2026-04-24
+  runtime_start: 2026-04-24T00:00:00+08:00
+  icp:
+    text: 萌ICP备20268010号
+    url: https://icp.gov.moe/?keyword=20268010
+  link_groups:
+    - title: 内容
+      links:
+        - text: 文章归档
+          url: /archives/
+        - text: 分类索引
+          url: /categories/
+        - text: 标签云
+          url: /tags/
+        - text: 随机阅读
+          url: /random.html
+    - title: 站点
+      links:
+        - text: 首页
+          url: /
+        - text: 关于本站
+          url: /about/
+        - text: 资源导航
+          url: /sites/
+        - text: 实用工具
+          url: /tools/
+    - title: 项目
+      links:
+        - text: 下载中心
+          url: /downloads/
+        - text: 留言板
+          url: /guestbook/
+        - text: GitHub 主页
+          url: https://github.com/szy321123
+    - title: 联系
+      links:
+        - text: GitHub
+          url: https://github.com/szy321123
+        - text: Email
+          url: mailto:szy007700@qq.com
+        - text: Telegram
+          url: https://t.me/boluo12334
+    - title: 协议
+      links:
+        - text: 隐私协议
+          url: /privacy/
+        - text: 版权协议
+          url: /copyright/
+        - text: CC BY-NC-SA 4.0
+          url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
   owner:
     enable: true
@@ -307,6 +362,49 @@ footer:
     enable: false
     version: false
   custom_text:
+
+# --------------------------------------
+# 站点常量（便于维护）
+# --------------------------------------
+brand_carousel:
+  speed: 40s
+  items:
+    - name: HTML5
+      logo: /img/brands/html5.svg
+      url: https://developer.mozilla.org/docs/Web/HTML
+    - name: CSS3
+      logo: /img/brands/css3.svg
+      url: https://developer.mozilla.org/docs/Web/CSS
+    - name: JavaScript
+      logo: /img/brands/javascript.svg
+      url: https://developer.mozilla.org/docs/Web/JavaScript
+    - name: Node.js
+      logo: /img/brands/nodejs.svg
+      url: https://nodejs.org/
+    - name: npm
+      logo: /img/brands/npm.svg
+      url: https://www.npmjs.com/
+    - name: Docker
+      logo: /img/brands/docker.svg
+      url: https://www.docker.com/
+    - name: Git
+      logo: /img/brands/git.svg
+      url: https://git-scm.com/
+    - name: GitHub
+      logo: /img/brands/github.svg
+      url: https://github.com/
+    - name: Nginx
+      logo: /img/brands/nginx.svg
+      url: https://nginx.org/
+    - name: MySQL
+      logo: /img/brands/mysql.svg
+      url: https://www.mysql.com/
+    - name: Cloudflare
+      logo: /img/brands/cloudflare.svg
+      url: https://www.cloudflare.com/
+    - name: DigitalOcean
+      logo: /img/brands/digitalocean.svg
+      url: https://www.digitalocean.com/
 
 # --------------------------------------
 # 旁白设置
@@ -431,7 +529,7 @@ rightside_bottom:
 
 # 繁简体中文转换
 translate:
-  enable: false
+  enable: true
   # 按钮的文本
   default: 繁
   # 网站语言（1 - 繁体中文/ 2 - 简体中文）
@@ -526,7 +624,7 @@ busuanzi:
 math:
   # 选择：mathjax、katex
   # 如果不需要数学，请将其留空
-  use: Artalk
+  use: katex
   per_page: true
   hide_scrollbar: false
 
@@ -748,7 +846,7 @@ remark42:
 # 参考链接：https://artalk.js.org/guide/frontend/config.html
 artalk:
 # Artalk 评论系统配置
-  server: http://127.0.0.1:23366
+  server:
   site: zyang-local-dev
   # 使用 Artalk 访客计数作为页面浏览计数
   visitor: true
@@ -1032,6 +1130,7 @@ clickShowText:
 # 参考链接：https://fancyapps.com/fancybox/
 # 如果不需要灯箱，请将其留空
 lightbox:
+  medium_zoom
 
 # --------------------------------------
 # 标签插件设置
@@ -1039,7 +1138,7 @@ lightbox:
 
 # 系列
 series:
-  enable: false
+  enable: true
   # 按标题或日期排序
   orderBy: 'title'
   # 排序。 1、asc为上升； -1, desc 为降序
@@ -1199,9 +1298,9 @@ css_prefix: true
 # 将代码插入到头部（“</head>”标签之前）和底部（“</body>”标签之前）
 inject:
   head:
-    - <link rel="preconnect" href="https://jsd.liiiu.cn" crossorigin>
-    - <link rel="stylesheet" href="https://jsd.liiiu.cn/gh/willow-god/Sharding-fonts/Yozai-Medium/result.min.css">
+    - <link rel="stylesheet" href="/fonts/yozai-medium.css">
     - <link rel="stylesheet" href="/css/custom.css">
+    - <link rel="stylesheet" href="/css/custom-carousel.css">
   bottom:
     - <script src="/js/universe-particles.js" defer></script>
     - <script src="/js/hero-lottie.js" defer></script>

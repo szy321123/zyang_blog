@@ -148,6 +148,8 @@
       const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
       this.themeConfig = THEMES[current]
       this.speed = this.themeConfig.speed
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (reduceMotion) this.speed *= 0.6
     }
 
     resize() {
@@ -159,7 +161,11 @@
     }
 
     seed() {
-      const count = Math.max(10, Math.floor(this.width * this.themeConfig.density))
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const mobile = window.innerWidth <= 768
+      const densityFactor = reduceMotion ? 0.45 : (mobile ? 0.7 : 1)
+      const minCount = reduceMotion ? 4 : (mobile ? 7 : 10)
+      const count = Math.max(minCount, Math.floor(this.width * this.themeConfig.density * densityFactor))
       this.stars = []
       for (let i = 0; i < count; i++) this.stars.push(new Star(this))
     }
@@ -176,7 +182,9 @@
       if (!this.ctx) return
       this.ctx.clearRect(0, 0, this.width, this.height)
       this.frame += 1
-      if (!this.booting && this.frame % 220 === 0) this.injectComets(1)
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const cometInterval = reduceMotion ? 520 : (window.innerWidth <= 768 ? 320 : 220)
+      if (!this.booting && this.frame % cometInterval === 0) this.injectComets(1)
       for (let i = 0; i < this.stars.length; i++) {
         const s = this.stars[i]
         s.move()
@@ -201,7 +209,8 @@
       this.booting = true
       window.setTimeout(() => {
         this.booting = false
-        this.injectComets(window.innerWidth > 768 ? 2 : 1)
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        this.injectComets(reduceMotion ? 0 : (window.innerWidth > 768 ? 2 : 1))
       }, 180)
       this.animate()
     }

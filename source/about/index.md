@@ -1,7 +1,7 @@
 ---
 title: 关于我
 date: 2026-04-17 23:11:46
-top_img: false
+top_img: /img/sections/about.svg
 type: page
 comments: false
 ---

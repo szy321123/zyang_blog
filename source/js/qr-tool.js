@@ -189,6 +189,7 @@
     const ctx = canvas.getContext('2d')
     if (!ctx) throw new Error('无法初始化绘图上下文')
 
+
     canvas.width = size
     canvas.height = size
     ctx.clearRect(0, 0, size, size)
@@ -209,6 +210,11 @@
         ctx.fillRect(x, y, w, h)
       }
     }
+
+    // Trigger pop animation on new QR generation
+    canvas.classList.remove('qr-canvas-animated')
+    void canvas.offsetWidth // Force reflow to restart animation
+    canvas.classList.add('qr-canvas-animated')
   }
 
   function generate (opts = {}) {

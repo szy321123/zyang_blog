@@ -2,6 +2,7 @@
 title: 下载中心
 date: 2026-04-28 16:19:01
 type: page
+top_img: /img/sections/downloads.svg
 ---
 
 <div id="downloads-app" class="dlx-loading">

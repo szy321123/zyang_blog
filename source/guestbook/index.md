@@ -4,6 +4,7 @@ date: 2026-04-28 16:30:00
 type: "guestbook"
 comments: true
 bottom_meta: false
+top_img: /img/sections/guestbook.svg
 ---
 
 <div class="author-info" style="text-align: center; margin-bottom: 2rem; background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: var(--card-box-shadow);">

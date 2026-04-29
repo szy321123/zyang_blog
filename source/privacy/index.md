@@ -2,7 +2,7 @@
 title: 隐私协议
 date: 2026-04-24 18:30:00
 type: page
-top_img: false
+top_img: /img/sections/privacy.svg
 comments: false
 ---
 
