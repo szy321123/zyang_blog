@@ -1,0 +1,45 @@
+@import url("https://jsd.liiiu.cn/gh/willow-god/Sharding-fonts/Yozai-Medium/result.min.css");
+/* Final typography alignment with reference site */
+:root {
+  --zy-font-force: "Yozai Medium", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+html,
+body,
+#body-wrap,
+#page-header,
+#site-info,
+#recent-posts,
+#aside-content,
+#article-container,
+#footer,
+.card-widget,
+.recent-post-item,
+.article-title,
+h1, h2, h3, h4, h5, h6,
+button,
+input,
+select,
+textarea {
+  font-family: var(--zy-font-force);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Keep homepage cover fixed */
+#page-header.full_page {
+  background-image: url('/img/cat.png') !important;
+  background-position: center center !important;
+  background-size: cover !important;
+}
+
+/* Keep icon fonts intact */
+.fa, .fas, .far, .fab, .fal, .fad, .fa-solid, .fa-regular, .fa-brands, i[class^="fa"], i[class*=" fa"] {
+  font-family: "Font Awesome 6 Free", "Font Awesome 7 Free", "Font Awesome 6 Brands" !important;
+  font-weight: 900;
+}
+.fab, .fa-brands {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400;
+}

@@ -2,7 +2,8 @@
 title: 版权协议
 date: 2026-04-24 18:31:00
 type: page
-top_img: /img/sections/copyright.svg
+top_img: /img/sections/downloads.png
+hide_cover_title: true
 comments: false
 ---
 

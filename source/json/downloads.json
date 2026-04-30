@@ -1,17 +1,27 @@
 {
   "meta": {
-    "generatedAt": "2026-04-29T08:26:21.200Z",
+    "generatedAt": "2026-04-30T08:32:40.397Z",
     "source": "https://zyang.app",
     "rootPath": "/",
-    "totalItems": 21,
+    "totalItems": 22,
     "categories": {
-      "root": 12,
+      "root": 13,
       "bandizip": 3,
       "geek": 2,
       "v2ray": 4
     }
   },
   "items": [
+    {
+      "name": "DGEngSetup6111742.exe",
+      "path": "/DGEngSetup6111742.exe",
+      "size": 65468184,
+      "sizeText": "62 MB",
+      "modified": "2026-04-30T08:30:25.638146536Z",
+      "category": "root",
+      "platform": "Windows",
+      "downloadUrl": "https://zyang.app/p/DGEngSetup6111742.exe"
+    },
     {
       "name": "Filza4.0破解.ipa",
       "path": "/Filza4.0破解.ipa",

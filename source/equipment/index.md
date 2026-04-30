@@ -1,7 +1,8 @@
 ---
 title: 我的装备
 date: 2026-04-28 18:10:00
-top_img: /img/sections/equipment.svg
+top_img: /img/sections/equipment.png
+hide_cover_title: true
 type: page
 comments: false
 ---
@@ -66,3 +67,5 @@ comments: false
 </section>
 </div>
 </div>
+
+

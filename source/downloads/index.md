@@ -2,7 +2,8 @@
 title: 下载中心
 date: 2026-04-28 16:19:01
 type: page
-top_img: /img/sections/downloads.svg
+top_img: /img/sections/downloads.png
+hide_cover_title: true
 ---
 
 <div id="downloads-app" class="dlx-loading">
@@ -14,3 +15,5 @@ top_img: /img/sections/downloads.svg
 <noscript>
 	<p>当前页面需要 JavaScript 才能展示完整下载列表。</p>
 </noscript>
+
+

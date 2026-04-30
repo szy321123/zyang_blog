@@ -1,6 +1,7 @@
 ---
 title: Git 与 GitHub 团队协作完全指南
 date: 2026-04-23 12:00:00
+cover: /img/covers/posts/git-github-collaboration-tutorial.png
 categories:
   - 开发协作
   - 版本控制

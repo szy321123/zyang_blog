@@ -1,6 +1,7 @@
 ---
 title: OpenClaw 接入 QQ 机器人和微信：详细配置教程
 date: 2026-04-29 22:30:00
+cover: /img/covers/posts/openclaw-qq-wechat-channel-setup.png
 categories:
   - OpenClaw
   - AI 助手

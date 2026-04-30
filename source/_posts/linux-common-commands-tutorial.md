@@ -1,6 +1,7 @@
 ---
 title: Linux 系统常用命令完全指南
 date: 2026-04-23 11:20:00
+cover: /img/covers/posts/linux-common-commands-tutorial.png
 categories:
   - Linux运维
   - 系统管理

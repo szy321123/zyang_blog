@@ -59,7 +59,11 @@
   function setCharCount (text) {
     const el = byId('qr-char-count')
     if (!el) return
+    el.classList.remove('qr-char-ticking')
+    void el.offsetWidth
     el.textContent = `${text.length} 字符`
+    el.classList.add('qr-char-ticking')
+    el.addEventListener('animationend', () => el.classList.remove('qr-char-ticking'), { once: true })
   }
 
   function setRangesText () {
@@ -211,10 +215,23 @@
       }
     }
 
-    // Trigger pop animation on new QR generation
-    canvas.classList.remove('qr-canvas-animated')
-    void canvas.offsetWidth // Force reflow to restart animation
+    // Trigger scan + glow animations
+    const canvasWrap = document.querySelector('.qr-canvas-wrap')
+    if (canvasWrap) {
+      canvasWrap.classList.remove('qr-scanning')
+      void canvasWrap.offsetWidth
+      canvasWrap.classList.add('qr-scanning')
+      canvasWrap.addEventListener('animationend', () => canvasWrap.classList.remove('qr-scanning'), { once: true })
+    }
+
+    canvas.classList.remove('qr-canvas-animated', 'qr-canvas-success')
+    void canvas.offsetWidth
     canvas.classList.add('qr-canvas-animated')
+    canvas.addEventListener('animationend', () => {
+      canvas.classList.remove('qr-canvas-animated')
+      canvas.classList.add('qr-canvas-success')
+      canvas.addEventListener('animationend', () => canvas.classList.remove('qr-canvas-success'), { once: true })
+    }, { once: true })
   }
 
   function generate (opts = {}) {
@@ -251,6 +268,15 @@
     a.href = canvas.toDataURL('image/png')
     a.download = `qrcode-${Date.now()}.png`
     a.click()
+
+    // Success flash on download button
+    const btn = byId('qr-download')
+    if (btn) {
+      btn.classList.remove('qr-btn-download-success')
+      void btn.offsetWidth
+      btn.classList.add('qr-btn-download-success')
+      btn.addEventListener('animationend', () => btn.classList.remove('qr-btn-download-success'), { once: true })
+    }
   }
 
   function clearInputsByMode () {

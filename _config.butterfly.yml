@@ -84,14 +84,13 @@ disable_top_img: false
 # 如果页面的banner没有设置，则会显示default_top_img
 default_top_img: false
 
-# 索引页的横幅图像
-index_img: /img/hero-placeholder.svg
+# 索引页的横幅图像index_img: /img/cat.png
 
 # 存档页面的横幅图像
-archive_img: false
+archive_img: /img/sections/categories.png
 
 # 注意：标签页，不是标签页
-tag_img: false
+tag_img: /img/sections/tags.png
 
 # 标签页的banner图片，可以为每个标签设置banner图片
 # 格式：
@@ -99,7 +98,7 @@ tag_img: false
 tag_per_img:
 
 # 注意：类别页面，不是类别页面
-category_img: false
+category_img: /img/sections/categories.png
 
 # 分类页面的banner图片，可以为每个分类设置banner图片
 # 格式：
@@ -120,12 +119,7 @@ cover:
   archives_enable: false
   # 未设置封面时，显示默认封面
   default_cover:
-    - /img/covers/cover-01.svg
-    - /img/covers/cover-02.svg
-    - /img/covers/cover-03.svg
-    - /img/covers/cover-04.svg
-    - /img/covers/cover-05.svg
-    - /img/covers/cover-06.svg
+    - /img/covers/post-cover-default.png
 
 # 替换损坏的图像
 error_img:
@@ -1095,7 +1089,7 @@ fireworks:
 
 # 鼠标点击效果：心形符号
 click_heart:
-  enable: true
+  enable: false
   mobile: false
 
 # 鼠标点击效果：文字
@@ -1298,9 +1292,11 @@ css_prefix: true
 # 将代码插入到头部（“</head>”标签之前）和底部（“</body>”标签之前）
 inject:
   head:
-    - <link rel="stylesheet" href="/fonts/yozai-medium.css">
+    - <link rel="stylesheet" href="/fonts/yozai-medium.css?v=20260501">
     - <link rel="stylesheet" href="/css/custom.css">
     - <link rel="stylesheet" href="/css/custom-carousel.css">
+    - <link rel="stylesheet" href="/css/cartoon-purple.css">
+    - <link rel="stylesheet" href="/css/fix-live.css?v=20260501">
   bottom:
     - <script src="/js/universe-particles.js" defer></script>
     - <script src="/js/hero-lottie.js" defer></script>
@@ -1386,5 +1382,6 @@ CDN:
     # 缬氨酸：
     # 说明：waline_css：
     # 说明：waline_js：
+
 
 

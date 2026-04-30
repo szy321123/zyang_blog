@@ -1,6 +1,7 @@
 ---
 title: OpenClaw（小龙虾）彻底卸载指南 — 完整清理不留死角
 date: 2026-04-27 15:00:00
+cover: /img/covers/posts/openclaw-complete-uninstall-guide.png
 tags:
   - OpenClaw
   - 环境清理

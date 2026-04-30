@@ -1,6 +1,7 @@
 ---
 title: Linux 服务器运维神器：一个脚本搞定所有
 date: 2026-04-24 04:15:00
+cover: /img/covers/posts/kejilion-sh-toolbox.png
 tags:
   - Linux
   - 运维脚本

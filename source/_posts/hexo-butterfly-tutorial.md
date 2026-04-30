@@ -1,6 +1,7 @@
 ---
 title: 从零搭建 Hexo + Butterfly 博客教程
 date: 2026-04-22 18:00:00
+cover: /img/covers/posts/hexo-butterfly-tutorial.png
 categories:
   - 建站教程
   - 静态博客
