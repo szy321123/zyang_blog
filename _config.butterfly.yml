@@ -84,7 +84,8 @@ disable_top_img: false
 # 如果页面的banner没有设置，则会显示default_top_img
 default_top_img: false
 
-# 索引页的横幅图像index_img: /img/cat.png
+# 索引页的横幅背景，支持颜色或图片 URL
+index_img: '#5a4a6a'
 
 # 存档页面的横幅图像
 archive_img: /img/sections/categories.png

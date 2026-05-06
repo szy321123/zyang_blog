@@ -31,6 +31,8 @@ header#page-header(class=`${headerClassName + isFixedClass}` style=bg_img)
   if top_img !== false
     if globalPageType === 'post'
       include ./post-info.pug
+      #post-top-cover
+        img#post-top-bg.nolazyload(src=bg_img)
     else if globalPageType === 'home'
       #site-info
         h1#site-title=config.title

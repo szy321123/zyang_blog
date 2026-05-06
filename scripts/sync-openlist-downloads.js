@@ -4,13 +4,35 @@ const fs = require('fs/promises')
 const path = require('path')
 const https = require('https')
 
+const httpsAgent = new https.Agent({
+  keepAlive: true,
+  maxSockets: 12,
+  maxFreeSockets: 6,
+  keepAliveMsecs: 10000
+})
+
 const DEFAULTS = {
   baseUrl: 'https://zyang.app',
   rootPath: '/',
   password: '',
   perPage: 200,
   requestTimeoutMs: 15000,
+  maxConcurrency: 4,
+  requestRetries: 2,
   outputRelPath: path.join('source', 'json', 'downloads.json')
+}
+
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms)
+  })
+}
+
+function normalizePositiveInt(input, fallback) {
+  const value = Number(input)
+  if (!Number.isFinite(value)) return fallback
+  const intVal = Math.floor(value)
+  return intVal > 0 ? intVal : fallback
 }
 
 function cleanBaseUrl(url) {
@@ -78,6 +100,7 @@ function postJson(url, payload, timeoutMs) {
         'content-type': 'application/json',
         'content-length': Buffer.byteLength(data)
       },
+      agent: httpsAgent,
       timeout: timeoutMs
     }, res => {
       let body = ''
@@ -115,7 +138,18 @@ async function listDirectory(config, dirPath, page) {
     refresh: false
   }
 
-  const response = await postJson(endpoint, payload, config.requestTimeoutMs)
+  let response
+  for (let attempt = 0; attempt <= config.requestRetries; attempt += 1) {
+    try {
+      response = await postJson(endpoint, payload, config.requestTimeoutMs)
+      break
+    } catch (err) {
+      if (attempt >= config.requestRetries) throw err
+      // 轻量指数退避，降低偶发网络抖动带来的全量失败概率。
+      await sleep(200 * (2 ** attempt))
+    }
+  }
+
   if (response.statusCode < 200 || response.statusCode >= 300) {
     throw new Error(`OpenList API HTTP ${response.statusCode}`)
   }
@@ -131,9 +165,9 @@ async function listDirectory(config, dirPath, page) {
 async function collectFiles(config) {
   const queue = [config.rootPath]
   const files = []
+  let cursor = 0
 
-  while (queue.length > 0) {
-    const currentDir = queue.shift()
+  async function scanDirectory(currentDir) {
     let page = 1
 
     while (true) {
@@ -158,6 +192,19 @@ async function collectFiles(config) {
       page += 1
     }
   }
+
+  async function worker() {
+    while (true) {
+      const currentIndex = cursor
+      cursor += 1
+      if (currentIndex >= queue.length) break
+      const currentDir = queue[currentIndex]
+      await scanDirectory(currentDir)
+    }
+  }
+
+  const workerCount = Math.max(1, Math.min(config.maxConcurrency, 12))
+  await Promise.all(Array.from({ length: workerCount }, () => worker()))
 
   return files
 }
@@ -231,8 +278,10 @@ async function syncOpenList(hexo) {
     baseUrl: cleanBaseUrl(process.env.OPENLIST_BASE_URL || DEFAULTS.baseUrl),
     rootPath: normalizePath(process.env.OPENLIST_ROOT_PATH || DEFAULTS.rootPath),
     password: process.env.OPENLIST_PASSWORD || DEFAULTS.password,
-    perPage: Number(process.env.OPENLIST_PER_PAGE || DEFAULTS.perPage),
-    requestTimeoutMs: Number(process.env.OPENLIST_TIMEOUT_MS || DEFAULTS.requestTimeoutMs)
+    perPage: normalizePositiveInt(process.env.OPENLIST_PER_PAGE || DEFAULTS.perPage, DEFAULTS.perPage),
+    requestTimeoutMs: normalizePositiveInt(process.env.OPENLIST_TIMEOUT_MS || DEFAULTS.requestTimeoutMs, DEFAULTS.requestTimeoutMs),
+    maxConcurrency: normalizePositiveInt(process.env.OPENLIST_MAX_CONCURRENCY || DEFAULTS.maxConcurrency, DEFAULTS.maxConcurrency),
+    requestRetries: normalizePositiveInt(process.env.OPENLIST_REQUEST_RETRIES || DEFAULTS.requestRetries, DEFAULTS.requestRetries)
   }
 
   const startedAt = Date.now()

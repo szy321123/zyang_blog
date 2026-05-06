@@ -1,6 +1,8 @@
 div
   script(src=url_for(theme.asset.utils))
   script(src=url_for(theme.asset.main))
+  // Ensure IP aside script is always loaded
+  script(src=url_for('/js/aside-ip-info.js'), defer)
 
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))

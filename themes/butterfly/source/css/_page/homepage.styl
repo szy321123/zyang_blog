@@ -1,150 +1,200 @@
-$indexLayout = hexo-config('index_layout') || 1
 $indexEnable = hexo-config('cover.index_enable')
 
 #recent-posts
-  .recent-post-item
+  .recent-post-items
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    gap: 20px 0
+
+  & > .recent-post-item:not(:first-child),
+  .recent-post-items > .recent-post-item:not(:first-child)
+    animation: slide-in .6s .4s backwards
+    will-change: transform
+
+  & > .recent-post-item,
+  .recent-post-items > .recent-post-item
     @extend .cardHover
-    position: relative
+    display: flex
+    flex-direction: column
     overflow: hidden
-    margin-bottom: 20px
+    width: calc(50% - 10px)
+    height: auto
+    min-height: 0
+    position: relative
+    border-radius: 12px
+    box-shadow: none
+    transition: all .3s ease 0s
 
-    if $indexLayout == 6 || ($indexLayout == 7)
-      display: inline-block
-      width: calc(100% / 2 - 8px)
-      vertical-align: top
-
-      +maxWidth768()
-        width: 100%
-
-      +minWidth2000()
-        width: calc(100% / 3 - 8px)
-
-    if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
+    .recent-post-info-top-tips
       display: flex
-      flex-direction: row
-      align-items: center
-      height: 16.8em
+      margin-top: 20px
 
-      +maxWidth768()
-        flex-direction: column
-        height: auto
+    .unvisited-post
+      display: flex
+      position: relative
+      color: var(--second-text-color)
+      font-size: .75rem
+      text-decoration: none
 
-      +minWidth2000()
-        height: 18.8em
+      &:visited
+        color: var(--card-bg)
+
+    .recent-post-info
+      margin-top: 0
+      position: relative
+
+      .recent-post-info-top
+        position: relative
+        width: 100%
+        padding: 0 32px
+        transition: .3s
+
+        .article-categories-original
+          display: flex
+          position: relative
+          margin-right: 8px
+          color: var(--second-text-color)
+          font-size: .75rem
+
+        .newPost
+          display: flex
+          position: relative
+          margin-right: 8px
+          color: var(--second-text-color)
+          font-size: .75rem
+
+      .article-title
+        display: -webkit-box
+        overflow: hidden
+        width: 100%
+        margin-top: 0
+        margin-bottom: 0
+        color: var(--font-color)
+        font-size: 20px
+        font-weight: 700
+        line-height: 30px
+        transition: .3s
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 2
+
+        +maxWidth768()
+          if hexo-config('post_meta.page.date_type') == 'both'
+            line-height: 23px
+          font-size: 19px
 
     &:hover
-      .post-bg
-        transform: scale(1.1)
+      img.post-bg
+        filter: brightness(.82) !important
+        transform: scale(1.03) !important
+        transition: .3s ease-in-out
 
     &.ads-wrap
       display: block !important
+      width: 100%
       height: auto !important
 
     .post_cover
       overflow: hidden
+      width: 100%
+      height: 225px
 
-      if ($indexLayout != 5 && ($indexLayout != 7))
-        +maxWidth768()
-          width: 100%
-          height: 230px
-
-      if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
-        width: 42%
-        height: 100%
-
-        &.right
-          order: 1
-
-          +maxWidth768()
-            order: 0
-
-      if $indexLayout == 4 || ($indexLayout == 5 || ($indexLayout == 6 || ($indexLayout == 7)))
-        width: 100%
-
-        if ($indexLayout == 5 || ($indexLayout == 7))
-          height: 17em
-        else
-          height: 230px
-
-      if ($indexLayout == 5 || ($indexLayout == 7)) && $indexEnable
-        &:before
-          position: absolute
-          z-index: 1
-          width: 100%
-          height: 100%
-          background-color: rgba(18, 18, 18, .4)
-          content: ''
-          backdrop-filter: blur(3px)
-
-      .post-bg
-        z-index: -4
-        @extend .imgHover
-
-    & >.recent-post-info
       +maxWidth768()
-        padding: 20px 20px 30px
         width: 100%
+        height: 208px
 
-      if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
-        padding: 0 40px
-        width: 58%
+      img.post-bg
+      .post-bg
+        border-radius: 0
+        width: 100%
+        height: 100%
+        object-fit: cover
+        transition: all .6s ease 0s
 
-      if $indexLayout == 4 || ($indexLayout == 5 || ($indexLayout == 6 || ($indexLayout == 7)))
-        padding: 30px 30px 25px
+      &.right
+        order: 0
 
-      if ($indexLayout == 5 || ($indexLayout == 7)) && $indexEnable
-        &:not(.no-cover)
-          position: absolute
-          top: 50%
-          z-index: 2
-          width: 100%
-          color: var(--text-highlight-color)
-          transform: translateY(-50%)
-          --text-highlight-color: rgba(255, 255, 255, 1)
-          --card-meta: rgba(255, 255, 255, .7)
+    & > .recent-post-info
+      width: 100%
+      min-height: 174px
+      cursor: pointer
+      position: relative
+      padding: 0
+      display: inline-block
+      overflow: hidden
 
-      &.no-cover
-        +maxWidth768()
-          padding: 30px 20px
-
-        if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
-          width: 100%
-
-        if $indexLayout == 4 || ($indexLayout == 5 || ($indexLayout == 6 || ($indexLayout == 7)))
-          padding: 35px 30px
-
-      & > .article-title
-        @extend .limit-more-line
-        color: var(--text-highlight-color)
-        font-size: 1.55em
-        line-height: 1.4
-        transition: all .2s ease-in-out
-        -webkit-line-clamp: 2
+      .sticky-warp
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-right: 8px
+        line-height: 23px
 
         .sticky
-          margin-right: 10px
           color: $sticky-color
-          transform: rotate(45deg)
+          font-size: 12px
+
+      &.no-cover
+        width: 100%
 
         +maxWidth768()
-          font-size: 1.43em
+          padding: 30px 20px
 
         &:hover
           color: $text-hover
 
       & > .article-meta-wrap
-        margin: 6px 0
-        color: var(--card-meta)
-        font-size: .9em
+        position: absolute
+        left: 0
+        bottom: 30px
+        display: flex
+        flex-wrap: nowrap
+        flex-direction: row-reverse
+        align-items: center
+        justify-content: space-between
+        width: 100%
+        padding: 0 32px
+        color: var(--font-color)
+        font-size: .7rem
+        transition: .3s
+
+        if hexo-config('post_meta.page.date_type') == 'both'
+          flex-direction: column
+          white-space: nowrap
+          text-overflow: ellipsis
+          bottom: 0
+
+          +maxWidth768()
+            bottom: 20px
+        else
+          +maxWidth768()
+            bottom: 20px
+            flex-direction: column
+            align-items: flex-start
+
+        .article-meta
+          if hexo-config('post_meta.page.date_type') != 'both'
+            display: inline-block
+            margin: 0 8px 0 0
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
 
         & > .post-meta-date
-          cursor: default
+          color: var(--font-color)
+          font-size: .875rem
+          white-space: nowrap
+
+          if hexo-config('post_meta.page.date_type') == 'both'
+            display: inline-block
+            overflow: hidden
+            text-overflow: ellipsis
+
+          +maxWidth500()
+            font-size: 13px
 
         i
           margin: 0 4px 0 0
-
-        .fa-spinner
-          margin: 0
 
         .article-meta-label
           if hexo-config('post_meta.page.label')
@@ -163,13 +213,47 @@ $indexEnable = hexo-config('cover.index_enable')
             display: none
 
         a
-          color: var(--card-meta)
+          color: var(--font-color)
+          font-size: 14px
+          margin-right: 4px
+
+          span
+            pointer-events: none
 
           &:hover
             color: $text-hover
-            text-decoration: underline
 
       & > .content
         @extend .limit-more-line
+        display: none
         -webkit-line-clamp: 2
-        word-break: break-word
+
+  +maxWidth900()
+    & > .recent-post-item,
+    .recent-post-items > .recent-post-item
+      width: 100%
+
+  +maxWidth768()
+    .recent-post-items
+      gap: 16px
+
+    & > .recent-post-item,
+    .recent-post-items > .recent-post-item
+      width: 100%
+
+      .post_cover
+        width: 100%
+        height: 208px
+
+      & > .recent-post-info
+        min-height: 168px
+
+        .recent-post-info-top
+          padding: 0 20px
+
+        & > .article-meta-wrap
+          padding: 0 20px
+
+      .article-title
+        font-size: 1.16rem
+        line-height: 1.45
