@@ -98,6 +98,26 @@
     }
   }
 
+  const fetchIpSb = async () => {
+    const response = await withTimeout(
+      fetch('https://api.ip.sb/geoip', { credentials: 'omit' })
+    )
+    if (!response.ok) throw new Error(`ipsb_http_${response.status}`)
+    const result = await response.json()
+    if (!result) throw new Error('ipsb_empty')
+
+    return {
+      ip: result.ip || '',
+      country: result.country || '',
+      prov: result.region || result.region_name || '',
+      city: result.city || '',
+      district: '',
+      isp: result.isp || '',
+      lng: Number(result.longitude || result.lon || 0),
+      lat: Number(result.latitude || result.lat || 0)
+    }
+  }
+
   const getDistanceKm = (lng1, lat1, lng2, lat2) => {
     if (![lng1, lat1, lng2, lat2].every(Number.isFinite)) return null
     const toRad = deg => deg * Math.PI / 180
@@ -179,7 +199,11 @@
       try {
         info = await fetchQifu()
       } catch (_) {
-        info = await fetchIpwho()
+        try {
+          info = await fetchIpSb()
+        } catch (_) {
+          info = await fetchIpwho()
+        }
       }
     }
 
