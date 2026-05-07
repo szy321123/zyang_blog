@@ -65,13 +65,13 @@ if (/use:\s*katex/.test(themeConfig) || /use:\s*mathjax/.test(themeConfig) || /\
 
 // ICP check: required for Butterfly, optional (warn) for others
 if (theme === 'butterfly') {
-  if (/text:\s*萌ICP备\d+号/.test(themeConfig) && /url:\s*https:\/\/icp\\.gov\\.moe\/?keyword=\d+/.test(themeConfig)) {
+  if (/text:\s*萌ICP备\d+号/.test(themeConfig) && /url:\s*https:\/\/icp\.gov\.moe\/\?keyword=\d+/.test(themeConfig)) {
     ok('ICP config exists');
   } else {
     fail('ICP config is missing or malformed for butterfly theme');
   }
 } else {
-  if (/text:\s*萌ICP备\d+号/.test(themeConfig) && /url:\s*https:\/\/icp\\.gov\\.moe\/?keyword=\d+/.test(themeConfig)) {
+  if (/text:\s*萌ICP备\d+号/.test(themeConfig) && /url:\s*https:\/\/icp\.gov\.moe\/\?keyword=\d+/.test(themeConfig)) {
     ok('ICP config exists');
   } else {
     warn('ICP config not found in theme configuration (not required for current theme)');

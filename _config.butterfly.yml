@@ -115,7 +115,7 @@ footer_img: false
 background: false
 cover:
   # 是否禁用盖子
-  index_enable: true
+  index_enable: false
   aside_enable: true
   archives_enable: false
   # 未设置封面时，显示默认封面
@@ -207,7 +207,7 @@ subtitle:
 # 新手建议：首页布局设置，控制边栏位置及显示
 # 核心配置：index_layout
 # 新手建议：首页布局设置，控制边栏位置及显示
-index_layout: 3
+index_layout: 1
 
 # 首页显示文章简介
 # 1：说明
@@ -1295,9 +1295,7 @@ inject:
   head:
     - <link rel="stylesheet" href="/fonts/yozai-medium.css?v=20260501">
     - <link rel="stylesheet" href="/css/custom.css">
-    - <link rel="stylesheet" href="/css/custom-carousel.css">
     - <link rel="stylesheet" href="/css/cartoon-purple.css">
-    - <link rel="stylesheet" href="/css/fix-live.css?v=20260501">
   bottom:
     - <script src="/js/universe-particles.js" defer></script>
     - <script src="/js/hero-lottie.js" defer></script>
