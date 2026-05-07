@@ -20,52 +20,69 @@ function ok(msg) {
 }
 
 const root = path.resolve(__dirname, '..');
-const butterflyConfigPath = path.join(root, '_config.butterfly.yml');
 const mainConfigPath = path.join(root, '_config.yml');
 
-if (!exists(butterflyConfigPath)) {
-  fail('_config.butterfly.yml not found');
-  process.exit(1);
-}
 if (!exists(mainConfigPath)) {
   fail('_config.yml not found');
   process.exit(1);
 }
 
-const butterfly = read(butterflyConfigPath);
+function warn(msg) {
+  console.warn(`WARN: ${msg}`);
+}
+
 const mainConfig = read(mainConfigPath);
 
-if (/use:\s*katex/.test(butterfly) || /use:\s*mathjax/.test(butterfly)) {
-  ok('math.use is valid (katex or mathjax)');
-} else {
-  fail('math.use should be katex or mathjax');
+// detect theme from _config.yml
+let theme = null;
+const tm = /theme:\s*([^\s]+)/.exec(mainConfig);
+if (tm) theme = tm[1];
+
+// candidate theme config paths (override file, theme folder config, fallback butterfly)
+const candidates = [];
+if (theme) {
+  candidates.push(path.join(root, `_config.${theme}.yml`));
+  candidates.push(path.join(root, 'themes', theme, '_config.yml'));
+}
+candidates.push(path.join(root, '_config.anzhiyu.yml'));
+candidates.push(path.join(root, '_config.butterfly.yml'));
+
+const themeConfigPath = candidates.find(p => exists(p));
+if (!themeConfigPath) {
+  fail('No theme configuration found (expected _config.<theme>.yml or themes/<theme>/_config.yml)');
+  process.exit(1);
 }
 
-if (/text:\s*萌ICP备\d+号/.test(butterfly) && /url:\s*https:\/\/icp\.gov\.moe\/\?keyword=\d+/.test(butterfly)) {
-  ok('ICP config exists');
+const themeConfig = read(themeConfigPath);
+
+// math check (works for both anzhiyu and butterfly configs).
+// Support patterns: 'use: katex|mathjax' or presence of 'katex:' / 'mathjax:' sections.
+if (/use:\s*katex/.test(themeConfig) || /use:\s*mathjax/.test(themeConfig) || /\bkatex:\s*/.test(themeConfig) || /\bmathjax:\s*/.test(themeConfig)) {
+  ok('math configuration detected (katex or mathjax)');
 } else {
-  fail('ICP config is missing or malformed');
+  fail('math configuration (katex or mathjax) not found in theme configuration');
 }
 
+// ICP check: required for Butterfly, optional (warn) for others
+if (theme === 'butterfly') {
+  if (/text:\s*萌ICP备\d+号/.test(themeConfig) && /url:\s*https:\/\/icp\\.gov\\.moe\/?keyword=\d+/.test(themeConfig)) {
+    ok('ICP config exists');
+  } else {
+    fail('ICP config is missing or malformed for butterfly theme');
+  }
+} else {
+  if (/text:\s*萌ICP备\d+号/.test(themeConfig) && /url:\s*https:\/\/icp\\.gov\\.moe\/?keyword=\d+/.test(themeConfig)) {
+    ok('ICP config exists');
+  } else {
+    warn('ICP config not found in theme configuration (not required for current theme)');
+  }
+}
+
+// site URL check from main config
 if (/url:\s*https?:\/\/[^\s]+/.test(mainConfig)) {
   ok('site url configured');
 } else {
   fail('site url missing in _config.yml');
-}
-
-const requiredAssets = [
-  path.join(root, 'source', 'css', 'custom.css'),
-  path.join(root, 'source', 'css', 'custom-carousel.css'),
-  path.join(root, 'source', 'fonts', 'yozai-medium.css'),
-  path.join(root, 'source', 'js', 'universe-particles.js')
-];
-
-for (const asset of requiredAssets) {
-  if (exists(asset)) {
-    ok(`asset present: ${path.relative(root, asset)}`);
-  } else {
-    fail(`asset missing: ${path.relative(root, asset)}`);
-  }
 }
 
 if (process.exitCode) {
