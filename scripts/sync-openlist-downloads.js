@@ -22,6 +22,9 @@ const DEFAULTS = {
   outputRelPath: path.join('source', 'json', 'downloads.json')
 }
 
+let syncOpenListAttempted = false
+let syncOpenListRunning = null
+
 function sleep(ms) {
   return new Promise(resolve => {
     setTimeout(resolve, ms)
@@ -274,6 +277,17 @@ async function writeOutput(hexo, payload, outputRelPath) {
 }
 
 async function syncOpenList(hexo) {
+  if (syncOpenListAttempted) {
+    hexo.log.info('[sync-openlist] 本进程已同步过，已跳过')
+    return
+  }
+
+  if (syncOpenListRunning) {
+    return syncOpenListRunning
+  }
+
+  syncOpenListAttempted = true
+
   const config = {
     baseUrl: cleanBaseUrl(process.env.OPENLIST_BASE_URL || DEFAULTS.baseUrl),
     rootPath: normalizePath(process.env.OPENLIST_ROOT_PATH || DEFAULTS.rootPath),
@@ -281,19 +295,28 @@ async function syncOpenList(hexo) {
     perPage: normalizePositiveInt(process.env.OPENLIST_PER_PAGE || DEFAULTS.perPage, DEFAULTS.perPage),
     requestTimeoutMs: normalizePositiveInt(process.env.OPENLIST_TIMEOUT_MS || DEFAULTS.requestTimeoutMs, DEFAULTS.requestTimeoutMs),
     maxConcurrency: normalizePositiveInt(process.env.OPENLIST_MAX_CONCURRENCY || DEFAULTS.maxConcurrency, DEFAULTS.maxConcurrency),
-    requestRetries: normalizePositiveInt(process.env.OPENLIST_REQUEST_RETRIES || DEFAULTS.requestRetries, DEFAULTS.requestRetries)
+    requestRetries: normalizePositiveInt(process.env.OPENLIST_REQUEST_RETRIES || DEFAULTS.requestRetries, DEFAULTS.requestRetries),
+    outputRelPath: process.env.OPENLIST_OUTPUT || DEFAULTS.outputRelPath
   }
 
-  const startedAt = Date.now()
-  const files = await collectFiles(config)
-  const output = buildOutput(config, files)
-  const { outputPath, changed } = await writeOutput(hexo, output, DEFAULTS.outputRelPath)
-  const elapsed = Date.now() - startedAt
+  syncOpenListRunning = (async () => {
+    const startedAt = Date.now()
+    const files = await collectFiles(config)
+    const output = buildOutput(config, files)
+    const { outputPath, changed } = await writeOutput(hexo, output, config.outputRelPath)
+    const elapsed = Date.now() - startedAt
 
-  if (changed) {
-    hexo.log.info(`[sync-openlist] 已同步 ${output.meta.totalItems} 个文件 (${elapsed} ms) -> ${outputPath}`)
-  } else {
-    hexo.log.info(`[sync-openlist] 内容无变化，已跳过写入 (${elapsed} ms)`)
+    if (changed) {
+      hexo.log.info(`[sync-openlist] 已同步 ${output.meta.totalItems} 个文件 (${elapsed} ms) -> ${outputPath}`)
+    } else {
+      hexo.log.info(`[sync-openlist] 内容无变化，已跳过写入 (${elapsed} ms)`)
+    }
+  })()
+
+  try {
+    await syncOpenListRunning
+  } finally {
+    syncOpenListRunning = null
   }
 }
 
